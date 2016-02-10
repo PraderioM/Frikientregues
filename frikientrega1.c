@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 int main(){
 	int i, LB;
@@ -39,9 +40,9 @@ int main(){
 		y=x;
 	}
 	//Tenint en copte la endianitat de l'ordinador agafem el byte on es guarda la segona part de l'exponent l'exponent.
-	//Aquest serà el que ocupi la posiciò 1 en el Little-endian i el que ocupi la posició 6 en el Big-endian.
+	//Aquest serà el que ocupi la posiciò 6 en el Little-endian i el que ocupi la posició 1 en el Big-endian.
 	i=3.5+LB*2.5;
-	aux=(int)(((unsigned char*)&y)[i]);
+	n=(int)(((unsigned char*)&y)[i]);
 	//Aquestes linees serveixen per mostrar per pantalla els 8 bytes que ocupa el double x en la memoria de l'ordinador.
 	/*for (i=0; i<8; i++){
 		printf("%d\t%d\n",(int)(((unsigned char*)&y)[i]), i);
@@ -50,9 +51,9 @@ int main(){
 	//dividint entre 16 i agafant la part entera (com que n és un en integer guardarà únicament la part entera) eliminem
 	//els últims cuatre bits del byte que estem examinant i ens quedem únicament amb els bits que guarden la informació
 	//del exponent.
-	n=n/16;
+	n=floor(n/16);
 	//Tenint en compte la endianitat de l'ordinador agafem el byte on es guarda la primera part del exponent l'exponent.
-	//Aquest serà el que ocupi la posiciò 0 en el Little-endian i el que ocupi la posició 7 en el Big-endian.
+	//Aquest serà el que ocupi la posiciò 7 en el Little-endian i el que ocupi la posició 0 en el Big-endian.
 	i=3.5+LB*3.5;
 	aux=((int)(((unsigned char*)&y)[i]));
 	//multiplicant per 2^4 el nombre guardat en el byte que guarda la primera part del exponent obtenim floor(e)*16 on
@@ -65,10 +66,12 @@ int main(){
 	//Per tal de multiplicar per 2 només hem de sumar 1 al exponent en base 2 de x i això s'obté sumant 16 al byte que 
 	//guarda la segona part del exponent estant atents al fet que l'exponent està guardat en dos bytes diferents.
 	i=3.5+LB*2.5;
-	((unsigned char*)&y)[i]+=16;
-	if (((unsigned char*)&y)[i]>255){
-		((unsigned char*)&y)[i]-=256;
+	if (((unsigned char*)&y)[i]>(255-16)){
+		((unsigned char*)&y)[i]+=16-256;
 		((unsigned char*)&y)[i+LB]+=1;
+	}
+	else{
+		((unsigned char*)&y)[i]+=16;
 	}
 	//Per tal de canviar el signe només hem de canviar el primer bit del byte que guarda la primera part del exponent
 	//restant o sumant 128 segons convingui.
@@ -80,10 +83,12 @@ int main(){
 	//l'exponent es guarda en dos bytes diferents.
 	i=3.5+LB*2.5;
 	if (((unsigned char*)&y)[i]<32){
-		((unsigned char*)&y)[i]+=256;
+		((unsigned char*)&y)[i]+=256-32;
 		((unsigned char*)&y)[i+LB]-=1;
 	}
-	((unsigned char*)&y)[i]-=32;
+	else{
+		((unsigned char*)&y)[i]-=32;
+	}
 	printf("\nMentres que %g dividit per -2 dona %g\n\n", x, y);
 	return 0;
 }
