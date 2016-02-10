@@ -74,7 +74,7 @@ int main(){
 		((unsigned char*)&y)[i]+=16;
 	}
 	//Per tal de canviar el signe només hem de canviar el primer bit del byte que guarda la primera part del exponent
-	//restant o sumant 128 segons convingui.
+	//sumant 128 i restant 256 en cas de que el resultat sigui mes gran o igual a 256 (cosa que es fa automàticament).
 	i=3.5+LB*3.5;
 	((unsigned char*)&y)[i]+=128;
 	printf("\n%g multiplicat per -2 dona %g\n", x, y);
