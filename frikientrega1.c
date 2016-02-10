@@ -5,9 +5,9 @@ int main(){
 	double z;
 	z=1;
 	//aquesta part comentada del codi ensenya, en ordre, els 4 bytes que ocupa el nombre z. en la memoria de l'ordinador. 
-	for (i=0; i<8; i++){
+	/*for (i=0; i<8; i++){
 		printf("%d\n", (int)(((unsigned char*)&z)[i]));	
-	}
+	}*/
 	//Si el primer byte és diferent de 0 significarà que l'ordinador guarda les dades en format Big-endian perquè el bit
 	//reservat al signe formarà part del primer byte. En cas contrari serà Little-endian.
 	if ((int)(((unsigned char*)&z)[0])==0){
