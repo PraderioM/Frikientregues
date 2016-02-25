@@ -1,0 +1,24 @@
+El mètode de Newton resulta sovint molt útil i convergeix sovint més ràpidament que el mètode de la bijecció.
+No obstant no és un mètode 100% eficaç i pot no convergir i quedar atrapat en un bucle.
+En aquest breu text presentaré una manera per construir un polinomi de grau n tal que, donats un nombre n de punts de R diferents disposats en qualsevol ordre aplicant el mètode de Newton agafant com a valor inicial qualsevol d'aquests punts es caurà en un cicle que recorrerà tots aquests punts en ordre.
+anomenem x1, x2, ..., xn els punts per els cuals volem que passi l'algoritme que apliqui el mètode de Newton i agafem
+p(x)=a1+a2x+a3x²+...+a_{n+1} x^n
+un polinomi genèric de grau n.
+Aleshores és condició necessaria i suficient per tal de que p(x) tingui les proprietats desitjades que per tot i=2,..,n
+es compleixi
+
+xi=x_{i-1}-p(x_{i-1})/p'(x_{i-1})   <=> p'(x_{i-1})(xi-x_{i-1})+p(x_{i-1})=0
+
+i que, per i=1 es compleixi
+
+x1=xn-p(xn)/p'(xn)   <=> p'(xn)(x1-xn)+p(xn)=0
+
+per tal de descartar com a solució el polinomi identicament 0 podem afegir com a condició que passi per el punt (a,b) (amb b diferent de 0) i, per tant, que es compleixi
+
+p(a)=b
+
+Això dóna lloc a un sistema lineal de n+1 equacions i n+1 incògnites que es pot escriure matricialment com
+
+A*X=B
+
+on A és una matriu (n+1)x(n+1) tal que per (i<n+1) Aij=((2-j)x_{i-1}^{j-1}+xi(j-1)x_{i-1}^{j-2}) (entenem que x0=xn i que xi^{-1}=0) i Anj=a^{j-1}, X és un vector columna tal que Xj=aj i B és un vector columna tal que Bk=0 per k diferent de n+1 i B_{n+1}=b.
