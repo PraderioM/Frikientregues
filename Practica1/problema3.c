@@ -115,12 +115,10 @@ float simpleunbucle(float* v, int n){
 	int i;
 	for (i=0; i<n; i++){
 		mig+=v[i];
+		var+=pow(v[i],2);
 	}
 	mig=pow(mig, 2);
 	mig=mig/n;
-	for (i=0; i<n; i++){
-		var+=pow(v[i],2);
-	}
 	var-=mig;
 	var=var/(n-1);
 	return var;
@@ -145,12 +143,10 @@ double doubleunbucle(double* w, int n){
 	int i;
 	for (i=0; i<n; i++){
 		mig+=w[i];
+		var+=pow(w[i],2);
 	}
 	mig=pow(mig, 2);
 	mig=mig/n;
-	for (i=0; i<n; i++){
-		var+=pow(w[i],2);
-	}
 	var-=mig;
 	var=var/(n-1);
 	return var;
