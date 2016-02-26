@@ -1,0 +1,6 @@
+Moltes vegades pot ser necessari trovar la inversa de un nombre b diferent de 0 mitjançant un algoritme que no pot utilitzar la divisió (per implementar la divisió seria necessari trobar la inversa de un nombre i això és exactament lo que estem intentant fer).
+Una de les maneres per assolir aquest objectiu consisteix en trobar el zero de la funció f(x)=1/x-b (f(x)=0 => 1/x=b =>     => x=1/b) mitjançant el mètode de Newton. Això ens donarà un algoritme en el cual no serà necessari dividir en quant es complirà
+
+x_{n+1}=xn-f(xn)/f'(xn)=xn-(1/xn-b)/(-1/xn²)=xn+xn-xn²b=xn(2-xn*b)
+
+on les úniques operacions que es fan servir són suma y multiplicació.
