@@ -1,4 +1,5 @@
-/* per el apartat a primer és necessari notar que
+/* per el apartat a primer és necessari notar que la funció és sempre positiva en o 0 en fora del origen en cuant x²>0 i
+1-cos³(x)>=0. A més a més
 lim x->0 (1-cos³(x))/x²=
 =lim x->0 (1-cos(x))(1+cos(x)+cos²(x))/x²=
 =lim x->0 (1-cos²(x))(1+cos(x)+cos²(x))/(x²(1+cos(x)))=
@@ -6,11 +7,11 @@ lim x->0 (1-cos³(x))/x²=
 per tant si demostrem que la derivada de f(x)=(1-cos³(x))/x² és negativa en un entorn dret de 0 i negativa en un entorn
 esquerra aleshores f(x)<3/2 en aquest en la unió d'aquests dos entorns.
 Ara bé calculant la derivada de f(x) obtenim que aquesta te el mateix signe que la funció
-g(x)=-3sin(x)cos²(x)x²-2x+2xcos³(x)=-3sin(x)x²+2x(cos³(x)-1)
+g(x)=-3sin(x)cos²(x)x²-2x+2xcos³(x)=2x(cos³(x)-1)-3sin(x)x²
 ara be en el interval (0;PI/2] es copleix que 3sin(x)x²>0 i x>0, a més a més sempre es compleix que (cos³(x)-1)<0 i,
 per tant
 g(x)=-3sin(x)x²+2x(cos³(x)-1)<2x(cos³(x)-1)<0
-mentres que en el interval [PI/2;0) es compleix que 3sin(x)x²<0 i x<0 i podem deduir que
+mentres que en el interval [-PI/2;0) es compleix que 3sin(x)x²<0 i x<0 i podem deduir que
 g(x)=-3sin(x)x²+2x(cos³(x)-1)>2x(cos³(x)-1)>0
 per tant f(x)<3/2 en el interval [-PI/2;PI/2]\{0}.
 per altra banda notem que sqrt(2)<PI/2 i que, per |x|>sqrt(2) es compleix que
