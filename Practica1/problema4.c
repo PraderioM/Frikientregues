@@ -49,7 +49,7 @@ int main(){
 	cancelació en quant el resultat de la sèrie sempre seria positiva i el nombre que es restaria seria
 	sempre menys similar a la suma i per tant no podria causar errors de cancelació (cosa que no seria certa si
 	fessim la suma de forma creixent en mòdul.*/
-	printf ("\nLa tercera forma de fer-ho serà sumant de forma decreixent en mòdul.\n");
+	printf ("\nLa tercera forma de fer-ho serà sumant els termes de la sèrie de forma decreixent en mòdul.\n");
 	y=0;
 	x=0;
 	double s=-1;
