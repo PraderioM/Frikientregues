@@ -1,0 +1,30 @@
+sigui E un espai mètric amb la funció distància d i sigui ExE els espai mètric amb la distància producte dxd volem demostrar que la funció distància d:ExE-->R⁺ és una funció continua.
+Dir que d és continua és equivalent a dir que per a tot punt (x0,y0) pertanyent a ExE es compleix que
+
+d(x,y)-->d(x0,y0) quan (x,y)-->(x0,y0)
+
+Com que d és una funció distància tenim que
+
+d(x,y)<= d(x,x0)+d(x0,y)=d(x,x0)+d(x0,y0)+d(y0,y)        <=>      d(x,y)<=d(x0,y0)+(d(y0,y)+d(x,x0))
+
+i, analogament
+
+d(x0,y0)<= d(x0,x)+d(x,y)=d(x0,x)+d(x,y)+d(y,y0)         <=>      d(x,y)>=d(x0,y0)-(d(x0,x)+d(y,y0))
+
+Per tant, com que quan (x,y)-->(x0,y0) es compleix que  x-->x0 i que  y-->y0, aleshores, per definició de límit es compleix
+
+d(x,x0)-->0 quan (x,y)-->(x0,y0)
+
+i
+
+d(y,y0)-->0 quan (x,y)-->(x0,y0)
+
+i com que acabem de veure que
+
+d(x0,y0)-(d(x0,x)+d(y,y0))<=d(x,y)<=d(x0,y0)+(d(y0,y)+d(x,x0))
+
+aleshores podem asegurar per el teorema del sandwich que
+
+d(x,y)-->d(x0,y0) quan (x,y)-->(x0,y0)
+
+i, per tant, la funció d és continua.
