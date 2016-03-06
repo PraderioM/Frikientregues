@@ -1,0 +1,1 @@
+Demostrem que lordre de convergència del mètode de la secant és p=(1+sqrt(5))/2
