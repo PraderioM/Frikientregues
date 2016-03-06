@@ -1,0 +1,51 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[left=1.5 cm,top=2.5cm,right=1.5cm,bottom=2.5cm]{geometry}
+\renewcommand{\*}{\cdot}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\d}{\text{d}}
+\renewcommand{\a}{\alpha}
+\newcommand{\e}{\varepsilon}
+\renewcommand{\b}{\beta}
+\newcommand{\x}{\times}
+%opening
+\title{Funció distancia}
+\author{Marco Praderio 1361525}
+\date{}
+\begin{document}
+\maketitle
+sigui $E$ un espai mètric amb la funció distància d i sigui $E\x E$ l'espai mètric amb la distància producte $\d\x\d$ volem demostrar que la funció distància 
+$\d:E\x E\to\R^+$ és una funció continua.\\
+Dir que d és continua és equivalent a dir que, per a tot punt $(x_0,y_0)\in E\x E$ es compleix que
+\begin{equation*}
+\d(x,y)\to\d(x_0,y_0) \text{ quan } (x,y)\to(x_0,y_0)
+\end{equation*}
+Com que d és una funció distància tenim que
+\begin{equation*}
+\d(x,y)\le \d(x,x_0)+\d(x_0,y)=\d(x,x_0)+\d(x_0,y_0)+\d(y_0,y)        \Leftrightarrow      \d(x,y)\le\d(x_0,y_0)+(\d(y_0,y)+\d(x,x_0))
+\end{equation*}
+i, analogament
+\begin{equation*}
+\d(x_0,y_0)\le\d(x_0,x)+\d(x,y)=\d(x_0,x)+\d(x,y)+\d(y,y_0)         \Leftrightarrow      \d(x,y)\ge\d(x_0,y_0)-(\d(x_0,x)+\d(y,y_0))
+\end{equation*}
+Per tant, com que quan $(x,y)\to(x_0,y_0)$ es compleix que  $x\to x_0$ i que  $y\to y_0$, aleshores, per definició de límit, es compleix
+\begin{equation*}
+\d(x,x_0)\to0 \text{ quan } (x,y)\to(x_0,y_0)
+\end{equation*}
+i
+\begin{equation*}
+d(y,y0)\to0 \text{ quan } (x,y)\to(x_0,y_0)
+\end{equation*}
+i com que acabem de veure que
+\begin{equation*}
+\d(x_0,y_0)-(\d(x_0,x)+\d(y,y_0))\le\d(x,y)\le\d(x_0,y_0)+(\d(y_0,y)+\d(x,x_0))
+\end{equation*}
+aleshores podem asegurar per la regla del sandwich que
+\begin{equation*}
+\d(x,y)\to\d(x_0,y_0) \text{ quan } (x,y)\to(x_0,y_0)
+\end{equation*}
+i, per tant, la funció d és continua.
+\end{document}

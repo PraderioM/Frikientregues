@@ -1,0 +1,51 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[left=1.5 cm,top=2.5cm,right=1.5cm,bottom=2.5cm]{geometry}
+\renewcommand{\*}{\cdot}
+\newcommand{\e}{\varepsilon}
+%opening
+\title{Ordre de convergència de la secant}
+\author{Marco Praderio 1361525}
+\date{}
+\begin{document}
+\maketitle
+Demostrem que lordre de convergència del mètode de la secant és $p=\frac{1+\sqrt{5}}{2}$.\\
+La successió donada per el mètode de la secant per trobar zeros de una funció $f$ es defineix recursivament com
+$$x_{n+1}=x_n-f(x_n)\frac{x_n-x_{n-1}}{f(x_n)-f(x_{n-1})}$$
+Amb $x_0=a+\e_0$ i $x_1=a+\e_1$ on $a$ és el zero de la funció $f$ i $\e_0$ i $\e_1$ són nombres reals.\\
+Si ara escribim $x_n=a+\e_n$ podem reescriure la identitat anterior com
+\begin{equation}
+\label{eqn}
+\e_{n+1}=\e_n-f(a+\e_n)\frac{\e_n-\e_{n-1}}{f(a+\e_n)-f(a+\e_{n-1})}
+\end{equation}
+Si ara suposem que $f$ és una funció $C^2$ tal que $f'(a)$,$f''(a)\not=0$ aleshores podem escriure
+\begin{equation*}
+f(a+\e_n)=f(a)+f'(a)\e_n+\frac{f''(a)}{2}\e_n^2+R(\e_n^2)=f'(a)\e_n+\frac{f''(a)}{2}\e_n^2+R(\e_n^2)
+\end{equation*}
+On $\lim\limits_{e_n\to0}\frac{R(\e_n^2)}{e_n^2}=0$. Per tant, per \ref{eqn} tindrem que, si $x_n\to a \Leftrightarrow \e_n\to 0$ aleshores per a n prou gran
+\begin{equation*}
+ \e_{n+1}\approx\e_n-(f'(a)\e_n+\frac{f''(a)}{2}\e_n^2)\frac{\e_n-\e_{n-1}}{f'(a)\e_n+\frac{f''(a)}{2}\e_n^2-(f'(a)\e_{n-1}+
+ \frac{f''(a)}{2}\e_{n-1}^2)}=
+\end{equation*}
+\begin{equation*}
+ =\e_n-\frac{f'(a)\e_n+\frac{f''(a)}{2}\e_n^2}{f'(a)+\frac{f''(a)}{2}(\e_n+\e_{n-1})}=\e_n-\frac{\e_n+\frac{f''(a)}{2f'(a)}\e_n^2}{1+\frac{f''(a)}{2f'(a)}(\e_n+\e_{n-1})}=
+\end{equation*}
+\begin{equation*}
+ =\frac{\frac{f''(a)}{2f'(a)}\e_n\e_{n-1}}{1+\frac{f''(a)}{2f'(a)}(\e_n+\e_{n-1})}\approx \frac{f''(a)}{2f'(a)}\e_n\e_{n-1}
+\end{equation*}
+Si ara denotem $M=\frac{f''(a)}{2f'(a)}$ i suposem que existeix $p$ tal que existeix el límit $\lim\limits_{n\to\infty}\frac{|\e_{n+1}|}{|\e_n|^p}=C$
+obtenim
+\begin{equation*}
+\lim\limits_{n\to\infty}\frac{|\e_{n+1}|}{|\e_n|^p}=C \Rightarrow \lim\limits_{n\to\infty}\frac{|M||\e_n||\e_{n-1}|}{|\e_n|^p}=C
+ \Rightarrow \lim\limits_{n\to\infty}\frac{|\e_{n-1}|}{|\e_n|^{p-1}}=\frac{C}{|M|} \Rightarrow
+\end{equation*}
+\begin{equation*}
+ \Rightarrow \lim\limits_{n\to\infty}\frac{|\e_n|^{p-1}}{|\e_{n-1}|}=\frac{|M|}{C} \Rightarrow \lim\limits_{n\to\infty}\frac{|\e_n|}{|\e_{n-1}|^{\frac{1}{p-1}}}=
+ \lim\limits_{n\to\infty}\frac{|\e_{n-1}|}{|\e_n|^{\frac{1}{p-1}}}=
+ \left(\frac{|M|}{C}\right)^{\frac{1}{p-1}}
+\end{equation*}
+Per tant, com que l'ordre de convergència és únic tenim que $p=\frac{1}{p-1}$ i, com que és positiu aleshores tenim que l'ordre de convergència de la secant
+(amb les hipòtesis que hem fet és $p=\frac{1+\sqrt{5}}{2}$
+\end{document}

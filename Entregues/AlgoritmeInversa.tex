@@ -1,0 +1,27 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[left=1.5 cm,top=2.5cm,right=1.5cm,bottom=2.5cm]{geometry}
+\renewcommand{\*}{\cdot}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\a}{\alpha}
+\renewcommand{\u}{\mu}
+%opening
+\title{Algoritme Inversa}
+\author{Marco Praderio 1361525}
+\date{}
+\begin{document}
+\maketitle
+Moltes vegades pot ser necessari trovar la inversa de un nombre b diferent de 0 mitjançant un algoritme que no pot utilitzar la divisió (per implementar la divisió seria
+necessari trobar la inversa de un nombre i això és exactament lo que estem intentant fer).\\
+Una de les maneres per assolir aquest objectiu consisteix en trobar, mitjançant el mètode de Newton, el zero de la funció $f(x)=\frac{1}{x}-b$ perquè de fet tenim
+\begin{equation*}
+f(x)=0 \Rightarrow \frac{1}{x}=b \Rightarrow x=\frac{1}{b} 
+\end{equation*}
+Això ens donarà un algoritme en el cual no serà necessari dividir en quant es complirà
+\begin{equation*}
+x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}=x_n-\frac{\frac{1}{x_n}-b}{-\frac{1}{x_n^2}}=x_n+x_n-x_n^2b=x_n(2-x_nb)
+\end{equation*}
+on les úniques operacions que es fan servir són suma y multiplicació.
+\end{document}

@@ -1,0 +1,46 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[left=1.5 cm,top=2.5cm,right=1.5cm,bottom=2.5cm]{geometry}
+\renewcommand{\*}{\cdot}
+\newcommand{\R}{\mathbb{R}}
+%opening
+\title{Algoritme anti Newton}
+\author{Marco Praderio 1361525}
+\date{}
+\begin{document}
+\maketitle
+El mètode de Newton resulta sovint molt útil i convergeix sovint més ràpidament que el mètode de la bijecció.
+No obstant no és un mètode 100\% eficaç i pot no convergir i quedar atrapat en un bucle.
+En aquest breu text presentaré una manera per construir un polinomi de grau $n$ tal que, donats un nombre $n$ de punts de $\R$ diferents disposats en qualsevol ordre
+aplicant el mètode de Newton agafant com a valor inicial qualsevol d'aquests punts es caurà en un cicle que recorrerà tots aquests punts en ordre.
+anomenem $x_1$, $x_2$, $\dots$, $x_n$ els punts per els cuals volem que passi l'algoritme que apliqui el mètode de Newton i agafem
+$p(x)$ un polinomi.
+Aleshores és condició necessaria i suficient per tal de que $p(x)$ tingui les proprietats desitjades que, per a tot $i=0$,$\dots$,$n$
+es compleixi
+\begin{equation*}
+x_i=x_{i-1}-\frac{p(x_{i-1})}{p'(x_{i-1})}
+\end{equation*}
+on $x_0=x_n$.
+Notem que, com que els valors $x_i$ són tots diferents aleshores $p(x_i)$ ha de ser diferent 0 per a tot $x_i$ i si $p(x_i)$ és diferent de 0 per a tot $x_i$ aleshores
+\begin{equation*}
+x_i=x_{i-1}-\frac{p(x_{i-1})}{p'(x_{i-1})} \Leftrightarrow x_i\*p'(x_{i-1})=x_{i-1}\*p'(x_{i-1})-p(x_{i-1})
+\end{equation*}
+en quant, si és complís la segona equació, $p'(x_i)$ hauria de ser diferent de 0 per a tot i (en cas contrari hi hauria un $p(x_i)=0$).\\
+Per tant, si imposem $p(x_i)=1$ per a tot $i=1$,$\dots$,$n$ i denotem $p(x)=a_1+a_2x+...+a_{2n}x^{2n-1}$ podem reduir el problema de determinar el polinomi a resoldre
+el següent sistema de equacions lineals
+\begin{equation*}
+\begin{cases}
+\text{eqn}_1: & p(x_1)=1 \\
+\vdots & \phantom{.}\\
+\text{eqn}_n:	& p(x_n)=1\\
+\text{eqn}_{n+1}: & p'(x_{i-1})(x_i-x_{i-1})+p(x_{i-1})=0\\
+\vdots & \phantom{.}\\
+\text{eqn}_{n+i}: & p'(x_{i-1})(x_i-x_{i-1})+p(x_{i-1})=0\\
+\vdots & \phantom{.}\\
+\text{eqn}_{2n}: & p'(x_{n-1})(x_n-x_{n-1})+p(x_{n-1})=0\\
+\end{cases}
+\end{equation*}
+Qualsevol polinomi (de qualsevol grau) que sigui solució d'aquest sistema tindrà les proprietats desitjades.
+\end{document}

@@ -1,0 +1,91 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[left=1.5 cm,top=2.5cm,right=1.5cm,bottom=2.5cm]{geometry}
+\renewcommand{\*}{\cdot}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\a}{\alpha}
+\renewcommand{\u}{\mu}
+%opening
+\title{Punts periòdics}
+\author{Marco Praderio 1361525}
+\date{}
+\begin{document}
+\maketitle
+Estudiem els punts periòdics en el l'interval $[0,1]$ que pot tenir la recurrència $g_{\mu}(x)=\mu x(1-x)$ amb $\mu$ pertanyent a $[0,4]$ en funció de $\mu$.\\
+\phantom{-}\\
+El problema en si és prou fàcil de resoldre a força bruta. De fet, fixat $\mu$, per trobar un punt periòdic de periòde $m$ només fa falta definir recursivament la successió
+de polinòmis
+\begin{equation*}
+g_{\mu_{n+1}}=g_{\mu}(g_{\mu_n}(x))
+\end{equation*}
+\begin{equation*}
+g_{\mu_1}(x)=g_{\mu}(x)
+\end{equation*}
+i buscar arrels del polinomi $p_{\mu_m}(x)=g_{\mu_m}(x)-x$ en el interval $[0,1]$ que no siguin arrels dels polinomis $p_{\mu_s}(x)=g_{\mu_s}(x)-x$ amb   $s<m$
+(com que els $p_{\mu_n}(x)$ són polinòmis podem fer servir el mètode de Sturm per determinar si existeixen arrels en aquest interval). Però per evitar treballs innecessaris
+estudiarem que passa al variar $\mu$.\\
+\phantom{.}\\
+Per $\mu=0$ tenim que $g_0(x)=0$ i no existeixen punts periòdics excepte el punt 0 de periòde 1.\\
+\phantom{.}\\
+per $0<\mu<1$ tenim que la derivada de $g_{\mu}(x)$ en el únic punt fix que te entre 0 i 1 (el 0) és $\mu$ i, per tant, 0 és un punt fix atracto. A més a més tenim que entre
+0 i 0.5 (on la derivada és 0) la derivada de $g_{\mu}(x)$ compleix $|g_{\mu}'(x)|\le \mu<1$ i, per tant, podem concloure que, per a tot $x$ pertanyent a $(0,0.5]$
+es complirà $|g_{\mu}(x)|\le\mu\*x<x$ a més a més es complirà que   $g_{\mu}(x)>0$  i, per tant, podrem aplicar el mateix raonament per $g_{\mu}(x)$. Podem per tant deduir
+que per a tot $x$ pertanyent a $(0,0.5]$ la successió  $x_n=g_{\mu}^n(x)$ serà estrictament de creixent i tendirà cap a 0 i, per tant, no existiran punts periódics en 
+$(0,0.5]$. A més a més, com que per a tot y pertanyent a $(0.5,1)$ es compleix que $g_{\mu}(y)=g_{\mu}(1-y)$ podem aplicar el mateix raonament en aquest interval i podem
+concloure que no hi haurà punts periòdics en $(0,1)$. Per últim per $x=1$ tenim $g_{\mu}(1)=0$ i $g_{\mu}(0)=0$ per tant 1 tampoc és un punt periódic i podem concloure que,
+per a $\mu<1$ no tenim punts periòdics en $[0,1]$ llevat el 0 de periòde 1.\\
+\phantom{.}\\
+per $\mu=1$ tenim, per $x$ pertanyent a $(0,1]$, que $g_1(x)>0$ (en realitat això és cert per a tot $\mu>0$) i que
+$g_1(x)=x(1-x)<x$ per tant tindrem una successió estrictament decreixent per a tot $x$ pertanyent a $(0,1]$ i, per tant, no hi haurà punts periòdics.\\
+\phantom{.}\\
+Per $\mu>1$ tindrem 2 punts fixos 0 i $\a=\frac{\u-1}{\u}$ dels cuals 0 serà un punt fix repulsor mentres que a serà atractor per $1<\u<3$.\\
+Comprobem que per $\u<3$ no hi ha punts periòdics en $[0,1]$ exceptuant els punts fixos.\\
+Per a tot $x$ es compleix
+\begin{equation*}
+(g_{\u}(x)-\a)^2=\left(\u\*x(1-x)-\frac{\u-1}{\u}\right)^2=
+\left((\u-1)x-\u x^2+x-\frac{\u-1}{\u}\right)^2=
+\end{equation*}
+\begin{equation*}
+=(((\u-1)-\u x)x+(x-\a))^2
+=(x-\a)^2+2x((\u-1)-\u x)(x-\a)+x^2((\u-1)-\u x)^2=
+\end{equation*}
+\begin{equation*}
+=(x-\a)^2+2x((\u-1)-\u x)(x-\frac{\u-1}{\u})+x^2((\u-1)-\u x)^2=
+\end{equation*}
+\begin{equation*}
+=(x-\a)^2+2x\frac{((\u-1)-\u x)(\u x-(\u-1))}{\u}+x^2((\u-1)-\u x)^2=
+\end{equation*}
+\begin{equation*}
+=(x-\a)^2-2x\frac{(\u-1)-\u x)^2}{\u}+x^2((\u-1)-\u x)^2=
+\end{equation*}
+\begin{equation*}
+=(x-\a)^2-\left(\frac{2x}{\u}-x^2\right)((\u-1)-\u x)^2=(x-\a)^2-x\left(\frac{2}{\u}-x\right)((\u-1)-\u x)^2
+\end{equation*}
+A més a més per $2\ge\u>1>x>0$ tindrem $\frac{2}{\u}-x>0$ i $x>0$. També es compleix que
+\begin{equation*}
+(\u-1)-\u x=0  \Rightarrow x=\frac{\u-1}{\u}=a 
+\end{equation*}
+Com a conseqüència, per a tot 0<x<1 diferent de a, si u<=2 es compleix que
+\begin{equation*}
+x\left(\frac{2}{\u}-x\right)((\u-1)-\u x)^2>0
+\end{equation*}
+i, per tant
+\begin{equation*}
+(g_{\u}(x)-\a)^2=(x-\a)^2-x\left(\frac{2}{\u}-x\right)((\u-1)-\u x)^2<(x-\a)^2
+\end{equation*}
+Per tant, per a tot punt $x$ pertanyent a $[0,1]$ no fix es compleix que  $g_{\u}(x)$ està més a prop de a que $x$ si $1<\u<2$ per tant, per a $1<\u\le2$ no hi ha punts
+periòdics.\\
+\phantom{.}\\
+Finalment per $2<\u<3$ tenim que per $\frac{\u-1}{2\u}<x<\frac{\u+1}{2\u}$ la derivada de $g_{\u}(x)$ és estrictament inferior a 1 per tant per el teorema del punt fix 
+tenim que per a tot $x$ pertanyent a  $\left(\a-\frac{3-\u}{2\u},\a+\frac{3-\u}{2\u}\right)$ el punt $g_{\u}(x)$ estarà estrictament més a prop de $\a$
+que $x$ i, per tant, no hi haurà punts periòdics en aquest interval.
+A més a més, per a $2<\u<3$ tenim que si $0<x<\frac{1}{\u}$ aleshores $x<g_{\u}(x)<\a$ si $\frac{1}{\u}<x<\a-\frac{3-\u}{2\u}$ aleshores $g_{\u}(x)=g_{\u}(1-x)$ i
+$1-x$ pertany a $\left(\a-\frac{3-\u}{2\u},\a+\frac{3-\u}{2\u}\right)$ i, per tant, els següents elements de la successió seràn sempre mes propers a a d'aquesta manera
+queda demostrat que en el intèrval $\left(0, \a+\frac{3-\u}{2\u}\right)$ no hi ha punts periòdics exceptuant el punt fix $\a$.
+Per últim per $x$ pertanyent a $\left(\a+\frac{3-\u}{2\u}, 1\right)$ aleshores $g_{\u}(x)$ pertany a $\left(0,\frac{1}{\u}\right)$ per tant ens reduïm al cas anterior i
+acabem de demostrar que per a tot $x$ pertanyent a $[0,1]$ ($g_{\u}(1)=0$ és un punt fix) no hi ha punts periòdics llevat dels punts fixos per
+a $\u<3$.\\
+per $\u\ge3$ hem de resoldre la equació esmentada al començament per trobar els punts periòdics.
+\end{document}

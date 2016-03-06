@@ -1,0 +1,50 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[left=1.5 cm,top=2.5cm,right=1.5cm,bottom=2.5cm]{geometry}
+\renewcommand{\*}{\cdot}
+\newcommand{\e}{\varepsilon}
+\renewcommand{\u}{\mu}
+%opening
+\title{Resoldre la equació $e^x=3x$}
+\author{Marco Praderio 1361525}
+\date{}
+\begin{document}
+\maketitle
+Considerem la família de mètodes:
+\begin{equation*}
+g_{\u}(x)=\frac{e^x+\u x}{3+\u}
+\end{equation*}
+amb $\u\in\{p/q : p \in \mathbb{Z}; q \in \{2, 3, 5\}\}$. Demostreu que qualsevol mètode
+d’aquesta família  és equivalent a resoldre $e^x=3x$ i determineu el millor mètode de la família per a resoldre aquest problema.\\
+\phantom{.}\\
+Els mètodes de la familia donada porten a trobar punts fixos de $g_{\u}(x)=x$ i, per tant, són solució (per $\u\not=-3$) de
+\begin{equation*}
+x=\frac{e^x+\u x}{3+\u}  \Leftrightarrow  x(3+\u)=e^x+\u x  \Leftrightarrow  3x+\u x=e^x+\u x    \Leftrightarrow  3x=e^x
+\end{equation*}
+El millor mètode vindrà donat per la funció $g_{\u}(x)$ tal que el modul de la seva derivada respecte a $x$ en el punt a on a és solució de $e^x=3x$ sigui mínim (o sigiu 0
+amb multiplicitat més gran).
+Busquem el $\u$ que minimitzi el mòdul de la derivada de $g_{\u}'(a)$ el cual coincidirà amb el $\u$ que minimitzi el seu mòdul al cuadrat.
+\begin{equation*}
+|g_{\u}'(a)|^2=\frac{(e^a+\u)^2}{(3+\u)^2}=\left(\frac{3a+\u}{3+\u}\right)^2=f(\u)
+\end{equation*}
+derivant $f(\u)$ respecte a $\u$ obtenim
+\begin{equation*}
+f'(\u)=2\frac{3+\u-3a-\u}{(3+\u)^2}\frac{3a+\u}{3+\u}=6\frac{(1-a)(3a+\u)}{(3+\u)^3}
+\end{equation*}
+fent un plot de $h(x)=e^x-3x$ veiem que aquesta funció te dos zeros els dos positius i que compleixen $a_1<1$ i $a_2>1$.
+Per tant, si el nombre que volem trobar és $a_1$ veiem que $f(\u)$ presenta un mínim en $\u=-3a_1$ per tant només hem de buscar el valor de $\u$ entre els valors possibles
+tal que $|\u+3a_1|$ sigui mínim.\\
+Com que $a_1$ és aproximadament 0.619 aleshores $3a_1$ serà aproximadament 1.857 la cual cosa ens dona els següents possibles candidats al millor $\u$ possibles
+\begin{itemize}
+\item $\u_1=-\frac{\text{floor}(2\*1.857)}{2}=-1.5$
+\item $\u_2=-\frac{\text{ceil}(2\*1.857)}{2}=-2$
+\item $\u_3=-\frac{\text{floor}(3\*1.857)}{3}=-1.6$
+\item $\u_4=-\frac{\text{ceil}(3\*1.857)}{3}=-2.0$
+\item $\u_5=-\frac{\text{floor}(5\*1.857)}{5}=-1.8$
+\item $\u_6=-\frac{\text{ceil}(5\*1.857)}{5}=-2.0$
+\end{itemize}
+A partir del resultats obtinguts i per lo que hem comentat anteriorment resulta evident que el millor mètode de la familià s'obtindrà amb $\u=-9/5$ i, per tant, 
+$g_{\u}(x)=\frac{5e^x-9x}{6}$
+\end{document}
