@@ -11,16 +11,16 @@
 \newcommand{\e}{\varepsilon}
 \renewcommand{\b}{\beta}
 %opening
-\title{Funcio contractiva}
+\title{Funció contractiva}
 \author{Marco Praderio 1361525}
 \date{}
 \begin{document}
 \maketitle
 Sigui $(E,d)$ un espai mètric complet i $g: E\to E$  una aplicació tal que, per algun $m$ pertanyent a $\N$, $g^m$ és contractiva amb constant de contracció $k<1$ (donats
-$u$,$v$ pertanyents a $E$ aleshores $\d(g(u),g(v))\le k\d(u,v)$).\\Demostreu que $g$ te un únic punt fix $\a$ pertenyent a $E$ i, per a cada $x_0$ pertanyent a $E$, 
+$u$,$v$ pertanyents a $E$ aleshores $\d(g(u),g(v))\le k\d(u,v)$).\\Demostreu que $g$ te un únic punt fix $\a$ pertanyent a $E$ i, per a cada $x_0$ pertanyent a $E$, 
 $\a$ és el límit de $n\to\infty$ de $x_n$ on $x_n=g(x_{n-1})$ per a cada $n$ pertanyent a $\N$.\\
 \phantom{.}\\
-Per realitzar aquesta demostració serà necessari demostrar abans el següent lema inmediat.\\
+Per realitzar aquesta demostració serà necessari demostrar abans el següent lema immediat.\\
 Tota funció contractiva és continua.\\
 \phantom{.}\\
 Agafem $(E,d)$ un espai mètric i $g$ una funció contractiva amb constant de contracció $k<1$ (donats $u$,$v$ pertanyents a $E$ aleshores $\d(g(u),g(v))\le k \d(u,v))$.
@@ -28,7 +28,7 @@ tenim per definició que per a tot $\e>0$ si $\d(u,v)<\frac{\e}{k}$ aleshores $\
 \phantom{.}\\
 Ara podem començar amb la demostració\\
 \phantom{.}\\
-Agafem $x_0$ un punt cualsevol pertanyent a $E$ i la successió $\{x_n\}$ definida recursivament per $x_{n+1}=g^m(x_n)$ i obtindrem que,
+Agafem $x_0$ un punt Qualsevol pertanyent a $E$ i la successió $\{x_n\}$ definida de forma recursiva per $x_{n+1}=g^m(x_n)$ i obtindrem que,
 per a tot $s$,$t$,$n_0$ pertanyents a $\N$ tals que $s>t>n_0$ es complirà
 \begin{equation*}
 \d(x_s,x_t)\le \sum_{i=0}^{s-t-1}\d(x_{t+i}, x_{t+i+1})\le\sum_{i=0}^{s-t-1}k^i\d(x_t, x_{t+1})\le\d(x_t, x_{t+1})\sum_{i=0}^{\infty}k^i=
@@ -36,17 +36,17 @@ per a tot $s$,$t$,$n_0$ pertanyents a $\N$ tals que $s>t>n_0$ es complirà
 \begin{equation*}
 =\frac{\d(x_t, x_{t+1})}{1-k}\le\\frac{d(x_{n_0}, x_{n_0+1}}{1-k}\le\frac{\d(x,g(x))k^{n_0}}{1-k}
 \end{equation*}
-per tant, com que podem fer $\frac{\d(x,g(x))k^{n_0}}{1-k}$ arbitrariament petit solament augmentant el valor de $n_0$ aleshores queda demostrat que la successió $\{x_n\}$
-és de cauchy i, com que $E$ és complet, aleshores existeix el límit d'aquesta sèrie que anomenarem $\a$. A més a més, com que $g^m$ és contractiva i, per tant, continua,
+per tant, com que podem fer $\frac{\d(x,g(x))k^{n_0}}{1-k}$ arbitràriament petit solament augmentant el valor de $n_0$ aleshores queda demostrat que la successió $\{x_n\}$
+és de Cauchy i, com que $E$ és complet, aleshores existeix el límit d'aquesta sèrie que anomenarem $\a$. A més a més, com que $g^m$ és contractiva i, per tant, continua,
 es compleix
 \begin{equation*}
 g^m(\a)=g^m(\lim\limits_{n\to\infty}x_n)=\lim\limits_{n\to\infty} g^m(x_n)=\lim\limits_{n\to\infty} x_{n+1}=\lim\limits_{n\to\infty} x_n=\a
 \end{equation*}
-per tant $\a$ és un punt fix per $g^m$. A més a més és l'unic punt fix per $g^m$ en quant, si existis $\beta$ un'altre punt fix diferent tindriem que $\d(\a,\beta)>0$ i es compliria
+per tant $\a$ és un punt fix per $g^m$. A més a més és l'únic punt fix per $g^m$ en quant, si existís $\beta$ un altre punt fix diferent tindríem que $\d(\a,\beta)>0$ i es compliria
 \begin{equation*}
 \d(\a,\b)=\d(g^m(\a),g^m(\b))\le k\d(\a,\b)<\d(\a,\b)
 \end{equation*}
-i arribariem a contradicció. Ara bé, a també és un punt fix per $g$ perquè en cas contrari tindriem $g(\a)=\b$ amb $\a$ diferent de $\b$ i $g^m(\b)=g^{m+1}(\a)=g(\a)=\b$
-i tindriem un punt fix per $g^m$ diferent de $\a$ cosa que acabem de veure que no és possible.\\
-Per últi cal dir que $\a$ és l'unic punt fix per $g$ en quant tots els punts fixes per $g$ també ho són per $g^m$ i tan sols tenim un punt fix per $g^m$.
+i arribaríem a contradicció. Ara bé, a també és un punt fix per $g$ perquè en cas contrari tindríem $g(\a)=\b$ amb $\a$ diferent de $\b$ i $g^m(\b)=g^{m+1}(\a)=g(\a)=\b$
+i tindríem un punt fix per $g^m$ diferent de $\a$ cosa que acabem de veure que no és possible.\\
+Per últim cal dir que $\a$ és l'únic punt fix per $g$ en quant tots els punts fixes per $g$ també ho són per $g^m$ i tan sols tenim un punt fix per $g^m$.
 \end{document}

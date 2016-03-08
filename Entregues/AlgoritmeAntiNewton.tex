@@ -15,9 +15,9 @@ El mètode de Newton resulta sovint molt útil i convergeix sovint més ràpidam
 No obstant no és un mètode 100\% eficaç i pot no convergir i quedar atrapat en un bucle.
 En aquest breu text presentaré una manera per construir un polinomi de grau $n$ tal que, donats un nombre $n$ de punts de $\R$ diferents disposats en qualsevol ordre
 aplicant el mètode de Newton agafant com a valor inicial qualsevol d'aquests punts es caurà en un cicle que recorrerà tots aquests punts en ordre.
-anomenem $x_1$, $x_2$, $\dots$, $x_n$ els punts per els cuals volem que passi l'algoritme que apliqui el mètode de Newton i agafem
+anomenem $x_1$, $x_2$, $\dots$, $x_n$ els punts per els quals volem que passi l'algoritme que apliqui el mètode de Newton i agafem
 $p(x)$ un polinomi.
-Aleshores és condició necessaria i suficient per tal de que $p(x)$ tingui les proprietats desitjades que, per a tot $i=0$,$\dots$,$n$
+Aleshores és condició necessària i suficient per tal de que $p(x)$ tingui les propietats desitjades que, per a tot $i=0$,$\dots$,$n$
 es compleixi
 \begin{equation*}
 x_i=x_{i-1}-\frac{p(x_{i-1})}{p'(x_{i-1})}
@@ -42,5 +42,5 @@ el següent sistema de equacions lineals
 \text{eqn}_{2n}: & p'(x_{n-1})(x_n-x_{n-1})+p(x_{n-1})=0\\
 \end{cases}
 \end{equation*}
-Qualsevol polinomi (de qualsevol grau) que sigui solució d'aquest sistema tindrà les proprietats desitjades.
+Qualsevol polinomi (de qualsevol grau) que sigui solució d'aquest sistema tindrà les propietats desitjades.
 \end{document}

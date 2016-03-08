@@ -19,13 +19,13 @@ g_{\u}(x)=\frac{e^x+\u x}{3+\u}
 amb $\u\in\{p/q : p \in \mathbb{Z}; q \in \{2, 3, 5\}\}$. Demostreu que qualsevol mètode
 d’aquesta família  és equivalent a resoldre $e^x=3x$ i determineu el millor mètode de la família per a resoldre aquest problema.\\
 \phantom{.}\\
-Els mètodes de la familia donada porten a trobar punts fixos de $g_{\u}(x)=x$ i, per tant, són solució (per $\u\not=-3$) de
+Els mètodes de la família donada porten a trobar punts fixos de $g_{\u}(x)=x$ i, per tant, són solució (per $\u\not=-3$) de
 \begin{equation*}
 x=\frac{e^x+\u x}{3+\u}  \Leftrightarrow  x(3+\u)=e^x+\u x  \Leftrightarrow  3x+\u x=e^x+\u x    \Leftrightarrow  3x=e^x
 \end{equation*}
-El millor mètode vindrà donat per la funció $g_{\u}(x)$ tal que el modul de la seva derivada respecte a $x$ en el punt a on a és solució de $e^x=3x$ sigui mínim (o sigiu 0
+El millor mètode vindrà donat per la funció $g_{\u}(x)$ tal que el modul de la seva derivada respecte a $x$ en el punt a on a és solució de $e^x=3x$ sigui mínim (o sigui 0
 amb multiplicitat més gran).
-Busquem el $\u$ que minimitzi el mòdul de la derivada de $g_{\u}'(a)$ el cual coincidirà amb el $\u$ que minimitzi el seu mòdul al cuadrat.
+Busquem el $\u$ que minimitzi el mòdul de la derivada de $g_{\u}'(a)$ el qual coincidirà amb el $\u$ que minimitzi el seu mòdul al quadrat.
 \begin{equation*}
 |g_{\u}'(a)|^2=\frac{(e^a+\u)^2}{(3+\u)^2}=\left(\frac{3a+\u}{3+\u}\right)^2=f(\u)
 \end{equation*}
@@ -45,6 +45,6 @@ Com que $a_1$ és aproximadament 0.619 aleshores $3a_1$ serà aproximadament 1.8
 \item $\u_5=-\frac{\text{floor}(5\*1.857)}{5}=-1.8$
 \item $\u_6=-\frac{\text{ceil}(5\*1.857)}{5}=-2.0$
 \end{itemize}
-A partir del resultats obtinguts i per lo que hem comentat anteriorment resulta evident que el millor mètode de la familià s'obtindrà amb $\u=-9/5$ i, per tant, 
+A partir del resultats obtinguts i per lo que hem comentat anteriorment resulta evident que el millor mètode de la família s'obtindrà amb $\u=-9/5$ i, per tant, 
 $g_{\u}(x)=\frac{5e^x-9x}{6}$
 \end{document}

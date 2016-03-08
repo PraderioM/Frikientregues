@@ -15,8 +15,8 @@
 \maketitle
 Estudiem els punts periòdics en el l'interval $[0,1]$ que pot tenir la recurrència $g_{\mu}(x)=\mu x(1-x)$ amb $\mu$ pertanyent a $[0,4]$ en funció de $\mu$.\\
 \phantom{-}\\
-El problema en si és prou fàcil de resoldre a força bruta. De fet, fixat $\mu$, per trobar un punt periòdic de periòde $m$ només fa falta definir recursivament la successió
-de polinòmis
+El problema en si és prou fàcil de resoldre a força bruta. De fet, fixat $\mu$, per trobar un punt periòdic de període $m$ només fa falta definir de forma recursiva la successió
+de polinomis
 \begin{equation*}
 g_{\mu_{n+1}}=g_{\mu}(g_{\mu_n}(x))
 \end{equation*}
@@ -24,24 +24,24 @@ g_{\mu_{n+1}}=g_{\mu}(g_{\mu_n}(x))
 g_{\mu_1}(x)=g_{\mu}(x)
 \end{equation*}
 i buscar arrels del polinomi $p_{\mu_m}(x)=g_{\mu_m}(x)-x$ en el interval $[0,1]$ que no siguin arrels dels polinomis $p_{\mu_s}(x)=g_{\mu_s}(x)-x$ amb   $s<m$
-(com que els $p_{\mu_n}(x)$ són polinòmis podem fer servir el mètode de Sturm per determinar si existeixen arrels en aquest interval). Però per evitar treballs innecessaris
+(com que els $p_{\mu_n}(x)$ són polinomis podem fer servir el mètode de Sturm per determinar si existeixen arrels en aquest interval). Però per evitar treballs innecessaris
 estudiarem que passa al variar $\mu$.\\
 \phantom{.}\\
-Per $\mu=0$ tenim que $g_0(x)=0$ i no existeixen punts periòdics excepte el punt 0 de periòde 1.\\
+Per $\mu=0$ tenim que $g_0(x)=0$ i no existeixen punts periòdics excepte el punt 0 de període 1.\\
 \phantom{.}\\
-per $0<\mu<1$ tenim que la derivada de $g_{\mu}(x)$ en el únic punt fix que te entre 0 i 1 (el 0) és $\mu$ i, per tant, 0 és un punt fix atracto. A més a més tenim que entre
+per $0<\mu<1$ tenim que la derivada de $g_{\mu}(x)$ en el únic punt fix que te entre 0 i 1 (el 0) és $\mu$ i, per tant, 0 és un punt fix atractor. A més a més tenim que entre
 0 i 0.5 (on la derivada és 0) la derivada de $g_{\mu}(x)$ compleix $|g_{\mu}'(x)|\le \mu<1$ i, per tant, podem concloure que, per a tot $x$ pertanyent a $(0,0.5]$
 es complirà $|g_{\mu}(x)|\le\mu\*x<x$ a més a més es complirà que   $g_{\mu}(x)>0$  i, per tant, podrem aplicar el mateix raonament per $g_{\mu}(x)$. Podem per tant deduir
-que per a tot $x$ pertanyent a $(0,0.5]$ la successió  $x_n=g_{\mu}^n(x)$ serà estrictament de creixent i tendirà cap a 0 i, per tant, no existiran punts periódics en 
+que per a tot $x$ pertanyent a $(0,0.5]$ la successió  $x_n=g_{\mu}^n(x)$ serà estrictament de creixent i tendirà cap a 0 i, per tant, no existiran punts periòdics en 
 $(0,0.5]$. A més a més, com que per a tot y pertanyent a $(0.5,1)$ es compleix que $g_{\mu}(y)=g_{\mu}(1-y)$ podem aplicar el mateix raonament en aquest interval i podem
-concloure que no hi haurà punts periòdics en $(0,1)$. Per últim per $x=1$ tenim $g_{\mu}(1)=0$ i $g_{\mu}(0)=0$ per tant 1 tampoc és un punt periódic i podem concloure que,
-per a $\mu<1$ no tenim punts periòdics en $[0,1]$ llevat el 0 de periòde 1.\\
+concloure que no hi haurà punts periòdics en $(0,1)$. Per últim per $x=1$ tenim $g_{\mu}(1)=0$ i $g_{\mu}(0)=0$ per tant 1 tampoc és un punt periòdic i podem concloure que,
+per a $\mu<1$ no tenim punts periòdics en $[0,1]$ llevat el 0 de període 1.\\
 \phantom{.}\\
 per $\mu=1$ tenim, per $x$ pertanyent a $(0,1]$, que $g_1(x)>0$ (en realitat això és cert per a tot $\mu>0$) i que
 $g_1(x)=x(1-x)<x$ per tant tindrem una successió estrictament decreixent per a tot $x$ pertanyent a $(0,1]$ i, per tant, no hi haurà punts periòdics.\\
 \phantom{.}\\
-Per $\mu>1$ tindrem 2 punts fixos 0 i $\a=\frac{\u-1}{\u}$ dels cuals 0 serà un punt fix repulsor mentres que a serà atractor per $1<\u<3$.\\
-Comprobem que per $\u<3$ no hi ha punts periòdics en $[0,1]$ exceptuant els punts fixos.\\
+Per $\mu>1$ tindrem 2 punts fixos 0 i $\a=\frac{\u-1}{\u}$ dels quals 0 serà un punt fix repulsor mentre que a serà atractor per $1<\u<3$.\\
+Comprovem que per $\u<3$ no hi ha punts periòdics en $[0,1]$ exceptuant els punts fixos.\\
 Per a tot $x$ es compleix
 \begin{equation*}
 (g_{\u}(x)-\a)^2=\left(\u\*x(1-x)-\frac{\u-1}{\u}\right)^2=
@@ -82,8 +82,8 @@ Finalment per $2<\u<3$ tenim que per $\frac{\u-1}{2\u}<x<\frac{\u+1}{2\u}$ la de
 tenim que per a tot $x$ pertanyent a  $\left(\a-\frac{3-\u}{2\u},\a+\frac{3-\u}{2\u}\right)$ el punt $g_{\u}(x)$ estarà estrictament més a prop de $\a$
 que $x$ i, per tant, no hi haurà punts periòdics en aquest interval.
 A més a més, per a $2<\u<3$ tenim que si $0<x<\frac{1}{\u}$ aleshores $x<g_{\u}(x)<\a$ si $\frac{1}{\u}<x<\a-\frac{3-\u}{2\u}$ aleshores $g_{\u}(x)=g_{\u}(1-x)$ i
-$1-x$ pertany a $\left(\a-\frac{3-\u}{2\u},\a+\frac{3-\u}{2\u}\right)$ i, per tant, els següents elements de la successió seràn sempre mes propers a a d'aquesta manera
-queda demostrat que en el intèrval $\left(0, \a+\frac{3-\u}{2\u}\right)$ no hi ha punts periòdics exceptuant el punt fix $\a$.
+$1-x$ pertany a $\left(\a-\frac{3-\u}{2\u},\a+\frac{3-\u}{2\u}\right)$ i, per tant, els següents elements de la successió seran sempre mes propers a a d'aquesta manera
+queda demostrat que en el interval $\left(0, \a+\frac{3-\u}{2\u}\right)$ no hi ha punts periòdics exceptuant el punt fix $\a$.
 Per últim per $x$ pertanyent a $\left(\a+\frac{3-\u}{2\u}, 1\right)$ aleshores $g_{\u}(x)$ pertany a $\left(0,\frac{1}{\u}\right)$ per tant ens reduïm al cas anterior i
 acabem de demostrar que per a tot $x$ pertanyent a $[0,1]$ ($g_{\u}(1)=0$ és un punt fix) no hi ha punts periòdics llevat dels punts fixos per
 a $\u<3$.\\
