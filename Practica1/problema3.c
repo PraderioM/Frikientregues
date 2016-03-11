@@ -85,7 +85,7 @@ double* demanardadespantalla(){
 	  menor a dos (no te sentit calcular la variança de un sol element o de un nombre negatiu d'elements) o en
 	  el cas de que el valor introduït no sigui un número.*/
 	while (n<2){
-		printf("Introdueix el nombre de mesures disponibles\n");
+		printf("Introdueix el nombre de mesures disponibles.\n");
 		/*guardem el nombre de dades en la variable n.*/
 		scanf("%d",&n);
 		if (n<2){
@@ -93,7 +93,7 @@ double* demanardadespantalla(){
 		}
 		else if (n>=2){}
 		else{
-			printf ("Si us plau introdueix un número\n");
+			printf ("Si us plau introdueix un número.\n");
 		}
 	}
 	/*establim la dimensió del vector de doubles w en n+1 elements on n és el nombre total de dades.*/
@@ -123,7 +123,7 @@ double* demanardadesfitxer(){
 	/*Demanem per pantalla el nom del fitxer on estan guardades les dades i, en cas de no trobar-lo, donem un missatge
 	  de error i tornem a demanar el nom del fitxer.*/
 	while (dades==NULL){
-		printf("introdueix el nom del fitxer on es troben les dades recorda que cada dada ha de estar separada de la anterior amb una coma i un espai i la primera dada el nombre total de mesures\n");
+		printf("introdueix el nom del fitxer on es troben les dades recorda que cada dada ha de estar separada de la anterior per un cambi de línea i la primera dada ha de ser el nombre total de mesures\n");
 		scanf("%s", fitxer);
 		dades=fopen(fitxer, "r");
 		if (dades==NULL){
@@ -132,8 +132,8 @@ double* demanardadesfitxer(){
 	}
 	/*llegim la primera dada del fitxer corresponent al nombre total de dades*/
 	fscanf(dades, "%d", &n);
-	/*movem el cursor dos posicions saltant aixis la coma i el espai*/
-	fseek(dades, 2, SEEK_CUR);
+	/*movem el cursor 1 posicio saltant aixis el canvi de linea*/
+	fseek(dades, 1, SEEK_CUR);
 	/*establim la dimensió del vector de doubles w en n+1 elements on n és el nombre total de dades.*/
 	w=malloc((n+1)*sizeof(double));
 	/*guardem la variable n en el primer espai del vector w*/
@@ -141,7 +141,7 @@ double* demanardadesfitxer(){
 	/*llegim una a una totes les dades del fitxer i les guardem en el vector w amb precisió double*/
 	for (i=1; i<=n; i++){
 		fscanf(dades, "%lf", &x);
-		fseek(dades, 2, SEEK_CUR);
+		fseek(dades, 1, SEEK_CUR);
 		w[i]=x;
 	}
 	return w;
