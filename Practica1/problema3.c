@@ -67,7 +67,7 @@ int main(){
 	}
 	/*Mostrem per pantalla els resultats dels calculs de la variança fets amb un o dos bucles i amb precisió simple o
 	doble (calculs realitzats per les funcions simpledosbucles, simpleunbucle, doubledosbucles i doubleunbucle*/
-	printf ("\nLa variança al cuadrat calculada amb un sol bucle i precisió simple és\n%f\nLa variança calculada amb dos bucles i precisió simple és\n%f\nLa variança calculada amb un sol bucle i precisió doble és\n%g\nLa variança calculada amb dos bucles i precisió doble és\n%g\n",simpleunbucle(v,n),simpledosbucles(v,n),doubleunbucle(w,n),doubledosbucles(w,n));
+	printf ("\nLa variança al cuadrat calculada amb un sol bucle i precisió simple és\n%.20f\nLa variança calculada amb dos bucles i precisió simple és\n%.20f\nLa variança calculada amb un sol bucle i precisió doble és\n%.20f\nLa variança calculada amb dos bucles i precisió doble és\n%.20f\n",simpleunbucle(v,n),simpledosbucles(v,n),doubleunbucle(w,n),doubledosbucles(w,n));
 	/*Imprimim per pantalla una explicació de les diferències en el càlcul de les variances fetes amb el 
 	mètode de un sol bucle i amb el mètode de dos bucles*/
 	printf ("\nLes diferencies entre els calculs amb un sol bucle i amb dos bucles son deguts a errors de cancelació mentres que les diferències entre precisió simple i doble son deguts a la precisió de representació i es fan mes evident cuantes mes operacions es fan.\n\n");
@@ -202,7 +202,7 @@ double doubledosbucles(double* w, int n){
   indica la quantitat de dades present en v i torna com a resultat la variamça dels elements de w calculada fent
   servir l'algoritme de un sol bucle.*/
 double doubleunbucle(double* w, int n){
-	float var=0, mig=0;
+	double var=0, mig=0;
 	int i;
 	for (i=0; i<n; i++){
 		mig+=w[i];
