@@ -23,15 +23,15 @@
 \end{equation*}
 és de Sturm.\\
 Sabem que la successió $\{p_i\}_{i=0}^{m-1}$ està construïda de manera que compleix totes les propietats de una successió de Sturm excepte la propietat 4 que demana que
-$p_{m-1}(x)$ no canvii de signe en el interval on es vol estudiar el polinomi. En el cas de la successió $\{q_i\}_{i=0}^{m-1}$ aquesta proprietat si que es compleix en quant
-$q_{m-1}=1$. vegem ara que es compleixen les altres proprietats
+$p_{m-1}(x)$ no canvii de signe en el interval on es vol estudiar el polinomi. En el cas de la successió $\{q_i\}_{i=0}^{m-1}$ aquesta propietat si que es compleix en quant
+$q_{m-1}=1$. vegem ara que es compleixen les altres propietats
 \begin{itemize}
 \item \textbf{$q_0(x)=q(x)$:} Per definició.
  \item \textbf{Si $\a\in\r$ és tal que $q_0(\a)=0$ aleshores $q_0'(\a)\*q_1(\a)$:} Sabem que $q_0(x)=\frac{p_0(x)}{p_{m-1}(x)}$ i, per tant
  $$q'_0(x)=\frac{p_0'(x)p_{m-1}(x)-p'_{m-1}(x)p_0(x)}{p_{m-1}(x)^2}$$
  com que en el punt $x=\a$ es compleix que $q_0(\a)=0$ aleshores $\frac{p_0(\a)}{p_{m-1}(\a)}=q_0(\a)=0 \Rightarrow p_0(\a)=0$ , per tant
  $$q'_0(\a)=\frac{p_0'(x)p_{m-1}(x)-p'_{m-1}(x)p_0(x)}{p_{m-1}(x)^2}=\frac{p_0'(x)}{p_{m-1}(x)}$$
- i podem conloure que $$q'_0(\a)\*q_1(\a)=\frac{p_0'(\a)\*p_1(\a)}{p_{m-1}(x)^2}\ge 0$$ com que $\a$ no és un 0 de $q_1(x)$ ni de $q_0'(x)$ en quant $q_1(\a)=q_0'(\a)$ i la
+ i podem concloure que $$q'_0(\a)\*q_1(\a)=\frac{p_0'(\a)\*p_1(\a)}{p_{m-1}(x)^2}\ge 0$$ com que $\a$ no és un 0 de $q_1(x)$ ni de $q_0'(x)$ en quant $q_1(\a)=q_0'(\a)$ i la
  funció successió de $q_i$ està construïda de manera que si $\a$ és un 0 de $q_0$ aleshores no és 0 de $q_1$. Per tant podem concloure que $q'_0(\a)\*q_1(\a)>0$
  \item \textbf{per a tot $i=1,\dots,m-2$ es compleix que, si $\a$ és tal que $q_i(\a)=0$ aleshores $q_{i-1}(\a)q_{i+1}(\a)<0$:} Hem vist que si $q_i(\a)=0$ aleshores
  $p_i(\a)=0$ i per tant tenim
