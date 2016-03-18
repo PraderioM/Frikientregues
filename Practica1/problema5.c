@@ -2,16 +2,15 @@
 #include <math.h>
 
 int main(){
-	float ax, bx, cx, px, Ax;
-	double ay, by, cy, py, Ay;
+	float ax, bx, cx, px, Ax, aux1x, aux2x;
+	double ay, by, cy, py, Ay, aux1y, aux2y;
 	/*Mostrem per pantalla una breu demostració del fet que la formula de heron per a calcular arees de triangle
 	A=sqrt(p(p-a)(p-b)(p-c)) provoca errors de cancelació en el cas en que un dels costats és aproximadament igual
 	a la suma dels altres dos costats. A més a més mostrem per pantalla un perfil del tipus de triangle que
 	provocarà errors de cancelació*/
-	printf("Com que a, b, c són els costats de un triangle i a>=b>=c aleshores sempre es compleix que a<b+c ");
-	printf("Si a>approx b+c aleshores podem concloure que a approx b+c per tant, si definim p=(a+b+c)/2 obtindrem que");
+	printf("Tenim que a approx b+c per tant, si definim p=(a+b+c)/2 obtindrem que");
 	printf(" p-a=(b+c-a)/2approx 0 i, per tant, es produiria un error de cancelació.\nEls costats de cualsevol");
-	printf(" triangle amb un angle prou proper a 0 radiants donarà un resultat molt dolent de la mesura de A ";
+	printf(" triangle amb un angle prou proper a 0 radiants donarà un resultat molt dolent de la mesura de A ");
 	printf("en quant significarà o bé que un dels costats és prou petit com perquè els altres dos siguin prou ");
 	printf("similars o bé que hi ha dos angles prou petits com per aconseguir que el tercer sigui lo ");
 	printf("suficientment gran com per ser aproximadament igual a la suma dels altres dos.\n");
@@ -52,13 +51,19 @@ int main(){
 	/*Proposem una modificació de la fórmula de Heron A=sqrt((a²+b²+c²)²-2(a⁴+b⁴+c⁴))/4 la cual ha resultat
 	la millor entre les fórmules que hem probat i que redueix bastant els errors per cancelació*/
 	printf("Si modifiquem la formula de la següent manera\n");
-	printf("A=sqrt(p(p-a)(p-b)(p-c))=sqrt(((b+c)+a)((b+c)-a)(a+(c-b))(a-(c-b))/16)=\n");
-	printf("=sqrt((b+c)²-a²)(a²-(c-b)²))/4=sqrt((2cb)²-(b²+c²-a²)²)/4=\n=sqrt(2(a²b²+b²c²+c²a²)-(a⁴+b⁴+c⁴))/4=\n");
-	printf("=sqrt((a²+b²+c²)²-2(a⁴+b⁴+c⁴))/4\n");
-	printf("Podem reduir l'error en quant eliminarem cancelacions obtenint\n");
-	/*Avaluem l'area del triangle aplicant la nova fórmula de Heron amb precisió simple idoble*/
-	Ax=sqrt(pow((pow(ax,2)+pow(bx,2)+pow(cx,2)),2)-2*(pow(ax,4)+pow(bx,4)+pow(cx,4)))/4;
-	Ay=sqrt(pow((pow(ay,2)+pow(by,2)+pow(cy,2)),2)-2*(pow(ay,4)+pow(by,4)+pow(cy,4)))/4;
+	printf("A=sqrt(p(p-a)(p-b)(p-c))=sqrt((a+b+c)(c-(a-b))(c+(a-b))(a+(b-c)))/4\n");
+	printf("Podem reduir l'error molt en alguns casos com per exemple el que");
+	printf(" ve donat per un triangle amb dos costats sensiblement més grans ");
+	printf("que el tercer el cual és sensiblement més gran que la diferència entre els dos anteriors");
+	printf(" situació que es dona sovint en atronomia i que estaria subjecte a errors de cancelació ");
+	printf("si fessim servir la primera fórmula.\n");
+	/*Avaluem l'area del triangle aplicant la nova fórmula de Heron amb precisió simple i doble*/
+	aux1y=ay-by;
+	aux2y=by-cy;
+	Ay=sqrt((ay+by+cy)*(cy-aux1y)*(cy+aux1y)*(ay+aux2y))/4;
+	aux1x=ax-bx;
+	aux2x=bx-cx;
+	Ax=sqrt((ax+bx+cx)*(cx-aux1x)*(cx+aux1x)*(ax+aux2x))/4;
 	/*Mostrem els nous resultats per pantalla.*/
 	printf("%.10f\nEn el cas de precisió simple i \n%.10f\nEn el cas de precisió doble.\n\n", Ax, Ay);
 	return 0;
