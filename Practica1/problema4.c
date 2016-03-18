@@ -4,7 +4,7 @@ int main(){
 	int i, n;
 	float y;
 	double x;
-	n=6000;
+	n=2048;
 	/*Imprimim per pantalla una descripció del primer mètode que farem servir per sumar els termes de la série
 	S=sum_{k=0}^{infty}(-1)^{k+1}/k²*/
 	printf ("\nAnem a calcular una aproximació numérica de la sèrie S=sum_{k=0}^{infty}(-1)^{k+1}/k² que sabem dona");
@@ -25,7 +25,7 @@ int main(){
 		x+=1./(i*i);
 	}
 	/*Mostrem per pantalla els resultats obtinguts mostrant 9 decimals en el cas de la precisió doble*/
-	printf ("\n\n%f\nEn el cas de la precisió simple\n%.9f\nEn el cas de la precisió doble.\n",y,x);
+	printf ("\n\n%.19f\nEn el cas de la precisió simple\n%.19f\nEn el cas de la precisió doble.\n",y,x);
 	/*Imprimim per pantalla una descripció del segón mètode que farem servir per sumar els termes de la série
 	S=sum_{k=0}^{infty}(-1)^{k+1}/k²*/
 	printf ("\nLa segona forma de fer-ho serà sumant els termes en ordre decreixent obtenint aixis el següents resultats");
@@ -42,22 +42,22 @@ int main(){
 		x-=1./(i*i);
 	}
 	/*Mostrem per pantalla els resultats obtinguts mostrant 9 decimals en el cas de la precisió doble*/
-	printf ("\n\n%f\nEn el cas de la precisió simple\n%.9f\nEn el cas de la precisió doble.\n",y,x);
+	printf ("\n\n%.19f\nEn el cas de la precisió simple\n%.19f\nEn el cas de la precisió doble.\n",y,x);
 	/*Imprimim per pantalla una descripció del tercer mètode que farem servir per sumar els termes de la série
 	S=sum_{k=0}^{infty}(-1)^{k+1}/k²
-	Que consisteix en sumar abans tots els termes de forma decreixent en mòdul. Això hauria d'evotar errors de 
+	Que consisteix en sumar abans tots els termes de forma decreixent en mòdul. Això hauria d'evitar errors de 
 	cancelació en quant el resultat de la sèrie sempre seria positiva i el nombre que es restaria seria
 	sempre menys similar a la suma i per tant no podria causar errors de cancelació (cosa que no seria certa si
 	fessim la suma de forma creixent en mòdul.*/
 	printf ("\nLa tercera forma de fer-ho serà sumant els termes de la sèrie de forma decreixent en mòdul.\n");
 	y=0;
 	x=0;
-	double s=-1;
+	double s=1;
 	for (i=1; i<=2*n; i++){
 		y+=s/(i*i);
 		x+=s/(i*i);
 		s=-s;
 	}
 	/*Mostrem per pantalla els resultats obtinguts mostrant 9 decimals en el cas de la precisió doble*/
-	printf ("\n\n%f\nEn el cas de la precisió simple\n%.9f\nEn el cas de la precisió doble.\n",y,x);
+	printf ("\n\n%.19f\nEn el cas de la precisió simple\n%.19f\nEn el cas de la precisió doble.\n\n",y,x);
 }
