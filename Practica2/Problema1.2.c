@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <math.h>
+/*Necessitarem assignació dinàmica de memòria*/
+#include <stdlib.h>
+
+void imprimirsolucion(double, float, int);
+
+/*Este progra està pensado para aplicar el metodo de Newton para encontrar la raiz real
+del polinomio el P(x)=x³-x-40 tomando como raiz inicial el valor x_0=2*/
+int main(){
+	/*Realizaremos el calculo con precisión doble y simple i declaramos los vectores X y Y
+	donde guardaremos las iteraciones*/
+	double x, *X;
+	float y, *Y;
+	int i, n;
+	printf("\nCalculemos la raiz real del polinomio P(x)=x³-x-40 aplicando el mètodo de Newton ");
+	printf("utilizando como raiz el punto x=2 hemos calculado teoricamente que para obtener ");
+	printf("la raiz con 8 decimales correctos (suponiendo operaciones exactas) són necesarias 26 iteraciones ");
+	printf("mientras que para obtener la raiz con 16 decimales correctos (suponiendo operaciones exactas) ");
+	printf("són necesarias 49 iteraciones. No obstante estos calculos no tienen en cuenta errores en la ");
+	printf("operación que se manifestarán en la diferencia entre los resultados obtenidos con precisión ");
+	printf("simple y con precisión doble.\n\n");
+	printf("Introduce el número de iteraciones que quieres realizar.\n");
+	scanf("%d", &n);
+	X=malloc(2*n*sizeof(double));
+	Y=malloc(2*n*sizeof(float));
+	for (i=0; i<2*n; i++){
+		/*guardamos el actual valor de x i de y en los vectores X y Y que necesitaremos
+		 para aplicar la aceleración de Aitken*/
+		X[i]=x;
+		Y[i]=y;
+		/*Si i==n entonces ya hemos hecho el nombre de iteracones pedida y imprimimos por pantalla el resultado*/
+		if (i==n){
+			imprimirsolucion(x,y,i);
+		}
+		/*aplicamos la iteración*/
+		x=x-(pow(x,3)-x-40)/(3*pow(x,2)-1);
+		y=y-(pow(y,3)-y-40)/(3*pow(y,2)-1);
+	}
+	/*Volvemos a imprimir la solución tras realizar el doble de iteraciones de las que se han pedido*/
+	imprimirsolucion(x,y,2*n);
+	return 0;
+}
+
+/*hacemos una función que imprime por pantalla los resultados obtenidos*/
+void imprimirsolucion(double x, float y, int n){
+	printf("El resultado obtenido tras hacer %d iteraciones és\n\n", n);
+	printf("%.16g\n\nCon precisión doble y\n\n%.16g\n\nCon precisión simple\n\n",x,y);
+}

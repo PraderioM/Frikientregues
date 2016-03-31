@@ -1,0 +1,9 @@
+Autors: Marta Cavero i Marco Praderio
+
+Els codis s'han compilat fent servir la comanda
+
+gcc -o programa programa.c -lm
+
+cada un dels programes al executar-se imprimeix per pantalla instruccions sobre el propi funcionament si requereix de dades introduides manualment o directament imprimeix les operacions fetes i els resultats obtinguts amb breus comentaris inclosos.
+Es poden considerar els resultats donats per els programes com un breu resum de la pràctica feta.
+El programa VectorProblema3 és una excepció ja que només l'hem fet servir per generar llistes de dades ("Vector100Problema3.txt" i "Vector1000Problema3.txt") les cuals hem analitzat amb el programa Problema3

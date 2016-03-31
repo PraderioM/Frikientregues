@@ -84,14 +84,14 @@ int demanardades(double** X, double** Y, double** aux){
 	printf("En quants punts diferents vols evaluar el polinomi?");
 	scanf("%d", &k);
 	/*Demanem per pantalla els punts i guardem-los en la variable aux per la que abans reservarem l'espai.*/
-	*aux=malloc(k*sizeof(double));
+	aux[0]=malloc(k*sizeof(double));
 	for (i=0; i<k; i++){
 		printf("Quin és el valor del punt número %d?\n", i+1);
-		scanf("%lf", &*aux[i]);
+		scanf("%lf", &aux[0][i]);
 	}
 	/*ordenem els punt cosa casi inútil pero que ens permet mirar si hi ha elements repetits en el qual cas tornem 1
 	i acabem la funció.*/
-	i=ordenar(*aux, k);
+	i=ordenar(aux[0], k);
 	if (i==1){
 		return -1;
 	}
@@ -101,29 +101,31 @@ int demanardades(double** X, double** Y, double** aux){
 	/*Demanem el valor de la funció i de les seves derivades en cada punt i les guardem
 	en Y mentres que en X guardem els punts amb repetició. Pero abans alloquem memoria per aquests dos per
 	poder utilitzar la funció realloc.*/
-	*X=malloc(sizeof(double));
-	*Y=malloc(sizeof(double));
+	X[0]=malloc(sizeof(double));
+	Y[0]=malloc(sizeof(double));
 	for (i=0; i<k; i++){
 		/*Demanem cuantes derivades se saben de la funció en el punt aux[i]*/
-		printf("El valor de cuantes derivades de la funció en el punt %g coneixes?\n", *aux[i]);
+		printf("El valor de cuantes derivades de la funció en el punt %g coneixes?\n", aux[0][i]);
 		scanf("%d", &m);
 		/*Actualitzem el vector X on es guarden els punts amb repetició i el vector Y on es
 		guarden els valors de la funció i de les seves derivades*/
-		*X=realloc(*X, (n+m)*sizeof(double));
-		*Y=realloc(*Y, (n+m)*sizeof(double));
+		/*hem de tindre en cinte la derivada 0 m+=1*/
+		m+=1;
+		X[0]=realloc(*X, (n+m)*sizeof(double));
+		Y[0]=realloc(*Y, (n+m)*sizeof(double));
 		/*Demanem per pantalla el valor de la funció en els punts donats*/
-		printf("Quant val la funció en el punt %g?\n", *aux[i]);
-			scanf("%lf", &x);
-			/*la funció en el punt X[n]=aux[i] val Y[n]=x*/
-			*X[n]=*aux[i];
-			*Y[n]=x;
+		printf("Quant val la funció en el punt %g?\n", aux[0][i]);
+		scanf("%lf", &x);
+		/*la funció en el punt X[n]=aux[i] val Y[n]=x*/
+		X[0][n]=aux[0][i];
+		Y[0][n]=x;
 		/*Demanem per fantalla el valor de les derivades en els punts si n'hi ha.*/
 		for (j=1; j<m; j++){
-			printf("Quant val la derivada %d de la funció en el punt %g?\n", j, *aux[i]);
+			printf("Quant val la derivada %d de la funció en el punt %g?\n", j, aux[0][i]);
 			scanf("%lf", &x);
 			/*la derivada j de la funció (si j=0 és senzillament la funció sense derivar) en el punt X[n+j] val Y[n+j]*/
-			*X[n+j]=*aux[i];
-			*Y[n+j]=x;
+			X[0][n+j]=aux[0][i];
+			Y[0][n+j]=x;
 		}
 		/*actualitzem el nombre de punts totals amb repetició sumant m.*/
 		n+=m;
@@ -137,18 +139,18 @@ void preparardades(double* X, double* Y, double** P, double** aux, int n){
 	int i, j;
 	/*Ara ja sabem que el polinomi interpolador serà de grau n-1 per tant podem reservar l'espai de memòria
 	per guardar-lo*/
-	*P=malloc(n*sizeof(double));
+	P[0]=malloc(n*sizeof(double));
 	/*guardem el valosr de la funció en els punts X dins el vector aux*/
-	*aux=malloc(n*sizeof(double));
+	aux[0]=malloc(n*sizeof(double));
 	j=0;
 	for (i=0; i<n; i++){
 		if (X[j]!=X[i]){
 			j=i;
 		}
-		*aux[i]=Y[j];
+		aux[0][i]=Y[j];
 	}
 	/*guardem el primer element del polinomi interpolador*/
-	*P[0]=Y[0];
+	P[0][0]=Y[0];
 }
 
 /*Aquesta funció aplica el mètode de les diferències dividides amb repetició de Lagrange per trobar els coeficients
