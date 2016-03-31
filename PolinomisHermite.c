@@ -169,7 +169,7 @@ void diferenciesdividides(double* X, double* Y, double* P, double* aux, int n){
 		for (i=0; i<(n-1); i++){
 			/*Si X[i] és diferent de X[i+j] apliquem les diferències dividides de Lagrange normals*/
 			if(X[i]!=X[i+j]){
-				aux[i]=(aux[i]-aux[i+1])/(X[i]-X[j]);
+				aux[i]=(aux[i]-aux[i+1])/(X[i]-X[i+j]);
 				k=i+1;
 			}
 			/*En cas contrari hem d'atribuir a aux[i] el valor de la j ésima derivada de la funció evaluada
@@ -234,11 +234,41 @@ void CalcularPolinomiHermite(double* X, double* P, int n){
  i mostra el polinòmi per pantalla*/
 void MostrarPolinomiHermite(double* C, int n){
 	printf("\nEl polinomi desenvolupat és:\n\nP(x)=");
+	//farem servir aquesta varieable per finalitats purament estètique i no posar el signe + devant del primer terme
+	//si aquest és positiu (se sobreenten que és + si és positiu).
+	int noprimer;
+	noprimer=0;
 	n-=1;
-	while(n>0){
+	//imprimim tots els coeficients no nuls que multipliquen potencies de x superiors o iguals a la segona.
+	while(n>-1){
 		if (C[n]!=0){
-			printf("%gx^%d + ",C[n], n);
+			if(C[n]>0 && noprimer){
+				//imprimim el signe mes si el coeficient és positiu, el signe menys s'imprimeix per defecte si és el
+				// primer terme no fa falta posar el signe + ja s'enten
+				printf(" +");
+			}
+			//si és -1 posarem - per elegancia
+			if (C[n]==-1 && n!=0){
+				printf(" -");
+			}
+			//si el coeficient és 1 no el posarem per elegancia
+			else if (C[n]!=1){
+				printf(" %g",C[n]);
+			}
+			//imprimim la potencia de x que es multiplica.
+			if (n>1){
+				printf("x^%d",n);
+			}
+			//si la potencia de x que és multimplica escriurem x en comptes de x^1 per elegancia.
+			else if(n==1){
+				printf("x");
+			}
+			//si la potència de x és la 0 no escriurem res en comptes de escriure x^0.
+			//Ja hem passat per aquí una vegada almenys.
+			noprimer=1;
 		}
-		printf("%g\n\n", C[0]);
+		n--;
 	}
+	//posem dos espais per fer que quedi mono.
+	printf("\n\n");
 }
