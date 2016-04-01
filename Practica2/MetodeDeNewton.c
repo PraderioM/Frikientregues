@@ -3,38 +3,39 @@
 
 #define ZERO (1.e-16)/2
 
-double f(double);
+double g(double);
 
 int main(){
 	int i, n;
-	double a, b, Aitken[1000] s;
-	a=2;
-	b=8;
-	Aitken[0]=a;
+	double x, error;
+	x=2;
+	Aitken[0]=x;
+	error=1;
 	i=0;
-	while (fabs(b-a)>ZERO && i<1000){
-		Aitken[i+1]=b;
-		b=a-f(a)*(b-a)/(f(b)-f(a));
-		a=Aitken[i+1];
+	while (error>ZERO && i<1001){
+		error=g(x);
+		x-=error;
+		Aitken[i]=x;
 		i++;
 	}
-	n=i;
+	n=i-1;
 	if (n==1000){
-		printf("Aplicando el método de la secante para encontrar raices del polinomio P(x)=x³-x-400 partiendo de ");
-		printf("los valores iniciales x_0=2 y x_1=8 no llegamos a una sucesión convergente.\n\n");
+		printf("Aplicando el método de Newton para encontrar raices del polinomio P(x)=x³-x-400 partiendo de ");
+		printf("x_0=2 no llegamos a una sucesión convergente.");
 		return 0;
 	}
-	printf("\nCon %d iteraciones hemos llegado al resultado\n%.16g\nCon una precisión de %.16g\n", i, b, fabs(b-a));
+	printf("\nAplicando el mètodo de Newton y con %d iteraciones hemos llegado al resultat\n%.16g\ncon ", n, x);
+	printf("una precisión de %.16g\n\n", error);
 	if(n<=2){
 		printf("No és posible aplicar el método de Aitken a esta successión perqué no tiene suficientes iterados.\n");
 		return 0;
 	}
 	i=0;
-	while (fabs(Aitken[i]-b)>ZERO && i<n-2){
+	while (fabs(Aitken[i]-x)>ZERO && i<n-2){
 		Aitken[i]=(Aitken[i]*Aitken[i+2]-Aitken[i+1]*Aitken[i+1])/(Aitken[i+2]-2*Aitken[i+1]+Aitken[i]);
 		i++;
 	}
-	if (i==n-2 && n>2){
+	if (i==n-2){
 		printf("El mètode d'acceleració de Aitken no ha logrado acelerar la sucesión.\n");
 		return 0;
 	}
@@ -43,8 +44,6 @@ int main(){
 	return 0;
 }
 
-
-//fem una funció que avalui la funció que volem en un punt i retorni el seu valor
-double f(double x){
-	return pow(x,3)-x-400;
+double g(double x){
+	return (pow(x,3)-x-400)/(3*pow(x,2)-1);
 }

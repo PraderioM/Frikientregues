@@ -11,13 +11,12 @@ void imprimirsolucion(double, float, int);
 /*Este progra està pensado para aplicar el metodo de Newton para encontrar la raiz real
 del polinomio el P(x)=x³-x-40 tomando como raiz inicial el valor x_0=2*/
 int main(){
-	/*Realizaremos el calculo con precisión doble y simple i declaramos los vectores X y Y
-	donde guardaremos las iteraciones*/
-	double x, *X, diferenciax;
-	float y, *Y, diferenciay;
+	//Realizaremos el calculo con precisión doble y simple
+	double x, diferenciax;
+	float y, diferenciay;
 	int i, n, seguirx, seguiry;
 	printf("\nCalculemos la raiz real del polinomio P(x)=x³-x-40 aplicando el mètodo de Newton ");
-	printf("utilizando como raiz el punto x=2 hemos calculado teoricamente que para obtener ");
+	printf("empezando en el punto x=2 hemos calculado teoricamente que para obtener ");
 	printf("la raiz con 8 decimales correctos (suponiendo operaciones exactas) són necesarias 26 iteraciones ");
 	printf("mientras que para obtener la raiz con 16 decimales correctos (suponiendo operaciones exactas) ");
 	printf("són necesarias 49 iteraciones. No obstante estos calculos no tienen en cuenta errores en la ");
@@ -40,7 +39,7 @@ int main(){
 		//y la siguiente en las variables diferenciax y diferenciay
 		diferenciax=(pow(x,3)-x-40)/(3*pow(x,2)-1);
 		x=x-diferenciax;
-		diferenciay=(pow(y,3)-y-40)/(3*pow(y,2)-1)
+		diferenciay=(pow(y,3)-y-40)/(3*pow(y,2)-1);
 		y=y-diferenciay;
 		//marcamos que se ha hecho una iteración.
 		i++;
@@ -54,13 +53,13 @@ int main(){
 		//16 decimales correctos con precision doble
 		if (fabs(diferenciax)<ZERO2 && seguirx==1){
 			printf("\nEn la iteración número %d obtenemos 16 decimales correctos ", i);
-			printf("en el calculo con doble precisión donde hemos llegado al valor\n%.16g\n\n", x);
+			printf("en el calculo con precisión simple donde hemos llegado al valor\n%.16g\n\n", x);
 			seguirx++;
 		}
 		//8 decimales correctos con precision simple
 		if (fabs(diferenciay)<ZERO1 && seguiry==0){
 			printf("\nEn la iteración número %d obtenemos 8 decimales correctos ", i);
-			printf("en el calculo con doble precisión donde hemos llegado al valor\n%.8g\n\n", y);
+			printf("en el calculo con precisión simple donde hemos llegado al valor\n%.8g\n\n", y);
 			seguiry++;
 		}
 		//16 decimales correctos con precision simple
@@ -75,16 +74,10 @@ int main(){
 	printf("superior del número de iteraciones a realizar.\n\n");
 	printf("\nIntroduce el número de iteraciones que quieres realizar.\n");
 	scanf("%d", &n);
-	X=malloc(2*n*sizeof(double));
-	Y=malloc(2*n*sizeof(float));
 	//iniciamos con x_0=2;
 	x=2;
 	y=2;
 	for (i=0; i<2*n; i++){
-		//guardamos el actual valor de x i de y en los vectores X y Y que necesitaremos
-		//para aplicar la aceleración de Aitken
-		X[i]=x;
-		Y[i]=y;
 		//Si i==n entonces ya hemos hecho el nombre de iteracones pedida y imprimimos por pantalla el resultado
 		if (i==n){
 			imprimirsolucion(x,y,i);
@@ -95,8 +88,6 @@ int main(){
 	}
 	//Volvemos a imprimir la solución tras realizar el doble de iteraciones de las que se han pedido
 	imprimirsolucion(x,y,2*n);
-	free(X);
-	free(Y);
 	return 0;
 }
 
