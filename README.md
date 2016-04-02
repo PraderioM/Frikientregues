@@ -1,2 +1,2 @@
 # Frikientregues
-entregues opcionals de mètodes numèrics.
+entregues opcionals de mètodes numèrics i practiques.
