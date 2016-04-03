@@ -37,9 +37,9 @@ int main(){
 	while (seguirx!=2 || seguiry!=2){
 		//hacemos las itereaciones i guardamos la diferencia entre una iteración
 		//y la siguiente en las variables diferenciax y diferenciay
-		diferenciax=(pow(x,3)-x-40)/(3*pow(x,2)-1);
+		diferenciax=(x*x*x-x-40)/(3*x*x-1);
 		x=x-diferenciax;
-		diferenciay=(pow(y,3)-y-40)/(3*pow(y,2)-1);
+		diferenciay=(y*y*y-y-40)/(3*y*y-1);
 		y=y-diferenciay;
 		//marcamos que se ha hecho una iteración.
 		i++;
@@ -83,8 +83,8 @@ int main(){
 			imprimirsolucion(x,y,i);
 		}
 		//aplicamos la iteración
-		x=x-(pow(x,3)-x-40)/(3*pow(x,2)-1);
-		y=y-(pow(y,3)-y-40)/(3*pow(y,2)-1);
+		x=x-(x*x*x-x-40)/(3*(x*x)-1);
+		y=y-(y*y*y-y-40)/(3*(y*y)-1);
 	}
 	//Volvemos a imprimir la solución tras realizar el doble de iteraciones de las que se han pedido
 	imprimirsolucion(x,y,2*n);

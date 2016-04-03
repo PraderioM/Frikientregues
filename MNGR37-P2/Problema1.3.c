@@ -305,11 +305,11 @@ void newton(){
 //esta función evalua el polinomio x³-x-400 en un punto que toma como parametro de entrada y devuelve
 //el resultado obtenido.
 double f(double x){
-	return pow(x,3)-x-400;
+	return x*x*x-x-400;
 }
 
 //dado el polinomio p(x)=x³-x-400 esta función evalua la fracción p(x)/p'(x) en un punto que toma como parametro de
 //entrada y devuelve el resultado obtenido.
 double g(double x){
-	return (pow(x,3)-x-400)/(3*pow(x,2)-1);
+	return (x*x*x-x-400)/(3*x*x-1);
 }
