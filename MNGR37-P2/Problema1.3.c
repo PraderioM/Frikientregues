@@ -16,7 +16,7 @@ int main(){
 	//Mostramos por pantalla una descripción de la primera operación que vamos a realizar
 	printf("Para calcular la raiz real del polinomio P(x)=x³-x-400 aplicaremos la fórmula de Cardano Vieta dada por\n");
 	printf("\nx=\\sqrt[3]{200+\\sqrt{200²-1/3³}}+\\sqrt[3]{200-\\sqrt{200²-1/3³}}\n\nLa cual producirà error de ");
-	printf("cancelación en resta de la segunda raiz cúbica en cuanto 200 és aproximadamente igual a ");
+	printf("cancelación en la resta de la segunda raíz cúbica en cuanto 200 és aproximadamente igual a ");
 	printf("\\sqrt{200²-1/3³}\n");
 	//calculamos la fórmula con doble precisión sumamos las fracciones manualmente para reducir ligeramente los errores.
 	x=pow(200+sqrt(1079999./3)/3,1./3)+pow(200-sqrt(1079999./3)/3,1./3);
@@ -126,7 +126,7 @@ void biseccion(){
 			printf("Esto és debido al hecho que la sucesión dada por el método de la bisección tiene como ");
 			printf("elemento la raiz exacta del polinomio.");
 			printf("Esto causa que no se pueda utilizar el método de aceleración de Aitken dedo que una de las ");
-			printf("condiciones para poder aplicar el método és que la raiz exacta no pertenezac a la sucesión ");
+			printf("condiciones para poder aplicar el método és que la raiz exacta no pertenezca a la sucesión ");
 			printf("que se desea acelerar.\n\n");
 		}
 		return;
@@ -209,10 +209,10 @@ void secante(){
 		//sea un elemento de la sucesión. Si el étodo de Aitken no funciona y esto pasa mostramos por pantalla la
 		//causa del fallo.
 		if (error==-1){
-			printf("Esto és debido al hecho que la sucesión dada por el método de la bisección tiene como ");
+			printf("Esto és debido al hecho que la sucesión dada por el método de la secante tiene como ");
 			printf("elemento la raiz exacta del polinomio.");
 			printf("Esto causa que no se pueda utilizar el método de aceleración de Aitken dedo que una de las ");
-			printf("condiciones para poder aplicar el método és que la raiz exacta no pertenezac a la sucesión ");
+			printf("condiciones para poder aplicar el método és que la raiz exacta no pertenezca a la sucesión ");
 			printf("que se desea acelerar.\n\n");
 		}
 		return;
