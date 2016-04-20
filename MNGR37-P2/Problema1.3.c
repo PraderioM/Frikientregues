@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define ZERO (1.e-16)/2
+#define ZERO 1.e-16
 
 void biseccion();
 void secante();
@@ -118,16 +118,11 @@ void biseccion(){
 	//si el método de aceleración no ha conseguido acelerar la sucesión lo decimos por pantalla y finalizamos la
 	//función.
 	if (i==n-2){
-		printf("\nEl mètode d'acceleració de Aitken no ha logrado acelerar la sucesión.\n");
-		//una de las condiciones necesarias para poder aplicar el método de aceleración de Aitken és que la raiz no
-		//sea un elemento de la sucesión. Si el étodo de Aitken no funciona y esto pasa mostramos por pantalla la
-		//causa del fallo.
+		printf("\nEl mètode de acceleración de Aitken no ha logrado reducir el número de iterados.\n");
+		//Demos una explicación del fallo.
 		if (error==-1){
-			printf("Esto és debido al hecho que la sucesión dada por el método de la bisección tiene como ");
-			printf("elemento la raiz exacta del polinomio.");
-			printf("Esto causa que no se pueda utilizar el método de aceleración de Aitken dedo que una de las ");
-			printf("condiciones para poder aplicar el método és que la raiz exacta no pertenezca a la sucesión ");
-			printf("que se desea acelerar.\n\n");
+			printf("Esto puede ser debido al hecho que la sucesión contenga inesperadamente el valor exacto ");
+			printf("cosa que no cumple las hipótesis para aplicar el metodo de aceleración de Aitken.\n\n");
 		}
 		return;
 	}
@@ -205,15 +200,10 @@ void secante(){
 	//función.
 	if (i==n-2){
 		printf("\nEl mètode d'acceleració de Aitken no ha logrado acelerar la sucesión.\n");
-		//una de las condiciones necesarias para poder aplicar el método de aceleración de Aitken és que la raiz no
-		//sea un elemento de la sucesión. Si el étodo de Aitken no funciona y esto pasa mostramos por pantalla la
-		//causa del fallo.
-		if (error==-1){
-			printf("Esto és debido al hecho que la sucesión dada por el método de la secante tiene como ");
-			printf("elemento la raiz exacta del polinomio.");
-			printf("Esto causa que no se pueda utilizar el método de aceleración de Aitken dedo que una de las ");
-			printf("condiciones para poder aplicar el método és que la raiz exacta no pertenezca a la sucesión ");
-			printf("que se desea acelerar.\n\n");
+		//Si la sucesión ya és bastante pequeña ràpida no tiene sentido acelerarla.
+		if (n<12){
+			printf("Esto és probablemente debido al hecho que la sucesión dada por el método de la secante tiene ");
+			printf("únicamente %d iterados y, por lo tanto no tiene sentido acelerarla.\n\n", n);
 		}
 		return;
 	}
@@ -283,16 +273,10 @@ void newton(){
 	//función.
 	if (i==n-2){
 		printf("El mètode d'acceleració de Aitken no ha logrado acelerar la sucesión.\n");
-		//una de las condiciones necesarias para poder aplicar el método de aceleración de Aitken és que la raiz no
-		//sea un elemento de la sucesión. Si el error és f(x)==0 significa que, para la màquina, el resultado obtenido.
-		//mediante el método de Newton y la raiz exacta del polinomio són el mismo número y esto causa que no se pueda
-		//aplicar el método de Aitken. Si esto pasa mostramos por pantalla esta explicación.
-		if (g(x)==0){
-			printf("Esto és debido al hecho que la sucesión dada por el método de newton lleva a un resultado tan ");
-			printf("similar a la raiz exacta del polinomio que la màquina no és capaz de distinguir los dos valores ");
-			printf("esto causa que no se pueda utilizar el método de aceleración de Aitken dado que una de las ");
-			printf("condiciones para poder aplicar el método és que la raiz exacta no pertenezca a la sucesión ");
-			printf("que se desea acelerar.\n\n");
+		//Si la sucesión ya és bastante pequeña ràpida no tiene sentido acelerarla.
+		if (n<12){
+			printf("Esto és probablemente debido al hecho que la sucesión dada por el método de la secante tiene ");
+			printf("únicamente %d iterados y, por lo tanto no tiene sentido acelerarla.\n\n", n);
 		}
 		return;
 	}

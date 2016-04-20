@@ -30,7 +30,7 @@ int main(){
 	//Mostramos el programa pedido en el apartado c.
 	printf("Calculando la aproximada de Padé como quociente de dos cúbicas obtenemos como resultado las funciones\n");
 	printf("f(x)=(7x³+56x²+112x+64)/(x³+24x²+80x+64)\n");
-	printf("y\ng(x)=x⁷/(x³+24x²+80x+64)²\n");
+	printf("y\ng(x)=x⁷/(x³+24x²+80x+64)²\n\n");
 	//Motivamos porquè queremos ver que g(x) és contractiva para x>0 y lo demostramos.
 	printf("Si ahora demostramos que g(x) és contractiva para x>0 y tiene como punto fijo el origen obtendremos que la serie ");
 	printf("{a_n} definida por recurrencia como a_{n+1}=g(a_n) tendirà a 0 cuando n tienda a infinito y, por lo tanto, ");
@@ -38,20 +38,19 @@ int main(){
 	printf("\\sqrt{1+x}=(\\prod_{j=0}^{n}b_j)\\sqrt{1+a_{n+1}}\n obtendremos que, cuando n tienda a infinito, el ");
 	printf("productorio (\\prod_{j=0}^{n}b_j) tendirà a \\sqrt{1+x}.\nPodremos por lo tanto ");
 	printf("calcular una aproximación de \\sqrt{1+x} (con x>0) como el producto (\\prod_{j=0}^{n}b_j)\n\n");
-	/*printf("Esta demostración és bastante simple y se puede dividir en dos pasos\n");
-	printf("\nPASO 1 g(0)=0: por definición de g(x) tenemos que g(0)=0/64=0\n");
-	printf(" dado que x>0 entonces g(x)=x⁷/(x³+24x²+80x+64)² és una división entre dos ");
-	printf("valores positivos y, por lo tanto, és positivo\n");
-	printf("\nPASO 2 para todo x_2>x_1>0 se cumple x_2-x_1>g(x_2)-g(x_1)>0: Para demostrar esto veremos antes que si ");
-	printf("x_2>x_1 entonces g(x_2)>g(x_1). Este resultado se deduce inmediatamente tras notar que la derivada de ");
-	printf("g(x) és estrictamente positiva para x positiva y, por lo tanto la funcón g és estrcitamente creciente y se ");
-	printf("cumple la desigualdad g(x_2)-g(x_1)>0 si x_2>x_1. si ara definim h(x)=(x³+24x²+80x+64)² el polinomi que es ");
-	printf("troba en el denominador de la definició de g(x) podem veure trivialment aplicant el mateix mètode que si ");
-	printf("x_2>x_1>0 aleshores h(x_2)>h(x_1) podem per tant concloure que\n");
-	printf("g(x_2)-g(x_1)=x_2⁷/h(x_2)-x_1⁷/h(x_1)<x_2⁷/h(x_1)-x_1⁷/h(x_1)=(x_2⁷-x_1⁷)/h(x_1)=\n");
-	printf("(x_2-x_1)(x_2⁶+x_2⁵x_1+x_2⁴x_1²+x_2³x_1³+x_2²x_1⁴+x_2x_1⁵+x_1⁶)/")
-	printf("necesario notar que, para todo x>0 g(x) x-g(x)>0 para todo x>0\n");
-	printf("x-g(x)=x-x⁷/(x³+24x²+80x+64)²=(48x⁶+576x⁵+3840x³+6400x²+10240x+4096x)/(x³+24x²+80x+64)²\n");*/
+	printf("Ver que 0 és punto fijo para g és trivial dado que, por definición de g(x) tenemos que g(0)=0/64=0\n");
+	printf("Veamos ahora que la función g és contractiva para todo x>0.\nCalculando g'(x) y g''(x) obtenemos que, ");
+	printf("para x>0, ambas són estrictamente positivas. Explicitamente tenemos que\n");
+	printf("g'(x)=x⁶(x³+72x²+400x+448)/(x³+24x²+80x+64)³\n");
+	printf("Por lo tanto podemos afirmar que \\lim_{x\\to \\infty}g'(x)=1 y, dado que la derivada segunda de x és ");
+	printf("Estrictamente positiva para x>0 entonces podemos afirmar que la función g'(x) és estrictamente creciente ");
+	printf("para x>0. Podemos por lo tanto concluir que g'(x)<\\lim_{x\\to \\infty}g'(x)=1 para todo x>0 y, además, ");
+	printf("g'(x)>g'(0)=0 para todo x>0. En resumen tenemos que, para todo x>0 se cumple 0<g'(x)<1.\nCojamos ahora ");
+	printf("x_1>x_2>0 culesquiera. Aplicando el teorema del valor medio tendremos que\ng(x_1)-g(x_2)=g'(c)(x1-x_2)\n");
+	printf("donde c és un valor desconocido entre x_2 i x_1. Pasando a módulos y aplicando que |g'(c)|<1 tal y como ");
+	printf("ya hemos visto obtenemos\n|g(x_1)-g(x_2)|=|g'(c)(x1-x_2)|=|g'(c)||x1-x_2|<|x1-x_2|\nQueda así demostrado ");
+	printf("que g(x) és contractiva para todo x>0 con el origen como punto fijo y, por lo tanto, por lo que ya hemos ");
+	printf("visto, el productorio (\\prod_{j=0}^{n}b_j) tiende a \\sqrt{1+x} cuando n tiende a infinito.\n");
 	//Demostremos que g(x)=O(x⁷)
 	printf("\nAntes de proseguir és interesante estudiar con que velocidad el producto (\\prod_{j=0}^{n}b_j) tiende ");
 	printf("a la raiz \\sqrt{1+x} con x>0. Como hemos visto anteriormente la convergencia del producto està estrictamente ");
@@ -92,9 +91,13 @@ int main(){
 		printf("Introduce el número del que quieres aproximar la raíz (más grande que 1)\n");
 		scanf("%lf", &x);
 	}
+	//escribimos la raiz pedida como \sqrt{1+x}
 	x--;
+	//ponemos las condiciones iniciales.
 	prod=1;
 	error=1;
+	//definimos k como una cota superior de \sqrt{1+x} que nos servirà para calcular una cota superior de la i-ésima
+	//iteración de nuestro programa que, como ya hemos visto, viene dada por a_{n+1}\sqrt{1+x}/2
 	k=ceil(sqrt(x+1));
 	i=0;
 	while (error>ZERO && i<100){
