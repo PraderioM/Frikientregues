@@ -1,0 +1,43 @@
+Autores: Marta Cavero i Marco Praderio
+
+Los codigos se han compilado haciendo uso de la comanda
+
+gcc -o programa programa.c -lm
+
+Todos los programas, al ejecutarse, muestran por pantalla las instrucciones a seguir con tal de poder cumplir su función. Todos los resultados que muestran los programas vienen acompañados de una breve descripción y, a menudo, de un analisis de los mismos. Al ejecutar los programas llamados Problema* se mostrará por pantalla un resumen de la respuesta al problema o apartado * expuesta en la Memoria.
+
+CalculoRaiz
+Este programa utiliza el productorio descrito en el apartado 4.2 para calcular una aproximación a la raiz de un número más grande o igual a 1. Utiliza además la desigualdad presentada en el apartado 4.6 para dar una cota del error asociado al calculo realizado. Se permite al usuario introducir por pantalla el número del cual se quiere calcular la raíz (mayor que 1) y el número de iterados que se desean realizar.
+
+MetodeDeBiseccio
+Este programa aplica el método de la bisección tomanto como condiciones iniciales los extremos del intervalo [2,8] para así calcular la raiz real del polinomio x³-x-400 presentada en el apartado 1. Sucesivamente intenta aplicar el método de aceleración de Aitken para acelerar la sucesión (si no se reduce el número de iterados se dice por pantalla que el método de Aitken ha fallado).
+
+MetodoDeNewton
+Este programa aplica el método de Newton tomanto como raiz inicial el valor x_0=2 para así calcular la raiz real del polinomio x³-x-400 presentada en el apartado 1. Sucesivamente intenta aplicar el método de aceleración de Aitken para acelerar la sucesión (si no se reduce el número de iterados se dice por pantalla que el método de Aitken ha fallado).
+
+MetodeDeSecant
+Este programa aplica el método de la Secante tomanto como condiciones iniciales x_0=2 y x_1=8 para así calcular la raiz real del polinomio x³-x-400 presentada en el apartado 1. Sucesivamente intenta aplicar el método de aceleración de Aitken para acelerar la sucesión (si no se reduce el número de iterados se dice por pantalla que el método de Aitken ha fallado).
+
+Problema1.1
+Este programa realiza el calculo con precisión simple y doble de la fórmula de Cardano-Vieta dada en el apartado 1.1 para calcular la raiz del polinomio p(x)=x³-x-40. Seguidamente evalua el polinomio en el resultado obtenido con doble precisión y muestra el resultado obtenido (podria no ser 0 debido a errores de cancelación).
+
+Problema1.2
+Este Programa aplica el Metodo de Newton para encontrar la raiz real del polinomio p(x)=x³-x-40 con precisión simple i precisión doble. Seguidamente permite al usuario repetir el método realizando un número de iteraciones a su elección.
+
+Problema1.3
+Este Programa aplica la fórmula de Cardano Vieta para calcular la raiz real del polinomio p(x)=x³-x-400. Seguidamente evalua el polinomio en la raiz obtenida y muestra los resultados. Por último junta los programas MetodoDeBiseccion, MetodoDeNewton y MetodoDeSecant y los ejecuta uno tras otro.
+
+Problema2
+Este programa calcula dos veces (una con precisión doble y la otra con precisión __float128) los iterados de la sucesión definida en el apartado 2. Luego muestra por pantalla los quocientes entre los errores de los iterados previos a la convergencia y muestra un analisis de los mismos para determinar el orden de convergencia de la sucesión,
+
+Problema3double
+Este programa calcula los iterados de la sucesión descrita en el problema 3, muestra por pantalla algunas conclusiones y luego intenta acelerar la sucesión.
+
+Problema3__float128
+Este programa hace lo mismo que el programa Problema3doubleperoconprecisión __float128
+
+Problema4
+Este programa muestra por pantalla un resumen de los apartados desde 4.1 a 4.6 y luego permite al usuario usar el programa CalculoRaiz para calcular la raiz de un número mayor que 1 (esta vez no pide el número de iterados si no que se detiene al alcanzar las 16 cifras decimales correctas).
+
+Problema4.7
+Este programa calcula con una precisión tipo __float128 el número \sqrt{2}g(g(g(1)))/2 donde g és la que viene descrita en la respuesta del apartado 4.7. Luego muestra por pantalla una cota superior  inferior del resultado.

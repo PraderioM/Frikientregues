@@ -26,8 +26,8 @@ int main(){
 	printf("Para hacerlo calcularemos la sucesión hasta que la diferencia en valor absoluto entre un iterado y el ");
 	printf("iterado sucesivo sea menor que 10^{-8}/2 o que 10^{-16}/2 y nos detendremos cuando se den estas ");
 	printf("dos condiciones.\nEstas condiciones de parada són suicientes dado que el método empleado és cuadràtico.");
-	x=2;
-	y=2;
+	x=2.;
+	y=2.;
 	//seguimos hasta obtener los decimales correctos que deseamos con las dos precisiones esto se cumplirà cuando
 	//seguirx=2 i seguiry=2 que son inicialente 0.
 	seguirx=0;

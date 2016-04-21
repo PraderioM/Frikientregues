@@ -15,14 +15,17 @@ int main(){
 	scanf("%d",&k);
 	c=x-1;
 	aux=1;
+	//calculamos k iterados del producto.
 	for (i = 0; i < k; i++){
 		a=g(c);
 		b=f(c);
 		c=a;
 		aux=aux*b;
 	}
+	//calculamos una cota del error haciendo uso de la cota vista en el apartado 4.6
 	error=(a/2)*ceil(sqrt(1+c));
-	printf("El valor del producto es: %.16g\n\n", aux);
+	//mostramos por pantalla los resultados.
+	printf("El valor aproximado de la raiz de %g és: %.16g\n\n", x, aux);
 	printf("El error en el cálculo de la raíz es:%.16g\n\n ", error);
 	return 0;
 }
