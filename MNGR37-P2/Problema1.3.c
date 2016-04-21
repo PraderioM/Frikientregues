@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define ZERO 1.e-16
+#define ZERO (1.e-16)/2
 
 void biseccion();
 void secante();
@@ -20,16 +20,23 @@ int main(){
 	printf("\\sqrt{200²-1/3³}\n");
 	//calculamos la fórmula con doble precisión sumamos las fracciones manualmente para reducir ligeramente los errores.
 	x=pow(200+sqrt(1079999./3)/3,1./3)+pow(200-sqrt(1079999./3)/3,1./3);
-	printf("Haciendo el calculo con doble precisión obtenemos como resultado el valor %g ", x);
+	printf("Haciendo el calculo con doble precisión obtenemos como resultado el valor\n%.16g\n", x);
 	//Si la raiz obtenida està comprendida entre 2 y 8 tal y como se especifica en la pràctica mostramos
 	//este dato por pantalla.
 	if (x>=2 && x<=8){
-		printf("el cual està coprendido entre 2 i 8");
+		printf(" el cual està coprendido entre 2 i 8");	
+		if (f(x)==0){
+			printf(" y efectivamente és un zero de P(x)");
+		}
+		else{
+			printf(" pero evaluando el Polinomio P(x) en este punto no obtenemos 0 lo cual nos indica que ha habido ");
+			printf("error en el calculo de la raíz debido a la cancelación");
+		}
 	}
 	//Ahora nos disponemos a calcular la raiz del polinomio mediante los mètodos de Bisección, de la secante y de Newton
 	//Y a acelerar las succesiones mediante el mètodo de aceleración de Aitken. Método que, teoricamente, se les 
 	//puede aplicar a las tres sucesiones si convergen.
-	printf("\n\nCalculemos ahora la raiz del polinomio con hasta 16 decimales correctos mediante los métodos ");
+	printf(".\n\n\nCalculemos ahora la raiz del polinomio con hasta 16 decimales correctos mediante los métodos ");
 	printf("de Bisección, de la secante y el método de Newton. Sucesivamente intentaremos aplicar el Método ");
 	printf("de aceleración de Aitken para acelerar las tres sucesiones obtenidas. És fàcil comprobar que, ");
 	printf("teoricamente, el método de Aitken se puede aplicar a las tres sucesiones siempre y cuando ");
@@ -199,11 +206,12 @@ void secante(){
 	//si el método de aceleración no ha conseguido acelerar la sucesión lo decimos por pantalla y finalizamos la
 	//función.
 	if (i==n-2){
-		printf("\nEl mètode d'acceleració de Aitken no ha logrado acelerar la sucesión.\n");
+		printf("\nEl mètode de acceleración de Aitken no ha logrado acelerar la sucesión.\n");
 		//Si la sucesión ya és bastante pequeña ràpida no tiene sentido acelerarla.
 		if (n<12){
 			printf("Esto és probablemente debido al hecho que la sucesión dada por el método de la secante tiene ");
-			printf("únicamente %d iterados y, por lo tanto no tiene sentido acelerarla.\n\n", n);
+			printf("únicamente %d iterados y, por lo tanto, no tiene sentido acelerarla dado que ya és bastante ", n);
+			printf("rápida por si sola.\n\n");
 		}
 		return;
 	}
@@ -272,11 +280,12 @@ void newton(){
 	//si el método de aceleración no ha conseguido acelerar la sucesión lo decimos por pantalla y finalizamos la
 	//función.
 	if (i==n-2){
-		printf("El mètode d'acceleració de Aitken no ha logrado acelerar la sucesión.\n");
+		printf("El mètode de acceleración de Aitken no ha logrado acelerar la sucesión.\n");
 		//Si la sucesión ya és bastante pequeña ràpida no tiene sentido acelerarla.
 		if (n<12){
-			printf("Esto és probablemente debido al hecho que la sucesión dada por el método de la secante tiene ");
-			printf("únicamente %d iterados y, por lo tanto no tiene sentido acelerarla.\n\n", n);
+			printf("Esto és probablemente debido al hecho que la sucesión dada por el método de Newton tiene ");
+			printf("únicamente %d iterados y, por lo tanto, no tiene sentido acelerarla dado que ya és bastante ", n);
+			printf("rápida por si sola.\n\n");
 		}
 		return;
 	}

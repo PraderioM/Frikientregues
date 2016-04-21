@@ -38,7 +38,7 @@ int main(){
 	printf("\\sqrt{1+x}=(\\prod_{j=0}^{n}b_j)\\sqrt{1+a_{n+1}}\n obtendremos que, cuando n tienda a infinito, el ");
 	printf("productorio (\\prod_{j=0}^{n}b_j) tendirà a \\sqrt{1+x}.\nPodremos por lo tanto ");
 	printf("calcular una aproximación de \\sqrt{1+x} (con x>0) como el producto (\\prod_{j=0}^{n}b_j)\n\n");
-	printf("Ver que 0 és punto fijo para g és trivial dado que, por definición de g(x) tenemos que g(0)=0/64=0\n");
+	printf("Ver que 0 és punto fijo para g és trivial dado que, por definición de g(x) tenemos que g(0)=0/64²=0\n");
 	printf("Veamos ahora que la función g és contractiva para todo x>0.\nCalculando g'(x) y g''(x) obtenemos que, ");
 	printf("para x>0, ambas són estrictamente positivas. Explicitamente tenemos que\n");
 	printf("g'(x)=x⁶(x³+72x²+400x+448)/(x³+24x²+80x+64)³\n");
@@ -57,7 +57,7 @@ int main(){
 	printf("relacionada con la velocidad de la convergencia {a_n} definida como a_0=x a_{n+1}=g(a_n).\n");
 	printf("Resulta por lo tanto interesante estudiar como de ràpido g(x) tiende a 0. És bastante trivial ver que g(x)");
 	printf("tiende a 0 con la misma velocidad con que x⁷ tiende a 0 (lo cual equivale a decir que g(x)=O(x⁷)). Para ");
-	printf("verlo solo hace falta ver que existe el límite \\lim_{x\\to 0}x⁷/g(x) i que és finito. Efectivamente se ");
+	printf("verlo solo hace falta ver que existe el límite \\lim_{x\\to 0}x⁷/g(x) y que és finito diferente de 0. Efectivamente se ");
 	printf("cumple que\n");
 	printf("\\lim_{x\\to 0}x⁷/g(x)=\\lim_{x\\to 0}x⁷(x³+24x²+80x+64)²/x⁷=\\lim_{x\\to 0}(x³+24x²+80x+64)²=64\n");
 	printf("Por lo tanto la serie {a_n} converge a 0 con orden de convergencia 7 lo cual nos indica (no demuestra) ");
@@ -95,28 +95,32 @@ int main(){
 	x--;
 	//ponemos las condiciones iniciales.
 	prod=1;
-	error=1;
 	//definimos k como una cota superior de \sqrt{1+x} que nos servirà para calcular una cota superior de la i-ésima
 	//iteración de nuestro programa que, como ya hemos visto, viene dada por a_{n+1}\sqrt{1+x}/2
 	k=ceil(sqrt(x+1));
+	error=fabs(x*k/2);
 	i=0;
 	while (error>ZERO && i<100){
 		a=g(x);
 		b=f(x);
 		x=a;
 		prod*=b;
-		error=fabs(a*k/2);
+		b=fabs(a*k/2);
+		if(error==b){
+			j++;
+		}
+		error=b;
 		i++;
 	}
-	if (i==0){
+	//si tras 100 iterados no hemos logrados la convergencia lo decimos por pantalla.
+	if (i==100){
 		printf("Tras 100 iterados no hemos conseguido obtener un error menor de 1.e-16.\n");
 		printf("El mejor resultado obtenido ha sido %.16g con un error de %.16g\n", prod, error);
 	}
 	else{
 		printf("Tras %d iteraciones hemos obtenido el resultado\n%.16g\n", i, prod);
 		if (error==0){
-			printf("Con un error tan pequeño que la màquina no lo diferencia del 0. Si no hubiese errores de ");
-			printf("representación el error seria igual o menor a 5x10⁻³²⁴.\n");
+			printf("Con un error tan pequeño que la màquina no lo diferencia del 0.\n");
 		}
 		else{
 			printf("Con un error menor a 1.e-16 de\n%.16g\n", error);

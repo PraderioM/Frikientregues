@@ -19,7 +19,7 @@ int main(){
 	double x, b, Succession[1000];
 	//mostramos por pantalla lo que vamos a hacer
 	printf("Aplicando la sucesión presentada en el problema 2 para calcular la raiz real del polinomio p(x)=x³-x-400 ");
-	printf("calculada en el apartado anterior con una precisión de 16 decimales obtenemos los siguientes resultados.\n");
+	printf("calculada en el apartado anterior con una precisión de 16 decimales obtenemos que ");
 	x=6;
 	b=1/f1(x);
 	Succession[0]=x;
@@ -31,11 +31,11 @@ int main(){
 		Succession[i]=x;
 	}
 	if (i==1000){
-		printf("\nLa sucesión presentada en el problema 2 no converge.\n\n");
+		printf("la sucesión presentada en el problema 2 no converge.\n\n");
 		return 0;
 	}
 	n=i;
-	printf("\nEn la iteración número %d obtenemos el resultado\n%.13g\nEl cual tiene 13 decimales correctos como ", n, x);
+	printf("en la iteración número %d llegamos al resultado\n%.13g\nEl cual tiene 13 decimales correctos como ", n, x);
 	printf("podemos observar comparandolo con los resultados obtenidos en el ejercicio anterior.\n");
 	printf("\nSi ahora denotamos por RAIZ el valor de la raiz encontrado en el apartado anterior y calculamos ");
 	printf("(x_k-RAIZ)/(x_{k-1}-RAIZ)^n para n=1,2,3 i k=%d,%d,%d ",(n-2),(n-1),n);
@@ -51,17 +51,17 @@ int main(){
 	printf("El hecho que los resultados obtenidos para n=1 tienden a 0 nos indica que el orden de convergencia de la ");
 	printf("sucesión és almenos lineal. Por otro lado el hecho que, para n>1 los resultados obtenidos crezcan ");
 	printf("descontroladamente nos indica que la sucesión no llega a tener orden de convergencia cuadràtico.\n");
-	printf("No obstante, dado que los dos primeros quaocientes en el caso de n=2 són bastante similares nos");
+	printf("No obstante, dado que los dos primeros quocientes en el caso de n=2 són bastante similares nos");
 	printf(" surge la duda de si el hecho de que el tercer quociente aumente és debido a la precisión finita.\n");
 	printf("Para comprobrarlo repetimos los calculos utilizando ahora variables del typo __float128 las cuales ");
-	printf("tienen el doble de precisión que las variables tipo double obteniendo asií los siguientes resultados.\n\n");
+	printf("tienen el doble de precisión que las variables tipo double obteniendo así los siguientes resultados.\n\n");
 	//repetimos los calculos con otros tipos de variables.
 	repetimos();
 	printf("Como podemos observar el primer y segundo quociente se ha mantenido iguales mientras que el ");
 	printf("tercer quociente ha disminuido para los tres valores de n. No obstante, en el caso de n=2, sigue siendo ");
 	printf("sensiblemente mayor que los dos primeros quocientes por lo tanto no podemos afirmar que el orden de");
-	printf(" convergencia sea cuadràtico.\nNo obstante podemos sin duda alguna afirmar que el orden de convergéncia, ");
-	printf("no obstante puede no lleguar a ser cuadràtico, es superior al lineal (un orden de convergencia ");
+	printf(" convergencia sea cuadràtico.\nPero podemos sin duda alguna afirmar que el orden de convergéncia, ");
+	printf("no obstante puede no llegar a ser cuadràtico, es superior al lineal (un orden de convergencia ");
 	printf("fraccionario entre 1 y 2 bastante cercano al 2)\n\n");
 	return 0;
 }
