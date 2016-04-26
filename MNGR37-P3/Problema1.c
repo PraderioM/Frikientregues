@@ -56,8 +56,9 @@ el de la función en esos puntos.
 Toma como parametros los puntos donde interpolar, los puntos donde mirar la diferencia, el valor de la función en estos
 puntos y dos enteros que indican la cantidad de puntos*/
 double* CalcularDiferencia(double* N, double* X, double* fx, int n, int m){
-	double px[m], *P;
+	double *px, *P;
 	int i;
+	px=malloc(m*sizeof(double));
 		/*Calculamos el polinomio interpolador de Hermite utilizando los puntos de N para interpolar*/
 		P=PolinomiInterpoladorHermite(N, AvaluarFuncio(f,N,n),n, 0);
 		/*calculamos |f(x)-p(x)| para los puntos guardados en X*/
@@ -65,5 +66,5 @@ double* CalcularDiferencia(double* N, double* X, double* fx, int n, int m){
 			px[i]=AvaluarPolinomi(P, n, X[i]);
 			px[i]=fabs(px[i]-fx[i]);
 		}
-	return;
+	return px;
 }

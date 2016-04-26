@@ -65,7 +65,9 @@ double AlgorismeNeville(double* X, double* Y, double x, int n){
  a gnuplot per fer-ne una gràfica*/
 void DibuixarGrafica(double* X, double* Y, int n, char* titol){
 	/*creem un fitxer anomenat dades on imprimirem les dades a dibuixar*/
-    FILE * dades=fopen("dades.txt", "w");
+	char s[80];
+	sprintf(s, "%s.txt", titol);
+    FILE * dades=fopen(s, "w");
     /*Obrim una interface que es pugui utilitzar per enviar comandes com com si les estiguessim escrivint en la linea de 
      comandes de gnuplot. el terme "The -persistent" manté obert el gnuplot després de que la funció s'acabi d'executar*/
     FILE * gnuplotPipe = popen("gnuplot -persistent", "w");
@@ -76,7 +78,7 @@ void DibuixarGrafica(double* X, double* Y, int n, char* titol){
     }
     //Enviem a gnuplot la comanda per posr titol a la gràfica i dibuixar les dades.
     fprintf(gnuplotPipe, "set title '%s'\n", titol);
-    fprintf(gnuplotPipe, "plot 'dades.txt' using 1:2 with lines\n");
+    fprintf(gnuplotPipe, "plot '%s.txt' using 1:2 with lines\n", titol);
     return;
 }
 
