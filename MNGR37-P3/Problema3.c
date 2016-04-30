@@ -4,8 +4,8 @@
 
 double f(double);
 double g(double);
-double* CalcularDiferencia(double*, double*, double*, int, int);
-double* CalcularPolinomio(double*, double*, double*, int, int);
+double* CalcularDiferencia(double (*f)(double), double*, double*, double*, int, int);
+double* CalcularPolinomio(double (*f)(double), double*, double*, int, int);
 
 
 /*El objetivo de este programa és realizar los calculos relacionados con el problema 1 de la pràctica 3
@@ -24,39 +24,36 @@ int main(){
 	for (i=0; i<181; i++){
 		X[i]=-0.989+i*0.011;
 	}
-	/*Avaluem f en els punts de X*/
+	/*Avaluamos f en los puntos de X*/
 	fx=AvaluarFuncio(f, X, 181);
 	n=2;
 	while (n<17){
 		/*Calculamos los nodos equiespaiados*/
 		N=NodesEquiespaiats(-1,1,n);
-		/*calculamos la diferencia entre el polinomio interpolador y la función*/
-		px=CalcularDiferencia(N, X, fx, n, 181);
-		/*hacemos su logaritmo*/
-		px=AvaluarFuncio(log, px, n);
+		/*calculamos la diferencia entre el polinomio interpolador y la función y hacemos su logaritmo.*/
+		px=CalcularDiferencia(f, N, X, fx, n, 181);
 		/*dibujamos la gràfica*/
 		sprintf(s, "Logaritmo diferencia polinomio Interpolador con %d nodos equiespaiados",n); // escribimos el título
 		DibuixarGrafica(X, px, 181, s);
 		/*Calculamos los nodos de Chebyschev*/
 		N=NodesChebyschev(-1,1,n);
-		/*calculamos la diferencia entre el polinomio interpolador y la función*/
-		px=CalcularDiferencia(N, X, fx, n, 181);
+		/*calculamos la diferencia entre el polinomio interpolador y la función y hacemos su logaritmo.*/
+		px=CalcularDiferencia(f, N, X, fx, n, 181);
 		/*dibujamos la gràfica*/
 		sprintf(s, "Logaritmo diferencia polinomio Interpolador con %d nodos Chebyschev",n); // escribimos el título
 		DibuixarGrafica(X,px,181, s);
 		n*=2;
 	}
-	/*ponemos en fx los valores que asume g evaluada en los puntos de X*/
-	fx=AvaluarFuncio(g, X, 181);
-	/*pedimos por pantalla cuantos nodos se quieren utilizar para estudiar perturbaciones en la función f*/
+	/*pedimos por pantalla cuantos nodos se quieren utilizar para estudiar el comportamiento del poinomio interpolador
+	 bajo perturbaciones de f en los nodos de interpolación*/
 	printf("Cuantos nodos interpoladores de Chebyschev quieres para evaluar la función f perturbada por la sinusoidal?\n");
 	scanf("%d", &n);
 	/*Calculamos los nodos de Chebyschev*/
 	N=NodesChebyschev(-1,1,n);
 	/*calculamos el polinomio interpolador en los puntos X*/
-	px=CalcularPolinomio(N, X, fx, n, 181);
+	px=CalcularDiferencia(g, N, X, fx, n, 181);
 	/*dibujamos la gràfica*/
-	sprintf(s, "Logaritmo diferencia polinomio Interpolador con %d nodos Chebyschev",n); // escribimos el título
+	sprintf(s, "Logaritmo diferencia polinomio Interpolador perturbado con %d nodos Chebyschev",n); // escribimos el título
 	DibuixarGrafica(X,px,181, s);
 	return 0;
 }
@@ -76,7 +73,7 @@ polinomio en otro conjunto de puntos y calcular el valor absoluto de la diferenc
 el de la función en esos puntos.
 Toma como parametros los puntos donde interpolar, los puntos donde mirar la diferencia, el valor de la función en estos
 puntos y dos enteros que indican la cantidad de puntos*/
-double* CalcularDiferencia(double* N, double* X, double* fx, int n, int m){
+double* CalcularDiferencia(double (*f)(double), double* N, double* X, double* fx, int n, int m){
 	double *px, *P;
 	int i;
 	px=malloc(m*sizeof(double));
@@ -86,6 +83,7 @@ double* CalcularDiferencia(double* N, double* X, double* fx, int n, int m){
 		for (i=0; i<m; i++){
 			px[i]=AvaluarPolinomi(P, n, X[i]);
 			px[i]=fabs(px[i]-fx[i]);
+			px[i]=log(1+px[i]);
 		}
 	return px;
 }
@@ -95,7 +93,7 @@ double* CalcularDiferencia(double* N, double* X, double* fx, int n, int m){
 polinomio en otro conjunto de puntos.
 Toma como parametros los puntos donde interpolar, los puntos donde mirar la diferencia, el valor de la función en estos
 puntos y dos enteros que indican la cantidad de puntos*/
-double* CalcularPolinomio(double* N, double* X, double* fx, int n, int m){
+double* CalcularPolinomio(double (*f)(double), double* N, double* X, int n, int m){
 	double *px, *P;
 	int i;
 	px=malloc(m*sizeof(double));
