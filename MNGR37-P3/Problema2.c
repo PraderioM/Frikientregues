@@ -78,7 +78,18 @@ int main(){
 	}
 }
 
-/*escribimos la función de Bessel de primera especie de orden 0.*/
+/*escribimos la función de Bessel de primera especie de orden 0 calculant els primers 50 iterats.*/
 double Bessel(double x){
-	return (1-x*x/4+x*x*x*x/64);
+	int signe=1, i;
+	long int fact=1;
+	double sum=1, y=x, elem=1;
+	y/=2;
+	y*=y;
+	for (i=1; i<50; i++){
+		elem=-elem;
+		elem/=(i*i);
+		elem*=y;
+		sum+=elem;
+	}
+	return sum;
 }

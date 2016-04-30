@@ -26,6 +26,17 @@ double* Calculardiferencia(double*, double*, int);
 void DibuixarGrafica(double*, double*, int, char*);
 double AlgorismeNeville(double*, double*, double, int);
 
+double* PolinomiInterpoladorSplines(double*, double*, int);
+double* LongitudIntervals(double*, int);
+double* CalculMu(double*, int);
+double* CalculLambda(double*, int);
+double* CalculD(double*, double*, int);
+double* ConstruirMatriu(double*, double*, int);
+double* CalculBeta(double*, double*, double*, int);
+double* CalculDelta(double*, double*, int);
+double AvaluarSplines(double*, double*, double);
+
+double* ResoldreMatriuTridiagonal(double*, double*, double*, double*, int);
 double* ResoldreSistemaLineal(double*, double*, int);
 void Idn (int*, int*, int);
 int LUtot(double*, int*, int*, int*, int*, int);
@@ -329,8 +340,8 @@ int demanardadesPantalla(double** X, double** Y, double** aux){
 	return n;
 }
 
-/*Fem una funció que demani el fitxer on estan guardades les dades, les guardi i torni la quantitat de punts interpoladors
-(amb repetició)*/
+/*Fem una funció que demani el fitxer on estan guardades les dades, les guardi i torni la quantitat de punts
+interpoladors (amb repetició)*/
 int demanardadesFitxer(double** X, double** Y, double** aux){
 	int i, j, k, n, m;
 	char fitxer[50];
@@ -539,6 +550,184 @@ void MostrarPolinomiHermite(double* C, int n){
 	}
 	//posem dos espais per fer que quedi mono.
 	printf("\n\n");
+}
+
+/*Aquesta fució pren com a parametres les cordenades de punts interpolador guardades en els vectors X i Y i la
+  dimensió d'aquests vectors (n) i torna un vector de longitud 4*(n-1) on estan guardats els n-1 polinomis cubics
+  de Splines natural de manera que en les posicions congruents a 0 modul cuatre es troba el terme independent en les congruents
+  a 1 el terme que multiplica (x-x_i) etc...*/
+double* PolinomiInterpoladorSplines(double* X, double* Y, int n){
+	double *h,*mu, *matriu, *moments, *lambda, *d, *beta, *delta, *Polin; 
+	int i;
+	h=LongitudIntervals(X,n);
+	mu=CalculMu(h,n);
+	lambda=CalculLambda(h,n);
+	d=CalculD(h,Y,n);
+	matriu=ConstruirMatriu(lambda, mu, n);
+	/*Calculem els moments resolent el sistema que hem creat*/
+	moments=ResoldreSistemaLineal(matriu, d, n-2);	
+	beta=CalculBeta(Y,h,moments,n);
+	delta=CalculDelta(h,moments,n);
+	/*guardem el resultat obtingut en el vector Polin*/
+	Polin=malloc(4*(n-1)*sizeof(double));
+	Polin[0]=Y[0];
+	Polin[1]=beta[0];
+	Polin[2]=0;
+	Polin[3]=delta[0];
+	for (i=1; i<(n-2); i++){
+		Polin[4*i]=Y[i];
+		Polin[4*i+1]=beta[i];
+		Polin[4*i+2]=moments[i-1]/2;
+		Polin[4*i+3]=delta[i];
+	}
+	Polin[4*(n-2)]=Y[n-2];
+	Polin[4*(n-2)+1]=beta[n-2];
+	Polin[4*(n-2)+2]=0;
+	Polin[4*(n-2)+3]=delta[n-2];
+	return Polin;
+}
+
+/*Aquesta variable agafa com a parametres un vector de doubles (X) i la seva dimensió (n) i torna com a resultat
+  un vector on es guarden les distancies entre els valors de X*/
+double* LongitudIntervals(double* X, int n){
+	double* h;
+	int i;
+	h=malloc((n-1)*sizeof(double));
+	for (i=0; i<n-1; i++){
+		h[i]=X[i+1]-X[i];
+	}
+	return h;
+}
+
+/*Aquesta funció calcula la mu de la formula del polinoi interpolador de Splines presentada a classe de mètodes
+ńumèrics. Agafa com a parametres el vector de longituds de intervals h i torna com  a resultat un vector on es
+guarden les mu*/
+double* CalculMu(double* h, int n){
+	double* mu;
+	int i;
+	mu=malloc((n-2)*sizeof(double));
+	for (i=0; i<n-2; i++){
+		mu[i]=h[i]/(h[i+1]+h[i]);
+	}
+	return mu;
+}
+
+/*Aquesta funció calcula la lambda de la formula del polinoi interpolador de Splines presentada a classe de mètodes
+ńumèrics. Agafa com a parametres el vector de longituds de intervals h i torna com  a resultat un vector on es
+guarden les lambda*/
+double* CalculLambda(double* h,int n){
+	double* lambda;
+	int i;
+	lambda=malloc((n-2)*sizeof(double));
+	for (i=0; i<n-2; i++){
+		lambda[i]=h[i+1]/(h[i+1]+h[i]);
+	}
+	return lambda;
+}
+
+/*Aquesta funció calcula la d de la formula del polinoi interpolador de Splines presentada a classe de mètodes
+ńumèrics. Agafa com a parametres el vector de longituds de intervals h i el valor de la funció en els punts interpoladors
+(Y) i torna com  a resultat un vector on es guarden les D*/
+double* CalculD(double* h,double* Y,int n){
+	double* d;
+	int i;
+	d=malloc((n-2)*sizeof(double));
+	for (i=0; i<n-2; i++){
+		d[i]=6*((Y[i+2]-Y[i+1])/h[i+1]-(Y[i+1]-Y[i])/h[i])/(h[i]+h[i+1]);
+	}
+	return d;
+}
+
+/*aquesta funció agafa com a parametres els vectors on es guarden les lambda i les mu de la formula del polinomi
+interpolador natural de splines i torna la matriu que dona el sistema que s'ha de resoldre per obtindre els moments.*/
+double* ConstruirMatriu(double* lambda, double* mu, int n){
+	int i;
+	double *matriu;
+	matriu=malloc((n-2)*(n-2)*sizeof(double));
+	for (i=0; i<(n-2)*(n-2); i++){
+		matriu[i]=0;
+	}
+	for (i=0; i<(n-3); i++){
+		matriu[(n-2)*i+i]=2;
+		matriu[(n-2)*i+i+1]=lambda[i];
+		matriu[(n-2)*(i+1)+i]=mu[i+1];
+	}
+	matriu[(n-2)*(n-2)-1]=2;
+	return matriu;
+}
+
+/*Aquesta funció calcula la beta de la formula del polinoi interpolador de Splines presentada a classe de mètodes
+ńumèrics. Agafa com a parametres el valor de la funció en els punts interpoladors el vector de longituds de intervals h
+i els moments i torna com  a resultat un vector on es guarden les beta*/
+double* CalculBeta(double* y,double* h,double* m,int n){
+	double* beta;
+	int i;
+	beta=malloc((n-1)*sizeof(double));
+	for (i=1; i<n-2; i++){
+		beta[i]=(y[i+1]-y[i])/h[i]-h[i]*(2*m[i-1]+m[i])/6;
+	}
+	beta[0]=(y[1]-y[0])/h[0]-h[0]*m[0]/6;
+	beta[n-2]=(y[n-1]-y[n-2])/h[n-2]-h[n-2]*m[n-3]/3;
+	return beta;
+}
+
+/*Aquesta funció calcula la delta de la formula del polinoi interpolador de Splines presentada a classe de mètodes
+ńumèrics. Agafa com a parametres el valor de la funció en els punts interpoladors el vector de longituds de intervals h
+i els moments i torna com  a resultat un vector on es guarden les delta*/
+double* CalculDelta(double* h,double* m,int n){
+	double* delta;
+	int i;
+	delta=malloc((n-1)*sizeof(double));
+	for (i=1; i<n-2; i++){
+		delta[i]=(m[i]-m[i-1])/(6*h[i]);
+	}
+	delta[0]=m[0]/(6*h[0]);
+	delta[n-2]=-m[n-3]/(6*h[n-2]);
+	return delta;
+}
+
+/*Aquesta funció agafa com a parametres els nodes interpoladors i el vector on es guarda el resultat de la
+  interpolació cúbica natural de Splines i torna com a resultat el seu valor.
+  és necessari que el polinomi de Splines estigui definit en el punt on esx vol avaluar la funció.*/
+double AvaluarSplines(double* X, double* Polin, double x){
+	int i=0;
+	double res, gamma;
+	/*determinem en quin interval es troba la x per saber quin polinomi aplicar.*/
+	while (X[i]<x){
+		i++;
+	}
+	i--;
+	/*apliquem el polinomi i tornem el resultat.*/
+	res=x-X[i];
+	res=Polin[4*i]+res*(Polin[4*i+1]+res*(Polin[4*i+2]+res*Polin[4*i+3]));
+	return res;
+}
+
+
+/*L'objectiu d'aquesta funció és el de resoldre sistemes lineals tridiagonals d'una manera més ràpida i eficient que la
+  funció ResoldreSistemaLineal aplicand l'algoritme de matriu tridiagonal, aquest algoritme desgraciadament pot propagar
+  més l'errror que el mètode LU amb pivotatge fet servir en la funció ResoldreSistemaLineal().
+  La funció pren com a parametres els elements de la diagonal (D) els de la diagonal superior (Ds), els de la diagonal
+  inferior (Di), els termes independents (B) i la dimensió de la matriu n y torna el vector de solucions.*/
+double* ResoldreMatriuTridiagonal(double* D, double* Ds, double* Di, double* B, int n){
+	double *X, *aux, *aux1;
+	int i;
+	/*apliquem l'algorisme*/
+	aux=malloc((n-1)*sizeof(double));
+	aux1=malloc((n-1)*sizeof(double));
+	aux[0]=Ds[0]/D[0];
+	aux1[0]=B[0]/D[0];
+	for (i=1; i<(n-1); i++){
+		aux[i]=Ds[i]/(D[i]-Di[i-1]*aux[i-1]);
+		aux1[i]=(B[i]-Di[i-1]*aux1[i-1])/(D[i]-Di[i-1]*aux[i-1]);
+	}
+	/*guardem el resultat en X*/
+	X=malloc(n*sizeof(double));
+	X[n-1]=(B[n-1]-Di[n-2]*aux1[n-2])/(D[n-1]-Di[n-2]*aux[n-2]);
+	for (i=(n-2); i>-1; i--){
+		X[i]=aux1[i]-aux[i]*X[i+1];
+	}
+	return X;
 }
 
 /*fem una funció per resoldre sistemes lineal (la necessitarem per fer interpolació per Splines).
