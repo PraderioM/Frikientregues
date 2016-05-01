@@ -85,7 +85,7 @@ void DibuixarGrafica(double* X, double* Y, int n, char* titol){
     int i;
     //escrivim en el fitxer dades.txt els punts a dibuixar.
     for (i=0; i<n; i++){
-	    fprintf(dades, "%lf %lf\n", X[i], Y[i]);
+	    fprintf(dades, "%.16lf %.16lf\n", X[i], Y[i]);
     }
     //Enviem a gnuplot la comanda per posr titol a la gràfica i dibuixar les dades.
     fprintf(gnuplotPipe, "set title '%s'\n", titol);

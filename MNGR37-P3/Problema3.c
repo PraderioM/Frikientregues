@@ -30,7 +30,8 @@ int main(){
 	while (n<17){
 		/*Calculamos los nodos equiespaiados*/
 		N=NodesEquiespaiats(-1,1,n);
-		/*calculamos la diferencia entre el polinomio interpolador y la función y hacemos su logaritmo.*/
+		/*calculamos la diferencia entre el polinomio interpolador y la función  le sumamos uno y hacemos su
+		logaritmo. Ademàs imprimimos por pantalla donde se asume el màximo.*/
 		px=CalcularDiferencia(f, N, X, fx, n, 181);
 		/*dibujamos la gràfica*/
 		sprintf(s, "Logaritmo diferencia polinomio Interpolador con %d nodos equiespaiados",n); // escribimos el título
@@ -60,37 +61,59 @@ int main(){
 
 /*hacemos una función que actue como la función de R a R presentada en el ejercicio f(x)=1/(1+3x)*/
 double f(double x){
-	return 1/(1+3*x);
+	return 1/(3+x);
 }
 
 /*hacemos una función que actue como la función de R a R presentada en el ejercicio perturbada f(x)=1/(1+3x)*/
 double g(double x){
-	return (1/(1+3*x)+0.05*sin(2*M_PI*x));
+	return (1/(3+x)+0.05*sin(2*M_PI*x));
 }
 
 /*esta función se encarga de calular el polinomio interpolador para unos puntos dados, calcular el valor del
-polinomio en otro conjunto de puntos y calcular el valor absoluto de la diferencia entre el valor del polinomio y
-el de la función en esos puntos.
+polinomio en otro conjunto de puntos y calcular el loharitmo de 1 más el valor absoluto de la diferencia entre el valor
+del polinomio y el de la función en esos puntos. Ademàs imprime por pantalla el màximo de esta diferencia.
 Toma como parametros los puntos donde interpolar, los puntos donde mirar la diferencia, el valor de la función en estos
 puntos y dos enteros que indican la cantidad de puntos*/
 double* CalcularDiferencia(double (*f)(double), double* N, double* X, double* fx, int n, int m){
 	double *px, *P;
-	int i;
+	int i, max=0;
 	px=malloc(m*sizeof(double));
-		/*Calculamos el polinomio interpolador de Hermite utilizando los puntos de N para interpolar*/
-		P=PolinomiInterpoladorHermite(N, AvaluarFuncio(f,N,n),n, 0);
-		/*calculamos |f(x)-p(x)| para los puntos guardados en X*/
-		for (i=0; i<m; i++){
-			px[i]=AvaluarPolinomi(P, n, X[i]);
-			px[i]=fabs(px[i]-fx[i]);
-			px[i]=log(1+px[i]);
+	/*Calculamos el polinomio interpolador de Hermite utilizando los puntos de N para interpolar*/
+	P=PolinomiInterpoladorHermite(N, AvaluarFuncio(f,N,n),n, 0);
+	/*calculamos |f(x)-p(x)| para los puntos guardados en X*/
+	for (i=0; i<m; i++){
+		px[i]=AvaluarPolinomi(P, n, X[i]);
+		px[i]=fabs(px[i]-fx[i]);
+		px[i]=log(1+px[i]);
+		/*actualizamos el màximo*/
+		if (px[i]>px[max]){
+			max=i;
 		}
+	}
+	/*Imprimimos el máximo de la diferéncia por pantalla.*/
+	printf("Evaluando el logaritmo de la diferencia mas uno entre la función 1/(3+x) y el polinomio ");
+	printf("interpolador obtenido utilizando %d nodos ", n);
+	/*Si el primer nodo és un extremo entonces los nodos són equiespaiados si no són de Chebyschev.*/
+	if (N[0]==-1){
+		printf("equiespaiados ");
+	}
+	else{
+		printf("de Chebyschev ");
+	}
+	printf("hemos detectado que");
+	if (px[max]==0){
+		printf(":\nel polinomio y la función no presentan diferencia alguna en los puntos analizados.\n\n");
+	}
+	else{
+		printf("se presenta un màximo en la diferencia en el punto\n%g\ndonde ", X[max]);
+		printf("el logaritmo de la diferencia mas uno vale\n%g\n\n", px[max]);
+	}
 	return px;
 }
 
 
-/*esta función se encarga de calular el polinomio interpolador para unos puntos dados y calcular el valor del
-polinomio en otro conjunto de puntos.
+/*esta función se encarga de calular el polinomio interpolador para unos puntos dados evaluados en una función dada
+y calcular el valor del polinomio en otro conjunto de puntos.
 Toma como parametros los puntos donde interpolar, los puntos donde mirar la diferencia, el valor de la función en estos
 puntos y dos enteros que indican la cantidad de puntos*/
 double* CalcularPolinomio(double (*f)(double), double* N, double* X, int n, int m){

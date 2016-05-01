@@ -18,10 +18,10 @@ int main(){
 	double *N;
 	/*s guardarà los títulos de las gràficas.*/
 	char s[80];
-	int i, n;
+	int n;
 	/*construimos el vector de puntos donde evaluaremos f y los polinomios interpoladores*/
-	for (i=0; i<181; i++){
-		X[i]=-0.989+i*0.011;
+	for (n=0; n<181; n++){
+		X[n]=-0.989+n*0.011;
 	}
 	/*Avaluem f en els punts de X*/
 	fx=AvaluarFuncio(f, X, 181);
@@ -29,7 +29,8 @@ int main(){
 	while (n<65){
 		/*Calculamos los nodos equiespaiados*/
 		N=NodesEquiespaiats(-1,1,n);
-		/*calculamos la diferencia entre el polinomio interpolador y la función*/
+		/*calculamos la diferencia entre el polinomio interpolador y la función y decimos por pantalla donde muestra
+		  el màximo.*/
 		px=CalcularDiferencia(N, X, fx, n, 181);
 		/*dibujamos la gràfica*/
 		sprintf(s,"Polinomio Interpolador con %d nodos equiespaiados",n); //escribimos el título de la gràfica.
@@ -58,7 +59,7 @@ Toma como parametros los puntos donde interpolar, los puntos donde mirar la dife
 puntos y dos enteros que indican la cantidad de puntos*/
 double* CalcularDiferencia(double* N, double* X, double* fx, int n, int m){
 	double *px, *P;
-	int i;
+	int i, max=0;
 	px=malloc(m*sizeof(double));
 		/*Calculamos el polinomio interpolador de Hermite utilizando los puntos de N para interpolar*/
 		P=PolinomiInterpoladorHermite(N, AvaluarFuncio(f,N,n),n, 0);
@@ -66,6 +67,27 @@ double* CalcularDiferencia(double* N, double* X, double* fx, int n, int m){
 		for (i=0; i<m; i++){
 			px[i]=AvaluarPolinomi(P, n, X[i]);
 			px[i]=fabs(px[i]-fx[i]);
+			/*actualizacmos el valor del màximo.*/
+			if (px[i]>px[max]){
+				max=i;
+			}
+		}
+		/*Imprimimos el máximo de la diferéncia por pantalla.*/
+		printf("Evaluando la diferencia entre la función 1/(1+25x²) y el polinomio interpolador obtenido");
+		printf(" utilizando %d nodos ", n);
+		/*Si el primer nodo és un extremo entonces los nodos són equiespaiados si no són de Chebyschev.*/
+		if (N[0]==-1){
+			printf("equiespaiados ");
+		}
+		else{
+			printf("de Chebyschev ");
+		}
+		printf("hemos detectado que");
+		if (px[max]==0){
+			printf(":\nel polinomio y la función no presentan diferencia alguna en los puntos analizados.\n\n");
+		}
+		else{
+			printf("se presenta un màximo en la diferencia en el punto\n%g\ndonde la diferencia vale\n%g\n\n", X[max], px[max]);
 		}
 	return px;
 }
