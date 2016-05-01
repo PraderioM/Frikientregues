@@ -57,9 +57,9 @@ int main(){
 		px2[i]=EvaluarSplines(x2, y2, beta2, m2, delta2 , X[i], k);
 		px2[i]=fabs(px2[i]-fx[i]);
 	}
-	sprintf(s, "Error Splines Chebyschev");
+	sprintf(s, "Error Splines Chebyschev %d", k);
 	DibuixarGrafica(X, px1, 181, s);
-	sprintf(s, "Error Splines equidistantes");
+	sprintf(s, "Error Splines equidistantes %d", k);
 	DibuixarGrafica(X, px2, 181, s);
 	return 0;
 }

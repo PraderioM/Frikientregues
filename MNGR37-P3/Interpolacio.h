@@ -87,8 +87,12 @@ void DibuixarGrafica(double* X, double* Y, int n, char* titol){
     for (i=0; i<n; i++){
 	    fprintf(dades, "%.16lf %.16lf\n", X[i], Y[i]);
     }
-    //Enviem a gnuplot la comanda per posr titol a la gràfica i dibuixar les dades.
+    //Enviem a gnuplot la comanda per posar titol a la gràfica i dibuixar les dades.
     fprintf(gnuplotPipe, "set title '%s'\n", titol);
+    fprintf(gnuplotPipe, "plot '%s.txt' using 1:2 with lines\n", titol);
+    /*guardem el plot en un arxiu anomenat titol.png*/
+    fprintf(gnuplotPipe, "set term png\n");
+    fprintf(gnuplotPipe, "set output '%s.png'\n", titol);
     fprintf(gnuplotPipe, "plot '%s.txt' using 1:2 with lines\n", titol);
     return;
 }

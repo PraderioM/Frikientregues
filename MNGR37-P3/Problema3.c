@@ -30,18 +30,18 @@ int main(){
 	while (n<17){
 		/*Calculamos los nodos equiespaiados*/
 		N=NodesEquiespaiats(-1,1,n);
-		/*calculamos la diferencia entre el polinomio interpolador y la función  le sumamos uno y hacemos su
-		logaritmo. Ademàs imprimimos por pantalla donde se asume el màximo.*/
+		/*calculamos la diferencia entre el polinomio interpolador y la función y hacemos su
+		logaritmo en base 10. Ademàs imprimimos por pantalla donde se asume el màximo.*/
 		px=CalcularDiferencia(f, N, X, fx, n, 181);
 		/*dibujamos la gràfica*/
 		sprintf(s, "Logaritmo diferencia polinomio Interpolador con %d nodos equiespaiados",n); // escribimos el título
 		DibuixarGrafica(X, px, 181, s);
 		/*Calculamos los nodos de Chebyschev*/
 		N=NodesChebyschev(-1,1,n);
-		/*calculamos la diferencia entre el polinomio interpolador y la función y hacemos su logaritmo.*/
+		/*calculamos la diferencia entre el polinomio interpolador y la función y hacemos su logaritmo en base 10.*/
 		px=CalcularDiferencia(f, N, X, fx, n, 181);
 		/*dibujamos la gràfica*/
-		sprintf(s, "Logaritmo diferencia polinomio Interpolador con %d nodos Chebyschev",n); // escribimos el título
+		sprintf(s, "Logaritmo diferencia polinomio interpolador con %d nodos Chebyschev",n); // escribimos el título
 		DibuixarGrafica(X,px,181, s);
 		n*=2;
 	}
@@ -54,7 +54,7 @@ int main(){
 	/*calculamos el polinomio interpolador en los puntos X*/
 	px=CalcularDiferencia(g, N, X, fx, n, 181);
 	/*dibujamos la gràfica*/
-	sprintf(s, "Logaritmo diferencia polinomio Interpolador perturbado con %d nodos Chebyschev",n); // escribimos el título
+	sprintf(s, "Logaritmo diferencia polinomio interpolador perturbado con %d nodos Chebyschev",n); // escribimos el título
 	DibuixarGrafica(X,px,181, s);
 	return 0;
 }
@@ -70,7 +70,7 @@ double g(double x){
 }
 
 /*esta función se encarga de calular el polinomio interpolador para unos puntos dados, calcular el valor del
-polinomio en otro conjunto de puntos y calcular el loharitmo de 1 más el valor absoluto de la diferencia entre el valor
+polinomio en otro conjunto de puntos y calcular el logaritmo de el valor absoluto de la diferencia entre el valor
 del polinomio y el de la función en esos puntos. Ademàs imprime por pantalla el màximo de esta diferencia.
 Toma como parametros los puntos donde interpolar, los puntos donde mirar la diferencia, el valor de la función en estos
 puntos y dos enteros que indican la cantidad de puntos*/
@@ -84,14 +84,14 @@ double* CalcularDiferencia(double (*f)(double), double* N, double* X, double* fx
 	for (i=0; i<m; i++){
 		px[i]=AvaluarPolinomi(P, n, X[i]);
 		px[i]=fabs(px[i]-fx[i]);
-		px[i]=log(1+px[i]);
+		px[i]=log10(px[i]);
 		/*actualizamos el màximo*/
 		if (px[i]>px[max]){
 			max=i;
 		}
 	}
 	/*Imprimimos el máximo de la diferéncia por pantalla.*/
-	printf("Evaluando el logaritmo de la diferencia mas uno entre la función 1/(3+x) y el polinomio ");
+	printf("Evaluando el logaritmo de la diferencia entre la función 1/(3+x) y el polinomio ");
 	printf("interpolador obtenido utilizando %d nodos ", n);
 	/*Si el primer nodo és un extremo entonces los nodos són equiespaiados si no són de Chebyschev.*/
 	if (N[0]==-1){
@@ -106,7 +106,7 @@ double* CalcularDiferencia(double (*f)(double), double* N, double* X, double* fx
 	}
 	else{
 		printf("se presenta un màximo en la diferencia en el punto\n%g\ndonde ", X[max]);
-		printf("el logaritmo de la diferencia mas uno vale\n%g\n\n", px[max]);
+		printf("el logaritmo de la diferencia vale\n%g\n\n", px[max]);
 	}
 	return px;
 }
