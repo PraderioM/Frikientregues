@@ -5,6 +5,9 @@
 #include <stdlib.h>
 #include <math.h>
 
+/*definimos f1 como un tipo de variable que apunta a una función que toma como parametro de entrada
+ un double y devuelve un double*/
+typedef double (*f1)(double);
 
 int ordenar(double*, int);
 int factorial(int);
@@ -21,7 +24,7 @@ double* PolinomiInterpoladorHermite1(int*, int);
 double AvaluarPolinomi(double*, int, double);
 double* NodesChebyschev(double, double, int);
 double* NodesEquiespaiats(double, double, int);
-double* AvaluarFuncio(double (*f)(double) , double*, int);
+double* AvaluarFuncio(f1 , double*, int);
 double* Calculardiferencia(double*, double*, int);
 void DibuixarGrafica(double*, double*, int, char*);
 double AlgorismeNeville(double*, double*, double, int);
@@ -114,14 +117,14 @@ double* Calculardiferencia(double* X, double* Y, int n){
 /*aquesta funció pren com a parametres un apuntador a una funció, un vector on estan guardats una sèrie de punts i
   un enter que indica la longitud del vector y retorna un vector de la mateixa longitud amb guardats els valors de
   la funció avaluada en els punts donats.*/
-double* AvaluarFuncio(double (*f)(double), double* X, int n){
+double* AvaluarFuncio(f1 f, double* X, int n){
 	int i;
 	double* Y;
 	/*reservem memoria per al vector Y*/
 	Y=malloc(n*sizeof(double));
 	/*avaluem f en els punts donats i guardem el resultat en Y*/
 	for (i=0; i<n; i++){
-		Y[i]=(*f)(X[i]);
+		Y[i]=f(X[i]);
 	}
 	/*tornem com a resultat el vector Y*/
 	return Y;

@@ -2,10 +2,13 @@
 #include <math.h>
 #include "Interpolacio.h"
 
+
 double f(double);
-double g(double);
-double* CalcularDiferencia(double (*f)(double), double*, double*, double*, int, int);
-double* CalcularPolinomio(double (*f)(double), double*, double*, int, int);
+/*f1 está definido en Interpolacio.h mediante
+typedef double (*f1)(double);*/
+f1 g(int);
+double* CalcularDiferencia(f1, double*, double*, double*, int, int);
+double* CalcularPolinomio(f1, double*, double*, int, int);
 
 
 /*El objetivo de este programa és realizar los calculos relacionados con el problema 1 de la pràctica 3
@@ -16,7 +19,9 @@ int main(){
 	interpoladores en los puntos guardados en X i descritos en el ejercicio.*/
 	double *fx, *px, X[181];
 	/*en el vector N guardaremos los nodos en los que se interpola.*/
-	double *N;
+	double *N, *M;
+	/*en el apuntador h guardarem una funció*/
+	f1 h;
 	/*s guardarà los títulos de las gràficas*/
 	char s[80];
 	int i, n;
@@ -51,8 +56,10 @@ int main(){
 	scanf("%d", &n);
 	/*Calculamos los nodos de Chebyschev*/
 	N=NodesChebyschev(-1,1,n);
+	/*calculamos la función ftilde para n nodos interpoladores*/
+	h=g(n);
 	/*calculamos el polinomio interpolador en los puntos X*/
-	px=CalcularDiferencia(g, N, X, fx, n, 181);
+	px=CalcularDiferencia(h, N, X, fx, n, 181);
 	/*dibujamos la gràfica*/
 	sprintf(s, "Logaritmo diferencia polinomio interpolador perturbado con %d nodos Chebyschev",n); // escribimos el título
 	DibuixarGrafica(X,px,181, s);
@@ -64,9 +71,12 @@ double f(double x){
 	return 1/(3+x);
 }
 
-/*hacemos una función que actue como la función de R a R presentada en el ejercicio perturbada f(x)=1/(1+3x)*/
-double g(double x){
-	return (1/(3+x)+0.05*sin(2*M_PI*x));
+/*hacemos una función que dado un entero n devuelva como resultado la función f(x)=1/(1+3x)+0.05*sin(2*pi*x*n).*/
+f1 g(int n){
+	double h(double x){
+		return (1/(3+x)+0.05*sin(2*M_PI*x*n));
+	}
+	return h;
 }
 
 /*esta función se encarga de calular el polinomio interpolador para unos puntos dados, calcular el valor del
@@ -74,21 +84,27 @@ polinomio en otro conjunto de puntos y calcular el logaritmo de el valor absolut
 del polinomio y el de la función en esos puntos. Ademàs imprime por pantalla el màximo de esta diferencia.
 Toma como parametros los puntos donde interpolar, los puntos donde mirar la diferencia, el valor de la función en estos
 puntos y dos enteros que indican la cantidad de puntos*/
-double* CalcularDiferencia(double (*f)(double), double* N, double* X, double* fx, int n, int m){
-	double *px, *P;
+double* CalcularDiferencia(f1 f, double* N, double* X, double* fx, int n, int m){
+	double *px, *P, Y[n], error=0;
 	int i, max=0;
+	/*calculem la imatge de f en els nodes de N*/
+	for (i=0; i<n; i++){
+		Y[i]=f(N[i]);
+	}
 	px=malloc(m*sizeof(double));
 	/*Calculamos el polinomio interpolador de Hermite utilizando los puntos de N para interpolar*/
-	P=PolinomiInterpoladorHermite(N, AvaluarFuncio(f,N,n),n, 0);
+	P=PolinomiInterpoladorHermite(N, Y,n, 0);
 	/*calculamos |f(x)-p(x)| para los puntos guardados en X*/
 	for (i=0; i<m; i++){
 		px[i]=AvaluarPolinomi(P, n, X[i]);
 		px[i]=fabs(px[i]-fx[i]);
-		px[i]=log10(px[i]);
-		/*actualizamos el màximo*/
-		if (px[i]>px[max]){
+		/*actualizamos el error y el máximo (lo podemos hacer porque el logaritmo és creciente).*/
+		if (px[i]>error){
 			max=i;
+			error=px[i];
 		}
+		/*evaluamos el logaritmo*/
+		px[i]=log10(px[i]);
 	}
 	/*Imprimimos el máximo de la diferéncia por pantalla.*/
 	printf("Evaluando el logaritmo de la diferencia entre la función 1/(3+x) y el polinomio ");
@@ -105,8 +121,8 @@ double* CalcularDiferencia(double (*f)(double), double* N, double* X, double* fx
 		printf(":\nel polinomio y la función no presentan diferencia alguna en los puntos analizados.\n\n");
 	}
 	else{
-		printf("se presenta un màximo en la diferencia en el punto\n%g\ndonde ", X[max]);
-		printf("el logaritmo de la diferencia vale\n%g\n\n", px[max]);
+		printf(" se presenta un màximo en la diferencia en el punto\n%g\ndonde ", X[max]);
+		printf("el logaritmo de la diferencia vale\n%g\nCorrespondiente a un error de\n%g\n\n", px[max], error);
 	}
 	return px;
 }
@@ -116,7 +132,7 @@ double* CalcularDiferencia(double (*f)(double), double* N, double* X, double* fx
 y calcular el valor del polinomio en otro conjunto de puntos.
 Toma como parametros los puntos donde interpolar, los puntos donde mirar la diferencia, el valor de la función en estos
 puntos y dos enteros que indican la cantidad de puntos*/
-double* CalcularPolinomio(double (*f)(double), double* N, double* X, int n, int m){
+double* CalcularPolinomio(f1 f, double* N, double* X, int n, int m){
 	double *px, *P;
 	int i;
 	px=malloc(m*sizeof(double));
