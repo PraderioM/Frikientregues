@@ -93,10 +93,10 @@ double* CalcularDiferencia(f1 f, double* N, double* X, double* fx, int n, int m)
 	}
 	px=malloc(m*sizeof(double));
 	/*Calculamos el polinomio interpolador de Hermite utilizando los puntos de N para interpolar*/
-	P=PolinomiInterpoladorHermite(N, Y,n, 0);
+	P=CoeficientsHermite(N, Y,n, 0);
 	/*calculamos |f(x)-p(x)| para los puntos guardados en X*/
 	for (i=0; i<m; i++){
-		px[i]=AvaluarPolinomi(P, n, X[i]);
+		px[i]=AvaluarCoeficientsPolinomi(N, P, n, X[i]);
 		px[i]=fabs(px[i]-fx[i]);
 		/*actualizamos el error y el máximo (lo podemos hacer porque el logaritmo és creciente).*/
 		if (px[i]>error){
@@ -123,24 +123,6 @@ double* CalcularDiferencia(f1 f, double* N, double* X, double* fx, int n, int m)
 	else{
 		printf(" se presenta un màximo en la diferencia en el punto\n%g\ndonde ", X[max]);
 		printf("el logaritmo de la diferencia vale\n%g\nCorrespondiente a un error de\n%g\n\n", px[max], error);
-	}
-	return px;
-}
-
-
-/*esta función se encarga de calular el polinomio interpolador para unos puntos dados evaluados en una función dada
-y calcular el valor del polinomio en otro conjunto de puntos.
-Toma como parametros los puntos donde interpolar, los puntos donde mirar la diferencia, el valor de la función en estos
-puntos y dos enteros que indican la cantidad de puntos*/
-double* CalcularPolinomio(f1 f, double* N, double* X, int n, int m){
-	double *px, *P;
-	int i;
-	px=malloc(m*sizeof(double));
-	/*Calculamos el polinomio interpolador de Hermite utilizando los puntos de N para interpolar*/
-	P=PolinomiInterpoladorHermite(N, AvaluarFuncio(f,N,n),n, 0);
-	/*calculamos |f(x)-p(x)| para los puntos guardados en X*/
-	for (i=0; i<m; i++){
-		px[i]=AvaluarPolinomi(P, n, X[i]);
 	}
 	return px;
 }

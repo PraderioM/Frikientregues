@@ -62,10 +62,10 @@ double* CalcularDiferencia(double* N, double* X, double* fx, int n, int m){
 	int i, max=0;
 	px=malloc(m*sizeof(double));
 		/*Calculamos el polinomio interpolador de Hermite utilizando los puntos de N para interpolar*/
-		P=PolinomiInterpoladorHermite(N, AvaluarFuncio(f,N,n),n, 0);
+		P=CoeficientsHermite(N, AvaluarFuncio(f,N,n),n, 0);
 		/*calculamos |f(x)-p(x)| para los puntos guardados en X*/
 		for (i=0; i<m; i++){
-			px[i]=AvaluarPolinomi(P, n, X[i]);
+			px[i]=AvaluarCoeficientsPolinomi(N, P, n, X[i]);
 			px[i]=fabs(px[i]-fx[i]);
 			/*actualizacmos el valor del màximo.*/
 			if (px[i]>px[max]){
@@ -87,7 +87,7 @@ double* CalcularDiferencia(double* N, double* X, double* fx, int n, int m){
 			printf(":\nel polinomio y la función no presentan diferencia alguna en los puntos analizados.\n\n");
 		}
 		else{
-			printf("se presenta un màximo en la diferencia en el punto\n%g\ndonde la diferencia vale\n%g\n\n", X[max], px[max]);
+			printf("se presenta un màximo en la diferencia en el punto\n%.12g\ndonde la diferencia vale\n%.12g\n\n", X[max], px[max]);
 		}
 	return px;
 }

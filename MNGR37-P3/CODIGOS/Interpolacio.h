@@ -22,6 +22,7 @@ void MostrarPolinomiHermite(double*, int);
 double* PolinomiInterpoladorHermite(double*, double*, int, int);
 double* PolinomiInterpoladorHermite1(int*, int);
 double AvaluarPolinomi(double*, int, double);
+double AvaluarCoeficientsPolinomi(double*, double*, int, double);
 double* NodesChebyschev(double, double, int);
 double* NodesEquiespaiats(double, double, int);
 double* AvaluarFuncio(f1 , double*, int);
@@ -177,15 +178,14 @@ double* NodesChebyschev(double a, double b, int n){
   la funció avaluada en aquest punt.*/
 double AvaluarPolinomi(double* P, int n, double x){
 	int i;
-	double prod=1, sum=0;
-	/*sumem els coeficients del polinomi multiplicats per la potencia de x corresponent guardada en la variable prod
-	 y guardem la suma en la variable sum*/
-	for (i=0; i<n; i++){
-		sum+=P[i]*prod;
-		prod*=x;
+	double polin=0;
+	/*calcularem el polinomi mitjancçant l'esquema de Horne p(x)=P[0]+(P[1]+(...)x)x=*/
+	for (i=n-1; i>-1; i--){
+		polin*=x;
+		polin+=P[i];
 	}
 	/*retornem el valor de la suma (que no és altra cosa que el polinomi P avaluat en x*/
-	return sum;
+	return polin;
 }
 
 /*Aquesta funció demana punts interpoladors i construeix el polinomi d'hermite a partir d'ells.
@@ -232,6 +232,36 @@ double* PolinomiInterpoladorHermite(double* X, double* Y, int n, int mostrar){
 	return P;
 }
 
+/*Aquesta funció fa exactament lo mateix que la funció anterior pero amb la diferència que retorna els coeficients
+  del polinomi sense desenvolupar del mètode de les diferències dividides de Newton.*/
+double* CoeficientsHermite(double* X, double* Y, int n, int mostrar){
+	double *P, *aux;
+	/*preparem les dades per poder aplicar l'algorisme de les diferències dividides.*/
+	preparardades(X, Y, &P, &aux, n);
+	/*Apliquem l'algorisme per trobar el polinomi interpolador de Hermite*/
+	diferenciesdividides(X,Y,P,aux,n);
+	/*mostrem per pantalla el resultat si així ho especifica el parametre mostrar.*/
+	if (mostrar){
+		MostrarCoeficientsHermite(X,P,n);
+	}
+	return P;
+}
+
+/*Aquesta funció pren com a parametres el nodes interpoladors guardats en el vector X, els coeficients del polinomi 
+  interpolador d'Hermite trobat a partir d'aquests nodes i guardats en el vector P, la dimensió d'aquests vectors n
+  i el punt on volem avaluar el polinomi x i torna com a resultat el valor del polinomi en x.*/
+double AvaluarCoeficientsPolinomi(double* X, double* P, int n, double x){
+	/*el polinomi evaluat en x serà p(x)=P[0]+P[1](x-X[0])+...+P[n-1](x-X[0])·...·(x-X[n-2]) el calcularem mitjançant
+	l'esquema de Horner
+	p(x)=P[0]+(P[1]+(P[2]+..)(x-X[1]))(x-X[0]).*/
+	double polin=0;
+	int i;
+	for (i=n-1; i>-1; i--){
+		polin*=(x-X[i]);
+		polin+=P[i];
+	}
+	return polin;
+}
 
 /*La funció ordenar agafa com a parametres un vector (V) i un la seva dimensió (n)
 n'ordena els elements mitjançant el mètode de la bombolla.*/
