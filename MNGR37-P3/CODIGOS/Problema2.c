@@ -50,6 +50,20 @@ int main(){
 		x=Bessel(x);
 		printf("En este punto la función de Bessel de primera especie de orden 0 vale\n%g\n", x);
 	}
+	printf("\n");
+	for (n=2; n<13; n+=2){
+		X1=malloc(n*sizeof(double));
+		Y1=malloc(n*sizeof(double));
+		for (i=0; i<n; i++){
+			X1[i]=X[i+6-n/2];
+			Y1[i]=Y[i+6-n/2];
+		}
+		x=AlgorismeNeville(X1, Y1, 0., n);
+		printf("\nEl resultado obtenido aplicando interpolación inversa de grado %d interpolando valores", (n-1));
+		printf(" de J_0(x) mas cercanos al cambio de signo de la función és\n%.16g\n", x);
+		x=Bessel(x);
+		printf("En este punto la función de Bessel de primera especie de orden 0 vale\n%g\n", x);
+	}
 	X[0]=0.166606980331990;
 	X[1]=0.110362266922174;
 	X[2]=0.055539784445602;
@@ -72,7 +86,7 @@ int main(){
 		}
 		x=AlgorismeNeville(X1, Y1, 0., n);
 		printf("\nEl resultado obtenido aplicando interpolación inversa de grado %d interpolando valores", (n-1));
-		printf(" de J_0(x) simétricos alrededor del cambio de signo de la función és\n%.16g\n", x);
+		printf(" de J_0(x) simétricos respecto del cambio de signo de la función és\n%.16g\n", x);
 		x=Bessel(x);
 		printf("En este punto la función de Bessel de primera especie de orden 0 vale\n%g\n", x);
 	}
