@@ -1,0 +1,21 @@
+Autores: Marta Cavero i Marco Praderio
+
+Los codigos se han compilado haciendo uso de la comanda
+
+gcc -o programa programa.c -lm
+
+Los programas utilizados necesitan la libreria Interpolacio.h la cual también se encuentra en la carpeta CODIGOS.
+
+
+El programa Problema1 crea y guarda plots de las interpolaciones pedidas en el Problema 1. Tambien imprime por pantalla los puntos de màximo error de interpolación y el valor del error en esos puntos.
+
+
+El programa Problema2 aplica interpolación inversa para encontrar el cero de la función de Bessel de orden 0 utilizando los datos especificados en el problema 2. También hace interpolación inversa utilizando todos los datos y imprime por pantalla los resultados y el valor de la función de Bessel en los puntos encontrados.
+
+
+El programa Problema3 crea y guarda plots de las interpolaciones pedidas en el Problema 3. Tambien imprime por pantalla los puntos de màximo error de interpolación y el valor del error  y su logaritmo en esos puntos.
+
+
+El programa Splines calcula la interpolación por Splines  pedida en el apartado opcional y dibula las gráficas.
+
+La libreria Interpolacio.h incluye las funciones necesarias para interpolar funciones con polinomios. También contiene funciones para resolver sistemas de ecuaciones lineales y una función para resolver sistemas de ecuaciones lineales tridiagonales. Aunque este último no lo hemos utilizado ya que hemos comprobado que propaga más el error.
