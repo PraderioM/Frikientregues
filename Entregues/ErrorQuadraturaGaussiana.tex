@@ -1,0 +1,58 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[left=1.5 cm,top=2.5cm,right=1.5cm,bottom=2.5cm]{geometry}
+\renewcommand{\*}{\cdot}
+\renewcommand{\phi}{\rho}
+\newcommand{\R}{\mathbb{R}}
+%opening
+\title{Formula del error per la quadratura Gaussiana.}
+\author{Marco Praderio 1361525}
+\date{}
+\begin{document}
+\maketitle
+El nostre objectiu és demostrar que:\\
+Siguin $x_1$,$x_2$,$\dots$,$x_n$ els zeros (simples) del polinomi ortogonal $\phi_n$ (de grau $n$) respecte del pes $\omega(x)$ a l'interval $[a,b]$ i sigui $f:[a,b]\to\R$ de
+classe $C^{2n}$. Llavors
+\begin{equation*}
+ \int_a^b\omega(x)f(x)dx-\sum_{i=1}^n\omega_if(x_i)=\frac{f^{(2n)(\xi)}}{(2n)!}<\phi_n,\phi_n>
+\end{equation*}
+amb $a<\xi<b$.
+Per fer-ho aplicarem que la formula de quadratura Gaussiana amb $n$ nodes és exacte per a qualsevol polinomi de grau mes petit o igual que $2n-1$ i que l'error de
+interpolació de polinomis de Hermite obtinguts amb $n+1$ nodes és $f(x)-H_n(x)=\frac{f^{(n+1)}(\xi_x)}{(n+1)!}(x-x_0)^{n_0}\dots(x-x_m)^{n_m}$ on $\xi_x\in<x_0,\dots,x_m,x>$
+$x_i$ són les abscisses dels punts fets servir per interpolar i $n_i$ és el nombre de derivades +1 que coneixem d'aquests punts.
+\paragraph*{}
+Agafem $H_{2n-1}$ el polinomi interpolador de Hermite que interpola $f$ en les $n$ arrels del polinomi ortogonal $\phi_n$ i en la derivada de $f$ en els mateixos punts.
+Com que $H_{2n-1}$ interpola $f$ en les $n$ arrels de $\phi_n$ (que denotarem per $x_i$) aleshores es compleix que
+$$\sum_{i=1}^n\omega_if(x_i)=\sum_{i=1}^n\omega_iH_{2n-1}(x_i)$$
+Si a més a més tenim en compte que
+\begin{equation*}
+ \begin{split}
+  f(x)-H_{2n-1}(x)&=\frac{f^{(2n)}(\xi_x)}{(2n)!}(x-x_0)^2\dots(x-x_m)^2 \Rightarrow \\
+  \Rightarrow f(x)&=H_{2n-1}(x)+\frac{f^{(2n)}(\xi_x)}{(2n)!}(x-x_0)^2\dots(x-x_m)^2=
+H_{2n-1}(x)+\frac{f^{(2n)}(\xi_x)}{(2n)!}\phi_n^2(x)
+ \end{split}
+\end{equation*}
+
+Aleshores podem escriure
+\begin{equation}
+\label{ref}
+\begin{split}
+\int_a^b\omega(x)f(x)dx-\sum_{i=1}^n\omega_if(x_i)&=\int_a^b\omega(x)\left(H_{2n-1}(x)+\frac{f^{(2n)}(\xi_x)}{(2n)!}\phi_n^2(x)\right)dx-\sum_{i=1}^n\omega_iH_{2n-1}(x_i)=\\
+&=\int_a^b\omega(x)H_{2n-1}(x)dx-\sum_{i=1}^n\omega_iH_{2n-1}(x_i)+\int_a^b\omega(x)\frac{f^{(2n)}(\xi_x)}{(2n)!}\phi_n^2(x)dx
+\end{split}
+\end{equation}
+Com que $H_{2n-1}$ és un polinomi de grau menor o igual a $2n-1$ i la formula de quadratura Gaussiana és exacta per a polinomis de grau menor o igual a $2n-1$ aleshores tindrem
+$$\int_a^b\omega(x)H_{2n-1}(x)dx=\sum_{i=1}^n\omega_iH_{2n-1}(x_i)\Rightarrow \int_a^b\omega(x)H_{2n-1}(x)dx-\sum_{i=1}^n\omega_iH_{2n-1}(x_i)=0$$
+A més a més, com que $f$ és $C^{2n}$ aleshores $f^{(2n)}$ és continua i aleshores podem aplicar el teorema del valor mig per afirmar que existeix $\xi\in(a,b)$ que compleix
+$$\int_a^b\omega(x)\frac{f^{(2n)}(\xi_x)}{(2n)!}\phi_n^2(x)dx=\frac{f^{(2n)}(\xi)}{(2n)!}\int_a^b\omega(x)\phi_n^2(x)dx=\frac{f^{(2n)}(\xi)}{(2n)!}<\rho_n,\rho_n>$$
+Podem per tant reescriure (\ref{ref}) com
+\begin{equation*}
+ \begin{split}
+  \int_a^b\omega(x)f(x)dx-\sum_{i=1}^n\omega_if(x_i)&=\int_a^b\omega(x)H_{2n-1}(x)dx-\sum_{i=1}^n\omega_iH_{2n-1}(x_i)+\int_a^b\omega(x)\frac{f^{(2n)}(\xi_x)}{(2n)!}\phi_n^2(x)dx\\
+  &=0+\frac{f^{(2n)}(\xi)}{(2n)!}<\rho_n,\rho_n>=\frac{f^{(2n)}(\xi)}{(2n)!}<\rho_n,\rho_n>
+ \end{split}
+\end{equation*}
+Tal i com volíem demostrar.
+\end{document}
