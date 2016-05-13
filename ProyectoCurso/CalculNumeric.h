@@ -10,68 +10,70 @@
 typedef double (*funcio)(double);
 
 /*Interpolació de Newton*/
-int ordenar(double*, int);
-int factorial(int);
-int demanardades(double**, double**, double**);
-int demanardadesPantalla(double**, double**, double**);
-int demanardadesFitxer(double**, double**, double**);
-void preparardades(double*, double*, double**, double**, int);
-void diferenciesdividides(double*, double*, double*, double*, int);
-void MostrarCoeficientsHermite(double*, double*, int);
-void CalcularPolinomiHermite(double*, double**, int, int);
-void MostrarPolinomiHermite(double*, int);
-double* PolinomiInterpoladorHermite(double*, double*, int, int);
-double* PolinomiInterpoladorHermite1(int*, int);
-double AvaluarPolinomi(double*, int, double);
-double AvaluarCoeficientsPolinomi(double*, double*, int, double);
-double* NodesChebyschev(double, double, int);
-double* NodesEquiespaiats(double, double, int);
-double* AvaluarFuncio(funcio , double*, int);
-double* Calculardiferencia(double*, double*, int);
-void DibuixarGrafica(double*, double*, int, char*);
-double AlgorismeNeville(double*, double*, double, int);
+double AlgorismeNeville(double*, double*, double, int); //77
+void DibuixarGrafica(double*, double*, int, char*); //97
+double* Calculardiferencia(double*, double*, int); //123
+double* AvaluarFuncio(funcio , double*, int); //138
+double* NodesEquiespaiats(double, double, int); //155
+double* NodesChebyschev(double, double, int); //179
+double AvaluarPolinomi(double*, int, double); //198
+double* PolinomiInterpoladorHermite1(int*, int); //214
+double* PolinomiInterpoladorHermite(double*, double*, int, int); //239
+double* CoeficientsHermite(double*, double*, int, int); //256
+double AvaluarCoeficientsPolinomi(double*, double*, int, double); //273
+int ordenar(double*, int); //288
+int factorial(int); //313
+int demanardades(double**, double**, double**); //327
+int demanardadesPantalla(double**, double**, double**); //348
+int demanardadesFitxer(double**, double**, double**); //408
+void preparardades(double*, double*, double**, double**, int); //480
+void diferenciesdividides(double*, double*, double*, double*, int); //500
+void MostrarCoeficientsHermite(double*, double*, int); //531
+void CalcularPolinomiHermite(double*, double**, int, int); //545
+void MostrarPolinomiHermite(double*, int); //580
 /*Interpolacio de Splines.*/
-double* PolinomiInterpoladorSplinesLU(double*, double*, int);
-double* PolinomiInterpoladorSplinesGaussSeidel(double*, double*, double, int);
-double* LongitudIntervals(double*, int);
-double* CalculMu(double*, int);
-double* CalculLambda(double*, int);
-double* CalculD(double*, double*, int);
-double* ConstruirMatriu(double*, double*, int);
-double* CalculBeta(double*, double*, double*, int);
-double* CalculDelta(double*, double*, int);
-double AvaluarSplines(double*, double*, double);
+double* PolinomiInterpoladorSplinesLU(double*, double*, int); //630
+double* PolinomiInterpoladorSplinesGaussSeidel(double*, double*, double, int); //662
+double* LongitudIntervals(double*, int); //691
+double* CalculMu(double*, int); //704
+double* CalculLambda(double*, int); //717
+double* CalculD(double*, double*, int); //730
+double* ConstruirMatriu(double*, double*, int); //743
+double* CalculBeta(double*, double*, double*, int); //762
+double* CalculDelta(double*, double*, int); //777
+double AvaluarSplines(double*, double*, double); //792
 /*Resoldre sistemes lineals.*/
-double* ResoldreMatriuTridiagonal(double*, double*, double*, double*, int);
-double* ResoldreSistemaLinealGaussSeidel(double*, double*, double, int);
-double* ResoldreSistemaLinealLU(double*, double*, int);
-void Idn (int*, int*, int);
-int LUtot(double*, int*, int*, int*, int*, int);
-int pivotatge(double*, int*, int*, int*, int*, int, int);
-void canvidecolumnesfiles (int*, int, int, int);
-int guardarcanvidefiles (int*, int*, int);
-int guardarcanvidecolumnes (int*, int*, int);
-double* matriupermatriuintdb(int*, double*, int);
-double* matriupermatriudbint(double*, int*, int);
-int matriupermatriuintint(int*, int*, int, int);
-double* matriupervector(int*, double*, int);
-void resoldresistematriangularinferior (double*, double*, int);
-void resoldresistematriangularsuperior (double*, double*, int);
+double* ResoldreMatriuTridiagonal(double*, double*, double*, double*, int); //816
+double* ResoldreSistemaLinealGaussSeidel(double*, double*, double, int); //842
+double* ResoldreSistemaLinealLU(double*, double*, int); //892
+void Idn(int*, int*, int); //919
+int LUtot(double*, int*, int*, int*, int*, int); //932
+int pivotatge(double*, int*, int*, int*, int*, int, int); //955
+void canvidecolumnesfiles (int*, int, int, int); //989
+int guardarcanvidefiles (int*, int*, int); //1004
+int guardarcanvidecolumnes (int*, int*, int); //1014
+double* matriupermatriuintdb(int*, double*, int); //1024
+double* matriupermatriudbint(double*, int*, int); //1043
+int matriupermatriuintint(int*, int*, int, int); //1062
+double* matriupervector(int*, double*, int); //1087
+void resoldresistematriangularinferior (double*, double*, int); //1104
+void resoldresistematriangularsuperior (double*, double*, int); //1117
 /*Integracio i Derivacio.*/
-double QuadraturaGaussChebyschev(funcio, double, double, int);
-double IntegracioPolinomiSplines(double*, double*, int);
-double IntegrarPolinomi(double*, double, double, int);
-double IntegracioSimpsonCompost(funcio, double, double, int);
-double IntegracioTrapeziCompost(funcio, double, double, int);
-double ExtrapolacioRichardson(double*, int*, double, int);
+double QuadraturaGaussChebyschev(funcio, double, double, int); //1136
+double IntegracioPolinomiSplines(double*, double*, int); //1164
+double IntegrarPolinomi(double*, double, double, int); //1179
+double IntegracioSimpsonCompost(funcio, double, double, int); //1199
+double IntegracioTrapeziCompost(funcio, double, double, int); //1239
+double ExtrapolacioRichardson(double*, int*, double, int); //1266
 /*Zeros de funcions.*/
-double Newton(funcio, funcio, double, double);
-double Secant(funcio, double, double, double);
-double Biseccio(funcio, double, double, double);
+double Newton(funcio, funcio, double, double); //1288
+double Secant(funcio, double, double, double); //1316
+double Biseccio(funcio, double, double, double); //1350
 
-/*Aquesta funció agafa com a parametres d'entrada dos vectors de igual longitud on es guarden les coordenades de punts
-  interpoladors, el punt en el que es vol interpolar el polinomi i la longitud dels vectors i torna el 
-  resultat d'aplicar el mètode de Neville sobre aquest punts interpoladors per a calcular el polinomi en un punt.*/
+/*Aquesta funció agafa com a parametres d'entrada dos vectors de igual longitud on es guarden les
+  coordenades de punts interpoladors, el punt en el que es vol interpolar el polinomi i la longitud dels
+  vectors i torna el resultat d'aplicar el mètode de Neville sobre aquest punts interpoladors per a
+  calcular el polinomi en un punt.*/
 double AlgorismeNeville(double* X, double* Y, double x, int n){
 	double aux[n];
 	int i, j;
@@ -90,15 +92,16 @@ double AlgorismeNeville(double* X, double* Y, double x, int n){
 }
 
 
-/*Aquesta funció pren com a parametres dos llistes de dades igual de llargues i la seva longitud i un títol i crida
- a gnuplot per fer-ne una gràfica*/
+/*Aquesta funció pren com a parametres dos llistes de dades igual de llargues i la seva longitud i un
+  títol i crida a gnuplot per fer-ne una gràfica*/
 void DibuixarGrafica(double* X, double* Y, int n, char* titol){
 	/*creem un fitxer anomenat dades on imprimirem les dades a dibuixar*/
 	char s[80];
 	sprintf(s, "%s.txt", titol);
     FILE * dades=fopen(s, "w");
-    /*Obrim una interface que es pugui utilitzar per enviar comandes com com si les estiguessim escrivint en la linea de 
-     comandes de gnuplot. el terme "The -persistent" manté obert el gnuplot després de que la funció s'acabi d'executar*/
+    /*Obrim una interface que es pugui utilitzar per enviar comandes com com si les estiguessim escrivint
+    en la linea de comandes de gnuplot. el terme "The -persistent" manté obert el gnuplot després de que la
+    funció s'acabi d'executar*/
     FILE * gnuplotPipe = popen("gnuplot -persistent", "w");
     int i;
     //escrivim en el fitxer dades.txt els punts a dibuixar.
@@ -115,8 +118,8 @@ void DibuixarGrafica(double* X, double* Y, int n, char* titol){
     return;
 }
 
-/*Aquesta funció pren com a parametres d'entrada dos vectors amb la mateixa longitud i la seva dimensió i torna com a
-  resultat el modul de les diferencies entre els elements d'aquest vector*/
+/*Aquesta funció pren com a parametres d'entrada dos vectors amb la mateixa longitud i la seva dimensió i
+  torna com a resultat el modul de les diferencies entre els elements d'aquest vector*/
 double* Calculardiferencia(double* X, double* Y, int n){
 	int i;
 	double* D;
@@ -129,9 +132,9 @@ double* Calculardiferencia(double* X, double* Y, int n){
 	return D;
 }
 
-/*aquesta funció pren com a parametres un apuntador a una funció, un vector on estan guardats una sèrie de punts i
-  un enter que indica la longitud del vector y retorna un vector de la mateixa longitud amb guardats els valors de
-  la funció avaluada en els punts donats.*/
+/*aquesta funció pren com a parametres un apuntador a una funció, un vector on estan guardats una sèrie
+  de punts i un enter que indica la longitud del vector y retorna un vector de la mateixa longitud amb
+  guardats els valors de la funció avaluada en els punts donats.*/
 double* AvaluarFuncio(funcio f, double* X, int n){
 	int i;
 	double* Y;
@@ -146,8 +149,9 @@ double* AvaluarFuncio(funcio f, double* X, int n){
 }
 
 
-/*Aquesta funció pren com a parametres els extrems de un interval [a,b] i el nombre de nodes que es desitgen (n) i
- torna com a resultat un vector amb guardats els n nodes equiespaiats per a aquest interval*/
+/*Aquesta funció pren com a parametres els extrems de un interval [a,b] i el nombre de nodes que es
+  desitgen (n) i torna com a resultat un vector amb guardats els n nodes equiespaiats per a aquest
+  interval*/
 double* NodesEquiespaiats(double a, double b, int n){
 	int i;
 	double* nodes;
@@ -169,8 +173,9 @@ double* NodesEquiespaiats(double a, double b, int n){
 }
 
 
-/*Aquesta funció pren com a parametres els extrems de un interval [a,b] i el nombre de nodes que es desitgen (n) i
- torna com a resultat un vector amb guardats els n nodes de Chebyschev per a aquest interval*/
+/*Aquesta funció pren com a parametres els extrems de un interval [a,b] i el nombre de nodes que es
+  desitgen (n) i torna com a resultat un vector amb guardats els n nodes de Chebyschev per a aquest
+  interval*/
 double* NodesChebyschev(double a, double b, int n){
 	int i;
 	double* nodes;
@@ -187,9 +192,9 @@ double* NodesChebyschev(double a, double b, int n){
 	return nodes;
 }
 
-/*Aquesta funció pren com a parametres un vector on estan guardats els coeficients de un polinomi en ordre creixent,
-  un enter que indica el grau d'aquest polinomi i el punt en el que es vol avaluar la funció i torna com a resultat
-  la funció avaluada en aquest punt.*/
+/*Aquesta funció pren com a parametres un vector on estan guardats els coeficients de un polinomi en
+  ordre creixent, un enter que indica el grau d'aquest polinomi i el punt en el que es vol avaluar la
+  funció i torna com a resultat la funció avaluada en aquest punt.*/
 double AvaluarPolinomi(double* P, int n, double x){
 	int i;
 	double polin=0;
@@ -203,10 +208,9 @@ double AvaluarPolinomi(double* P, int n, double x){
 }
 
 /*Aquesta funció demana punts interpoladors i construeix el polinomi d'hermite a partir d'ells.
- pren com a parametre l'opció de mostrar el polinomi resultant (1) o no fer-ho (0) i un apuntador a un enter.
- La funció torna com a resultat un vector amb els coeficients del polinomi desenvolupat i guarda la dimensió
- d'aquest vector en el espai de memoria al que apunta el parametre dimensio.
- */
+ pren com a parametre l'opció de mostrar el polinomi resultant (1) o no fer-ho (0) i un apuntador a un
+ enter. La funció torna com a resultat un vector amb els coeficients del polinomi desenvolupat i guarda
+ la dimensió d'aquest vector en el espai de memoria al que apunta el parametre dimensio.*/
 double* PolinomiInterpoladorHermite1(int* dimensio, int mostrar){
 	int n;
 	double *X, *Y, *P, *aux;
@@ -222,15 +226,16 @@ double* PolinomiInterpoladorHermite1(int* dimensio, int mostrar){
 	if (mostrar){
 		MostrarCoeficientsHermite(X,P,n);
 	}
-	/*calculem ara el polinomi interpolador desenvolupat i el mostrem si aixi especifica la variable mostrar.*/
+	//calculem ara el polinomi interpolador desenvolupat i el mostrem si aixi especifica la variable mostrar.
 	CalcularPolinomiHermite(X,&P,n, mostrar);
 	dimensio[0]=n;
 	return P;
 }
 
-/*Aquesta funció fa exactament lo mateix que la funció anterior pero amb la diferència que pren com a parametres els
-  vectors X i Y on estan guardats els punts interpoladors, el enter n on es guarda la dimensió d'aquests vectors i el
-  enter mostrar que abilita o inhabilita la opció de mostrar explicitament el polinomi calculat.*/
+/*Aquesta funció fa exactament lo mateix que la funció anterior pero amb la diferència que pren com a
+  parametres els vectors X i Y on estan guardats els punts interpoladors, el enter n on es guarda la
+  dimensió d'aquests vectors i el enter mostrar que abilita o inhabilita la opció de mostrar explicitament
+  el polinomi calculat.*/
 double* PolinomiInterpoladorHermite(double* X, double* Y, int n, int mostrar){
 	double *P, *aux;
 	/*preparem les dades per poder aplicar l'algorisme de les diferències dividides.*/
@@ -241,13 +246,13 @@ double* PolinomiInterpoladorHermite(double* X, double* Y, int n, int mostrar){
 	if (mostrar){
 		MostrarCoeficientsHermite(X,P,n);
 	}
-	/*calculem ara el polinomi interpolador desenvolupat i el mostrem si aixi especifica la variable mostrar.*/
+	//calculem ara el polinomi interpolador desenvolupat i el mostrem si aixi especifica la variable mostrar.
 	CalcularPolinomiHermite(X,&P,n, mostrar);
 	return P;
 }
 
-/*Aquesta funció fa exactament lo mateix que la funció anterior pero amb la diferència que retorna els coeficients
-  del polinomi sense desenvolupar del mètode de les diferències dividides de Newton.*/
+/*Aquesta funció fa exactament lo mateix que la funció anterior pero amb la diferència que retorna els
+  coeficients del polinomi sense desenvolupar del mètode de les diferències dividides de Newton.*/
 double* CoeficientsHermite(double* X, double* Y, int n, int mostrar){
 	double *P, *aux;
 	/*preparem les dades per poder aplicar l'algorisme de les diferències dividides.*/
@@ -261,12 +266,13 @@ double* CoeficientsHermite(double* X, double* Y, int n, int mostrar){
 	return P;
 }
 
-/*Aquesta funció pren com a parametres el nodes interpoladors guardats en el vector X, els coeficients del polinomi 
-  interpolador d'Hermite trobat a partir d'aquests nodes i guardats en el vector P, la dimensió d'aquests vectors n
-  i el punt on volem avaluar el polinomi x i torna com a resultat el valor del polinomi en x.*/
+/*Aquesta funció pren com a parametres el nodes interpoladors guardats en el vector X, els coeficients del
+  polinomi interpolador d'Hermite trobat a partir d'aquests nodes i guardats en el vector P, la dimensió
+  d'aquests vectors n i el punt on volem avaluar el polinomi x i torna com a resultat el valor del polinomi
+  en x.*/
 double AvaluarCoeficientsPolinomi(double* X, double* P, int n, double x){
-	/*el polinomi evaluat en x serà p(x)=P[0]+P[1](x-X[0])+...+P[n-1](x-X[0])·...·(x-X[n-2]) el calcularem mitjançant
-	l'esquema de Horner
+	/*el polinomi evaluat en x serà p(x)=P[0]+P[1](x-X[0])+...+P[n-1](x-X[0])·...·(x-X[n-2]) el calcularem
+	mitjançant l'esquema de Horner
 	p(x)=P[0]+(P[1]+(P[2]+..)(x-X[1]))(x-X[0]).*/
 	double polin=0;
 	int i;
@@ -316,8 +322,8 @@ int factorial(int n){
 	return prod;
 }
 
-/*Aquesta función demanAn per pantalla si es prefereixen introduir les dades manualment o per pantalla i executa una 
- funció o l'altra depenent del resultat*/
+/*Aquesta función demanAn per pantalla si es prefereixen introduir les dades manualment o per pantalla i
+  executa una funció o l'altra depenent del resultat*/
 int demanardades(double** X, double** Y, double** aux){
 	int i;
 	printf("Com vol introduir les dades?\n\n1=Manualment\n2=Mitjançant un fitxer\n\n");
@@ -352,14 +358,14 @@ int demanardadesPantalla(double** X, double** Y, double** aux){
 		printf("Quin és el valor del punt número %d?\n", i+1);
 		scanf("%lf", &aux[0][i]);
 	}
-	/*ordenem els punt cosa casi inútil pero que ens permet mirar si hi ha elements repetits en el qual cas tornem 1
-	i acabem la funció.*/
+	/*ordenem els punt cosa casi inútil pero que ens permet mirar si hi ha elements repetits en el qual cas
+	tornem 1 i acabem la funció.*/
 	i=ordenar(aux[0], k);
 	if (i==1){
 		return -1;
 	}
-	/*la variable n guardarà la cuantitat total de punts amb repetició la inicialitzarem a 0 i després l'anirem 
-	fent mes gran a mesura que s'introdueixin dades.*/
+	/*la variable n guardarà la cuantitat total de punts amb repetició la inicialitzarem a 0 i després
+	l'anirem fent mes gran a mesura que s'introdueixin dades.*/
 	n=0;
 	/*Demanem el valor de la funció i de les seves derivades en cada punt i les guardem
 	en Y mentres que en X guardem els punts amb repetició. Pero abans alloquem memoria per aquests dos per
@@ -386,7 +392,8 @@ int demanardadesPantalla(double** X, double** Y, double** aux){
 		for (j=1; j<m; j++){
 			printf("Quant val la derivada %d de la funció en el punt %g?\n", j, aux[0][i]);
 			scanf("%lf", &x);
-			/*la derivada j de la funció (si j=0 és senzillament la funció sense derivar) en el punt X[n+j] val Y[n+j]*/
+			/*la derivada j de la funció (si j=0 és senzillament la funció sense derivar) en el punt X[n+j]
+			val Y[n+j]*/
 			X[0][n+j]=aux[0][i];
 			Y[0][n+j]=x;
 		}
@@ -406,27 +413,28 @@ int demanardadesFitxer(double** X, double** Y, double** aux){
 	dades=NULL;
 	while (dades==NULL){
 		printf("\nRecorda que les dades del fitxer han d'estar estructurades de la següent manera\n\n");
-		printf("1) En la primera linea ha d'apareixer únicament un enter que indiqui el nombre de punts diferents.\n");
-		printf("2) Les dades referents a cada punt s'han d'organitzar en dues files.\n");
-		printf("3) La primera fila ha de contindre únicament un enter que indiqui el nombre de derivades que ");
-		printf("se saben de un determinat punt.\n");
-		printf("4) La següent fila ha de contindre com a primera dada el valor del punt, després, separada per un ");
-		printf("espai el valor de la funció en aquell punt. Hauran de seguir en ordre i separades per un espai els ");
-		printf("valors de totes les derivades que es coneguin de la funció en el punt.\n\n");
-		printf("Introdueix el nom del fitxer on es troben les dades.\n");
+		printf("1) En la primera linea ha d'apareixer únicament un enter que indiqui el nombre de punts ");
+		printf("diferents.\n2) Les dades referents a cada punt s'han d'organitzar en dues files.\n");
+		printf("3) La primera fila ha de contindre únicament un enter que indiqui el nombre de derivades ");
+		printf("que se saben de un determinat punt.\n");
+		printf("4) La següent fila ha de contindre com a primera dada el valor del punt, després, ");
+		printf("separada per un espai el valor de la funció en aquell punt. Hauran de seguir en ordre ");
+		printf("i separades per un espai els valors de totes les derivades que es coneguin de la funció ");
+		printf("en el punt.\n\nIntrodueix el nom del fitxer on es troben les dades.\n");
 		scanf("%s", fitxer);
 		dades=fopen(fitxer, "r");
 		if (dades==NULL){
-			printf("Error el fitxer %s no existeix.\nControla si has introduït correctament el nom del fitxer.\n", fitxer);
+			printf("Error el fitxer %s no existeix.\nControla si has introduït correctament ", fitxer);
+			printf("el nom del fitxer.\n");
 		}
 	}
-	/*Llegim la primera dada del fitxer corresponent al nombre de punts diferents on volem interpolar el polinomi
-	i guardem el resultat en la variable k*/
+	/*Llegim la primera dada del fitxer corresponent al nombre de punts diferents on volem interpolar el
+	polinomi i guardem el resultat en la variable k*/
 	fscanf(dades, "%d", &k);
-	/*Llegim ara la resta de dades i les guardem en els vectors aux X i Y per les que abans reservarem espai*/
+	//Llegim ara la resta de dades i les guardem en els vectors aux X i Y per les que abans reservarem espai.
 	aux[0]=malloc(k*sizeof(double));
-	/*la variable n guardarà la cuantitat total de punts amb repetició la inicialitzarem a 0 i després l'anirem 
-	fent mes gran a mesura que s'introdueixin dades.*/
+	/*la variable n guardarà la cuantitat total de punts amb repetició la inicialitzarem a 0 i després
+	l'anirem fent mes gran a mesura que s'introdueixin dades.*/
 	n=0;
 	/*Llegim el valor de la funció i de les seves derivades en cada punt i les guardem
 	en Y mentres que en X guardem els punts amb repetició. Pero abans alloquem memoria per aquests dos per
@@ -435,7 +443,8 @@ int demanardadesFitxer(double** X, double** Y, double** aux){
 	Y[0]=malloc(sizeof(double));
 	/*començem a llegir les dades*/
 	for (i=0; i<k; i++){
-		/*cambiem de linea movent el cursor una posició (abans es trobava en la última posició de la linea anterior)*/
+		/*cambiem de linea movent el cursor una posició (abans es trobava en la última posició de la linea
+		anterior)*/
 		fseek(dades, 1, SEEK_CUR);
 		/*Llegim cuantes derivades se saben de la funció en el punt aux[i]*/
 		fscanf(dades, "%d", &m);
@@ -454,7 +463,8 @@ int demanardadesFitxer(double** X, double** Y, double** aux){
 			/*movem el cursor de una posició per saltar-nos l'espai entre dada i dada.*/
 			fseek(dades, 1, SEEK_CUR);
 			fscanf(dades, "%lf", &x);
-			/*la derivada j de la funció (si j=0 és senzillament la funció sense derivar) en el punt X[n+j] val Y[n+j]*/
+			/*la derivada j de la funció (si j=0 és senzillament la funció sense derivar) en el punt X[n+j]
+			val Y[n+j]*/
 			X[0][n+j]=aux[0][i];
 			Y[0][n+j]=x;
 		}
@@ -485,8 +495,8 @@ void preparardades(double* X, double* Y, double** P, double** aux, int n){
 	P[0][0]=Y[0];
 }
 
-/*Aquesta funció aplica el mètode de les diferències dividides amb repetició de Lagrange per trobar els coeficients
-del polinomi d'Hermite que guardarà en P.*/
+/*Aquesta funció aplica el mètode de les diferències dividides amb repetició de Lagrange per trobar els
+  coeficients del polinomi d'Hermite que guardarà en P.*/
 void diferenciesdividides(double* X, double* Y, double* P, double* aux, int n){
 	int i, j, k, f;
 	double x;
@@ -494,9 +504,9 @@ void diferenciesdividides(double* X, double* Y, double* P, double* aux, int n){
 	 de la fórmula de les diferències dividides de Lagrange*/
 	j=1;
 	while (n>1){
-		/*Aquest terme ens servirà per a poder trobar la posició on està guardada la j-èsima derivada de la funció
-		evaluada en un punt múltiple (la j-èsima derivada de la funció en el punt que es pot trobar per primera
-		vegada en X[i] es troba guardada en Y[i+j])*/
+		/*Aquest terme ens servirà per a poder trobar la posició on està guardada la j-èsima derivada de
+		la funció evaluada en un punt múltiple (la j-èsima derivada de la funció en el punt que es pot
+		trobar per primera vegada en X[i] es troba guardada en Y[i+j])*/
 		k=0;
 		for (i=0; i<(n-1); i++){
 			/*Si X[i] és diferent de X[i+j] apliquem les diferències dividides de Lagrange normals*/
@@ -530,8 +540,8 @@ void MostrarCoeficientsHermite(double* X, double* P, int n){
 	}
 }
 
-/*Aquesta funció calcula explicitament el polinomi interpolador a partir dels coeficients del polinomi interpolador
- d'Hermite i mostra el resultat per pantalla.*/
+/*Aquesta funció calcula explicitament el polinomi interpolador a partir dels coeficients del polinomi
+  interpolador d'Hermite i mostra el resultat per pantalla.*/
 void CalcularPolinomiHermite(double* X, double** P, int n, int mostrar){
 	int i, j, k;
 	double C[n], aux[n];
@@ -569,8 +579,8 @@ void CalcularPolinomiHermite(double* X, double** P, int n, int mostrar){
  i mostra el polinòmi per pantalla*/
 void MostrarPolinomiHermite(double* C, int n){
 	printf("\nEl polinomi desenvolupat és:\n\nP(x)=");
-	//farem servir aquesta varieable per finalitats purament estètique i no posar el signe + devant del primer terme
-	//si aquest és positiu (se sobreenten que és + si és positiu).
+	/*farem servir aquesta varieable per finalitats purament estètique i no posar el signe + devant del
+	  primer terme si aquest és positiu (se sobreenten que és + si és positiu).*/
 	int noprimer;
 	noprimer=0;
 	n-=1;
@@ -578,8 +588,8 @@ void MostrarPolinomiHermite(double* C, int n){
 	while(n>-1){
 		if (C[n]!=0){
 			if(C[n]>0 && noprimer){
-				//imprimim el signe mes si el coeficient és positiu, el signe menys s'imprimeix per defecte si és el
-				// primer terme no fa falta posar el signe + ja s'enten
+				/*imprimim el signe mes si el coeficient és positiu, el signe menys s'imprimeix per defecte
+				  si és el primer terme no fa falta posar el signe + ja s'enten*/
 				printf(" +");
 			}
 			//si és -1 posarem - per elegancia
@@ -612,11 +622,11 @@ void MostrarPolinomiHermite(double* C, int n){
 
 
 
-/*Aquesta fució pren com a parametres les cordenades de punts interpolador guardades en els vectors X i Y i la
-  dimensió d'aquests vectors (n) i torna un vector de longitud 4*(n-1) on estan guardats els n-1 polinomis cubics
-  de Splines natural de manera que en les posicions congruents a 0 modul cuatre es troba el terme independent en les
-  congruents a 1 el terme que multiplica (x-x_i) etc.... Els sistemes d'equacions lineals els resol mitjançant
-  el mètode LU*/
+/*Aquesta fució pren com a parametres les cordenades de punts interpolador guardades en els vectors X i Y
+  i la dimensió d'aquests vectors (n) i torna un vector de longitud 4*(n-1) on estan guardats els n-1
+  polinomis cubics de Splines natural de manera que en les posicions congruents a 0 modul cuatre es troba
+  el terme independent en les congruents a 1 el terme que multiplica (x-x_i) etc.... Els sistemes
+  d'equacions lineals els resol mitjançant el mètode LU*/
 double* PolinomiInterpoladorSplinesLU(double* X, double* Y, int n){
 	double *h,*mu, *matriu, *moments, *lambda, *d, *beta, *delta, *Polin; 
 	int i;
@@ -643,11 +653,12 @@ double* PolinomiInterpoladorSplinesLU(double* X, double* Y, int n){
 	return Polin;
 }
 
-/*Aquesta fució pren com a parametres les cordenades de punts interpolador guardades en els vectors X i Y i la
-  dimensió d'aquests vectors (n) i torna un vector de longitud 4*(n-1) on estan guardats els n-1 polinomis cubics
-  de Splines natural de manera que en les posicions congruents a 0 modul cuatre es troba el terme independent en les
-  congruents a 1 el terme que multiplica (x-x_i) etc.... Els sistemes d'equacions lineals els resol mitjançant
-  el mètode iteratiu de Gauss-Seidel el cual resol amb una tolerancia de e.*/
+/*Aquesta fució pren com a parametres les cordenades de punts interpolador guardades en els vectors X i Y
+  i la dimensió d'aquests vectors (n) i torna un vector de longitud 4*(n-1) on estan guardats els n-1
+  polinomis cubics de Splines natural de manera que en les posicions congruents a 0 modul cuatre es troba
+  el terme independent en les congruents a 1 el terme que multiplica (x-x_i) etc.... Els sistemes
+  d'equacions lineals els resol mitjançant el mètode iteratiu de Gauss-Seidel el cual resol amb una
+  tolerancia de e.*/
 double* PolinomiInterpoladorSplinesGaussSeidel(double* X, double* Y, double e, int n){
 	double *h,*mu, *matriu, *moments, *lambda, *d, *beta, *delta, *Polin; 
 	int i;
@@ -675,8 +686,8 @@ double* PolinomiInterpoladorSplinesGaussSeidel(double* X, double* Y, double e, i
 }
 
 
-/*Aquesta variable agafa com a parametres un vector de doubles (X) i la seva dimensió (n) i torna com a resultat
-  un vector on es guarden les distancies entre els valors de X*/
+/*Aquesta variable agafa com a parametres un vector de doubles (X) i la seva dimensió (n) i torna com a
+  resultat un vector on es guarden les distancies entre els valors de X*/
 double* LongitudIntervals(double* X, int n){
 	double* h;
 	int i;
@@ -687,9 +698,9 @@ double* LongitudIntervals(double* X, int n){
 	return h;
 }
 
-/*Aquesta funció calcula la mu de la formula del polinoi interpolador de Splines presentada a classe de mètodes
-ńumèrics. Agafa com a parametres el vector de longituds de intervals h i torna com  a resultat un vector on es
-guarden les mu*/
+/*Aquesta funció calcula la mu de la formula del polinoi interpolador de Splines presentada a classe de
+  mètodes ńumèrics. Agafa com a parametres el vector de longituds de intervals h i torna com  a resultat
+  un vector on es guarden les mu*/
 double* CalculMu(double* h, int n){
 	double* mu;
 	int i;
@@ -700,9 +711,9 @@ double* CalculMu(double* h, int n){
 	return mu;
 }
 
-/*Aquesta funció calcula la lambda de la formula del polinoi interpolador de Splines presentada a classe de mètodes
-ńumèrics. Agafa com a parametres el vector de longituds de intervals h i torna com  a resultat un vector on es
-guarden les lambda*/
+/*Aquesta funció calcula la lambda de la formula del polinoi interpolador de Splines presentada a classe
+  de mètodes ńumèrics. Agafa com a parametres el vector de longituds de intervals h i torna com  a resultat
+  un vector on es guarden les lambda*/
 double* CalculLambda(double* h,int n){
 	double* lambda;
 	int i;
@@ -713,9 +724,9 @@ double* CalculLambda(double* h,int n){
 	return lambda;
 }
 
-/*Aquesta funció calcula la d de la formula del polinoi interpolador de Splines presentada a classe de mètodes
-ńumèrics. Agafa com a parametres el vector de longituds de intervals h i el valor de la funció en els punts interpoladors
-(Y) i torna com  a resultat un vector on es guarden les D*/
+/*Aquesta funció calcula la d de la formula del polinoi interpolador de Splines presentada a classe de
+  mètodes ńumèrics. Agafa com a parametres el vector de longituds de intervals h i el valor de la funció
+  en els punts interpoladors (Y) i torna com  a resultat un vector on es guarden les D*/
 double* CalculD(double* h,double* Y,int n){
 	double* d;
 	int i;
@@ -726,8 +737,9 @@ double* CalculD(double* h,double* Y,int n){
 	return d;
 }
 
-/*aquesta funció agafa com a parametres els vectors on es guarden les lambda i les mu de la formula del polinomi
-interpolador natural de splines i torna la matriu que dona el sistema que s'ha de resoldre per obtindre els moments.*/
+/*Aquesta funció agafa com a parametres els vectors on es guarden les lambda i les mu de la formula del
+  polinomi interpolador natural de splines i torna la matriu que dona el sistema que s'ha de resoldre per
+  obtindre els moments.*/
 double* ConstruirMatriu(double* lambda, double* mu, int n){
 	int i;
 	double *matriu;
@@ -744,9 +756,9 @@ double* ConstruirMatriu(double* lambda, double* mu, int n){
 	return matriu;
 }
 
-/*Aquesta funció calcula la beta de la formula del polinoi interpolador de Splines presentada a classe de mètodes
-ńumèrics. Agafa com a parametres el valor de la funció en els punts interpoladors el vector de longituds de intervals h
-i els moments i torna com  a resultat un vector on es guarden les beta*/
+/*Aquesta funció calcula la beta de la formula del polinoi interpolador de Splines presentada a classe de
+  mètodes ńumèrics. Agafa com a parametres el valor de la funció en els punts interpoladors el vector de
+  longituds de intervals h i els moments i torna com  a resultat un vector on es guarden les beta*/
 double* CalculBeta(double* y,double* h,double* m,int n){
 	double* beta;
 	int i;
@@ -759,9 +771,9 @@ double* CalculBeta(double* y,double* h,double* m,int n){
 	return beta;
 }
 
-/*Aquesta funció calcula la delta de la formula del polinoi interpolador de Splines presentada a classe de mètodes
-ńumèrics. Agafa com a parametres el valor de la funció en els punts interpoladors el vector de longituds de intervals h
-i els moments i torna com  a resultat un vector on es guarden les delta*/
+/*Aquesta funció calcula la delta de la formula del polinoi interpolador de Splines presentada a classe
+  de mètodes ńumèrics. Agafa com a parametres el valor de la funció en els punts interpoladors el vector
+  de longituds de intervals h i els moments i torna com  a resultat un vector on es guarden les delta*/
 double* CalculDelta(double* h,double* m,int n){
 	double* delta;
 	int i;
@@ -795,11 +807,12 @@ double AvaluarSplines(double* X, double* Polin, double x){
 
 
 
-/*L'objectiu d'aquesta funció és el de resoldre sistemes lineals tridiagonals d'una manera més ràpida i eficient que la
-  funció ResoldreSistemaLineal aplicand l'algoritme de matriu tridiagonal, aquest algoritme desgraciadament pot propagar
-  més l'errror que el mètode LU amb pivotatge fet servir en la funció ResoldreSistemaLinealLU().
-  La funció pren com a parametres els elements de la diagonal (D) els de la diagonal superior (Ds), els de la diagonal
-  inferior (Di), els termes independents (B) i la dimensió de la matriu n y torna el vector de solucions.*/
+/*L'objectiu d'aquesta funció és el de resoldre sistemes lineals tridiagonals d'una manera més ràpida i
+  eficient que la funció ResoldreSistemaLineal aplicand l'algoritme de matriu tridiagonal, aquest algoritme
+  desgraciadament pot propagar més l'errror que el mètode LU amb pivotatge fet servir en la funció
+  ResoldreSistemaLinealLU(). La funció pren com a parametres els elements de la diagonal (D) els de la
+  diagonal superior (Ds), els de la diagonal inferior (Di), els termes independents (B) i la dimensió de
+  la matriu n y torna el vector de solucions.*/
 double* ResoldreMatriuTridiagonal(double* D, double* Ds, double* Di, double* B, int n){
 	double *X, *aux, *aux1;
 	int i;
@@ -821,11 +834,11 @@ double* ResoldreMatriuTridiagonal(double* D, double* Ds, double* Di, double* B, 
 	return X;
 }
 
-/*Aquesta funció agafa com a parametres una matriu n*n (M) un vector de dimensió n (b), un double e que determina
-la precisió i el enter n. A partir d'aquestes dades fa com a molt 1000 iterats del mètode de Gauss-Seiden per a
-resoldre el sistema lineal M*x=b amb una precisió de e. si el mètode convergeix torna la solució i si no convergeix
-torna el apuntador NULL. És important que la matriu no sigui singular i que els elements de la diagonal siguin
-diferents de 0*/
+/*Aquesta funció agafa com a parametres una matriu n*n (M) un vector de dimensió n (b), un double e que
+  determina la precisió i el enter n. A partir d'aquestes dades fa com a molt 1000 iterats del mètode de
+  Gauss-Seidel per a resoldre el sistema lineal M*x=b amb una precisió de e. si el mètode convergeix torna
+  la solució i si no convergeix torna el apuntador NULL. És important que la matriu no sigui singular i que
+  els elements de la diagonal siguin diferents de 0*/
 double* ResoldreSistemaLinealGaussSeidel(double* M, double* b, double e, int n){
 	double *x, dif, errmax;
 	int i, j, k;
@@ -834,10 +847,11 @@ double* ResoldreSistemaLinealGaussSeidel(double* M, double* b, double e, int n){
 	for (i=0; i<n; i++){
 		x[i]=b[i]/M[i*n+i];
 	}
-	/*Apliquem el mètode de Gauss-Seidel fins que max(|x_i^{(n)}-x_i^{(n+1)}|)<e o fins que es facin 1000 iterats.*/
+	/*Apliquem el mètode de Gauss-Seidel fins que max(|x_i^{(n)}-x_i^{(n+1)}|)<e o fins que es facin 1000
+	iterats.*/
 	i=0; //iniciem i=0
 	e=fabs(e); //fem e=|| per si de cas s'ha introduit una tolerancia negativa.
-	errmax=2*e; //iniciem err=2*e (aquesta condició és necessaria per poder entrar el bucle per primera vegada)
+	errmax=2*e; //iniciem err=2*e (condició necessaria per poder entrar el bucle per primera vegada)
 	while (i<1000 && errmax>e){
 		errmax=0; //comencem posant err=0, al final de cada iterat err serà max(|x_i^{(n)}-x_i^{(n+1)}|).
 		/*apliquem un iterat de Gauus-Siel per a cada fila i guardem el resultat en x_j.*/
@@ -871,10 +885,10 @@ double* ResoldreSistemaLinealGaussSeidel(double* M, double* b, double e, int n){
 }
 
 /*fem una funció per resoldre sistemes lineal (la necessitarem per fer interpolació per Splines).
- Aquesta funció prendrà com a parametres un vector de dimensió n*n que representarà la matriu M del sistema lineal
- de n equacions b=M*x, el vector b i la dimensió del sistema n i tornarà com a resultat un vector amb guardada la
- dimensió del sistema també modificarà b per guardar allí la solució. Si hi ha algun problema en la resolució del
- sistema la funció tornarà NULL*/
+ Aquesta funció prendrà com a parametres un vector de dimensió n*n que representarà la matriu M del
+ sistema lineal de n equacions b=M*x, el vector b i la dimensió del sistema n i tornarà com a resultat un
+ vector amb guardada la dimensió del sistema també modificarà b per guardar allí la solució. Si hi ha
+ algun problema en la resolució del sistema la funció tornarà NULL*/
 double* ResoldreSistemaLinealLU(double* M, double* b, int n){
 	int i, Idf[n*n], Idc[n*n], permf[n], permc[n];
 	/*inicialitzem les matrius Idf i Idc com la matriu identitat.*/
@@ -1116,9 +1130,9 @@ void resoldresistematriangularsuperior (double* U, double* b, int n){
 
 
 
-/*Aquesta funció agafa com a parametres l'apuntador a una funció de R a R (f) els extrems de un interval a, b i el
-nombre de nodes que es volen fer servir (n). i tornará el resultat de integrar f de a a b mitjançant cuadratura de
-Gauss-Chebyschev de n nodes.*/
+/*Aquesta funció agafa com a parametres l'apuntador a una funció de R a R (f) els extrems de un interval
+  a, b i el nombre de nodes que es volen fer servir (n). i tornará el resultat de integrar f de a a b
+  mitjançant cuadratura de Gauss-Chebyschev de n nodes.*/
 double QuadraturaGaussChebyschev(funcio f, double a, double b, int n){
 	double sum, x;
 	int i;
@@ -1128,7 +1142,7 @@ double QuadraturaGaussChebyschev(funcio f, double a, double b, int n){
 		b=a;
 		a=sum;
 	}
-	/*En la variable sum guardarem la suma que es defineix en la formula de quadratura de Gauss Chebyschev.*/
+	//En la variable sum guardarem la suma que es defineix en la formula de quadratura de Gauss Chebyschev.
 	sum=0;
 	/*Apliquem la quadratura de Gauss Chebyschev per integrar w*g=f*/
 	for (i=1; i<n+1; i++){
@@ -1159,14 +1173,14 @@ double IntegracioPolinomiSplines(double* N, double* Polin, int n){
 	return sum;
 }
 
-/*Aquesta funció agafa com a parametres un vector (Polin) amb els coeficients de un polinomi en ordre creixent,
-la dimensió d'aquest vector (n) i els extrems del interval de integració (a i b) i torna com a resultat la integral
-d'aquest polinomi en aquest interval de integració.*/
+/*Aquesta funció agafa com a parametres un vector (Polin) amb els coeficients de un polinomi en ordre
+  creixent, la dimensió d'aquest vector (n) i els extrems del interval de integració (a i b) i torna com 
+  a resultat la integral d'aquest polinomi en aquest interval de integració.*/
 double IntegrarPolinomi(double* Polin, double a, double b, int n){
 	double sum=0, res=0;
 	int i;
-	/*Avaluem la integral en els punts a i b mijançant esquema de Horner i guardem els resultat en les variables
-	res sum i res respectivament.*/
+	/*Avaluem la integral en els punts a i b mijançant esquema de Horner i guardem els resultat en les
+	  variables sum i res respectivament.*/
 	for (i=n-1; i<-1; i--){
 		res+=Polin[i];
 		sum+=Polin[i];
@@ -1178,9 +1192,10 @@ double IntegrarPolinomi(double* Polin, double a, double b, int n){
 	return res;
 }
 
-/*Aquesta funció pren com a parametres un apuntador a una funció de R a R (f) els extrems (a,b) de un interval de
-integració i el nombre (N) de intervals en el que volem dividir l'interval [a,b] per poder aplicar la regla
-composta de Simpson. Torna com a resultat el resultat de integrar f en a, b aplicant la regla composta de Simpson.*/
+/*Aquesta funció pren com a parametres un apuntador a una funció de R a R (f) els extrems (a,b) de un
+  interval de integració i el nombre (N) de intervals en el que volem dividir l'interval [a,b] per poder
+  aplicar la regla composta de Simpson. Torna com a resultat el resultat de integrar f en a, b aplicant la
+  regla composta de Simpson.*/
 double IntegracioSimpsonCompost(funcio f, double a, double b, int N){
 	double sum, x, h;
 	int i;
@@ -1217,9 +1232,10 @@ double IntegracioSimpsonCompost(funcio f, double a, double b, int N){
 	return sum;
 }
 
-/*Aquesta funció pren com a parametres un apuntador a una funció de R a R (f) els extrems (a,b) de un interval de
-integració i el nombre (N) de intervals en el que volem dividir l'interval [a,b] per poder aplicar la regla
-composta de trapezis. Torna com a resultat el resultat de integrar f en a, b aplicant la regla composta de Trapezin.*/
+/*Aquesta funció pren com a parametres un apuntador a una funció de R a R (f) els extrems (a,b) de un
+  interval de integració i el nombre (N) de intervals en el que volem dividir l'interval [a,b] per poder
+  aplicar la regla composta de trapezis. Torna com a resultat el resultat de integrar f en a, b aplicant
+  la regla composta de Trapezin.*/
 double IntegracioTrapeziCompost(funcio f, double a, double b, int N){
 	double sum, h, x;
 	int i;
@@ -1242,8 +1258,9 @@ double IntegracioTrapeziCompost(funcio f, double a, double b, int N){
 }
 
 /*Aquesta funció agafa com a parametres un vector (X) de double de dimensió n que te per entrades els valors
-  X[i]=f(q^i*h). Essent f la funció de la cual volem aproximar el 0. També pren com a arguments el vector N on estan
-  guardts els ordres dels primers n-1 exponents (p_i) en el desenvolupament f(h)=f(0)+a_1h^{p_1}+a_2h^{p_2}+....
+  X[i]=f(q^i*h). Essent f la funció de la cual volem aproximar el 0. També pren com a arguments el vector
+  N on estan guardts els ordres dels primers n-1 exponents (p_i) en el desenvolupament
+  f(h)=f(0)+a_1h^{p_1}+a_2h^{p_2}+....
   El valor q esmentat anteriorment i la dimensió n esmentada anteriorment. Després d'aplicar extrapolació de
   Richardson i modificar el vector X torna el resultat de la extrapolació,*/
 double ExtrapolacioRichardson(double* X, int* N, double q, int n){
@@ -1264,15 +1281,15 @@ double ExtrapolacioRichardson(double* X, int* N, double q, int n){
 }
 
 /*Aquesta funció pren com a parametres dos apuntador a dues funcions de R a R. la primera f és la funció de 
-la cual volem trobar el 0 i la segona g és la seva derivada. També reb com a parametres una primera aproximació
-al arrel (x) i una tolerancia de error (e). Aplica el mètode de Newton sobre f començant per el punt x i torna
-el resultat de aplicar el metode de Newton fins a 1000 iterats o fins a obtindre la precisió desitjada. si la 
-successió no convergeix es torna com a resultat NAN.*/
+  la cual volem trobar el 0 i la segona g és la seva derivada. També reb com a parametres una primera
+  aproximació al arrel (x) i una tolerancia de error (e). Aplica el mètode de Newton sobre f començant per
+  el punt x i torna el resultat de aplicar el metode de Newton fins a 1000 iterats o fins a obtindre la
+  precisió desitjada. si la successió no convergeix es torna com a resultat NAN.*/
 double Newton(funcio f, funcio g, double x, double e){
 	int i;
 	double error;
-	//ponemos el contador de iteraciones a 0 i iniciamos con un error lo bastante grande como para que se cumpla la
-	//condición del while;
+	/*ponemos el contador de iteraciones a 0 i iniciamos con un error lo bastante grande como para que se
+	  cumpla la condición del while*/
 	i=0;
 	e=fabs(e); //això evita errors deguts a imputs estupids.
 	error=2*e;
@@ -1283,7 +1300,8 @@ double Newton(funcio f, funcio g, double x, double e){
 		error=fabs(error);
 		i++;
 	}
-	//si superem el límit de iteracions significa que la sucesió no convergeix i, per tant, tornarem com a resultat NAN
+	/*si superem el límit de iteracions significa que la sucesió no convergeix i, per tant, tornarem com a
+	  resultat NAN*/
 	if (i==1000){
 		return NAN;
 	}
@@ -1291,15 +1309,16 @@ double Newton(funcio f, funcio g, double x, double e){
 	return x;
 }
 
-/*Aquesta funció pren com a parametres una funció de R a R (f) de la cual volem trobar l'arrel, els dos valors a, b
-tals que f(a)*f(b)<0 i un error (e). aplica el mètode de la secant fins que s'arriba a l'arrel de f amb una precisió
-superior a e o fins que es superen els mil iterats. En aquest últim cas es tornará com a resultat NAN.*/
+/*Aquesta funció pren com a parametres una funció de R a R (f) de la cual volem trobar l'arrel, els dos
+  valors a, b tals que f(a)*f(b)<0 i un error (e). aplica el mètode de la secant fins que s'arriba a l'arrel
+  de f amb una precisió superior a e o fins que es superen els mil iterats. En aquest últim cas es tornará
+  com a resultat NAN.*/
 double Secant(funcio f, double a, double b, double e){
 	int i;
 	double aux, error;
 	aux=a;
-	//posem el comptador de iteracions a 0 i donem un valor inicial al error lo suficientment gran com per entrar en 
-	//el bucle while.
+	/*posem el comptador de iteracions a 0 i donem un valor inicial al error lo suficientment gran com per
+	  entrar en el bucle while.*/
 	i=0;
 	e=fabs(e); //evitem imputs estupids com un error negatiu.
 	error=2*e; //aquesta condició és necessaria perquè entri la primera vegada en el loop while.
@@ -1316,7 +1335,7 @@ double Secant(funcio f, double a, double b, double e){
 		error=fabs(b-a);
 		i++;
 	}
-	//si superem el límit de iteracions significa que la sucesió no convergeix i, per tant, tornarem com a resultat NAN
+	//si superem el límit de iteracions significa que la sucesió no convergeix i tornarem el resultat NAN
 	if (i==1000){
 		return NAN;
 	}
@@ -1325,13 +1344,13 @@ double Secant(funcio f, double a, double b, double e){
 }
 
 
-/*Aquesta funció pren com a parametres una funció de R a R (f) de la cual volem trobar l'arrel, els dos valors a, b
-tals que f(a)*f(b)<0 i un error (e). aplica el mètode de la bisecció fins que s'arriba a l'arrel de f amb una precisió
-superior a e.*/
+/*Aquesta funció pren com a parametres una funció de R a R (f) de la cual volem trobar l'arrel, els dos
+  valors a, b tals que f(a)*f(b)<0 i un error (e). aplica el mètode de la bisecció fins que s'arriba a
+  l'arrel de f amb una precisió superior a e.*/
 double Biseccio(funcio f, double a, double b, double e){
 	double aux, s, error;
-	/*controlem que es compleixin les condicions per aplicar bisecció (suposarem f continua) i tornarem NAN en cas
-	contrari.*/
+	/*controlem que es compleixin les condicions per aplicar bisecció (suposarem f continua) i tornarem NAN
+	en cas contrari.*/
 	if (f(a)*f(b)>0){
 		return NAN;
 	}
@@ -1353,8 +1372,9 @@ double Biseccio(funcio f, double a, double b, double e){
 	//fem iteracions fins que el error sigui mes petit que e.
 	while (error>e){
 		aux=(a+b)/2; //agafem el següent punt de la successió.
-		//guardem el valor de la funció avaluada en aux en la variable s (signe) que ens servirà para comprobar
-		//si la funció en aux punto és positiva nula o negativa sense haver de tornar a avaluar la funció.
+		/*guardem el valor de la funció avaluada en aux en la variable s (signe) que ens servirà para
+		  comprobar si la funció en aux punto és positiva nula o negativa sense haver de tornar a avaluar
+		  la funció.*/
 		s=f(aux);
 		//Apliquem una iteración del método de bisección.
 		if (s>0){
