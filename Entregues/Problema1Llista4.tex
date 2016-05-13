@@ -1,0 +1,65 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[left=1.5 cm,top=2.5cm,right=1.5cm,bottom=2.5cm]{geometry}
+\renewcommand{\*}{\cdot}
+\renewcommand{\epsilon}{\varepsilon}
+\title{Problema 1 llista 4}
+\author{Marco Praderio 1361525}
+\date{}
+\begin{document}
+\maketitle
+\paragraph*{Sigui $P_4(x)$ el polinomi interpolador d'una funció $f$ en els nodes $a-2h$, $a-h$, $a$, $a+h$, $a+2h$. Derivant $P_4(x)$ obtenim l'anomenada
+\textit{fórmula del cinc punts} per a aproximar $f'(x)$:}
+$$f'(a)\approx \frac{1}{12h}(f(a-2h)-8f(a-h)+8f(a+h)-f(a+2h))$$
+\paragraph*{Doneu una fórmula per a l'error $f'(a)-P'_4(a)$.\\\phantom{.}\\}
+
+Desenvolupant per Taylor al voltant del punt $a$ la funció $f$\footnote{estem suposant que la funció $f$ és prou regular com perquè tingui sentit lo que escrivim} obtenim:
+\begin{equation}
+\label{Taylor}
+\begin{split}
+f(x)&=\sum_{n=0}^{\infty}\frac{f^{n)}(a)}{n!}(x-a)^n\\
+&=f(a)+f^{I)}(a)(x-a)+\frac{f^{II)}(a)}{2}(x-a)^2+\frac{f^{III)}(a)}{6}(x-a)^3+\frac{f^{IV)}(a)}{24}(x-a)^4+\frac{f^{V)}(a)}{120}(x-a)^5+O(x-a)^6 
+\end{split}
+\end{equation}
+Si ara substituïm aquesta formula en la aproximació de $f'(a)$ esmentada obtenim:
+\begin{equation*}
+ \begin{split}
+ P'_4(a)&=\frac{1}{12h}(f(a-2h)-8f(a-h)+8f(a+h)-f(a+2h))=\\
+ &=\frac{1}{12h}\Bigg(f(a)-2hf^{I)}(a)+2h^2f^{II)}(a)-\frac{4}{3}h^3f^{III)}(a)+\frac{2}{3}h^4f^{IV)}(a)-\frac{4}{15}h^5f^{V)}(a)+O_{-2h}(-2h)^6-\\
+ &\phantom{=}-8\left(f(a)-hf^{I)}(a)+\frac{h^2}{2}f^{II)}(a)-\frac{h^3}{6}f^{III)}(a)+\frac{h^4}{24}f^{IV)}(a)-\frac{h^5}{120}f^{V)}(a)+O_{-h}(-h)^6\right)+\\
+ &\phantom{=}+8\left(f(a)+hf^{I)}(a)+\frac{h^2}{2}f^{II)}(a)+\frac{h^3}{6}f^{III)}(a)+\frac{h^4}{24}f^{IV)}(a)+\frac{h^5}{120}f^{V)}(a)+O_{h}(h)^6\right)-\\
+ &\phantom{=}-f(a)-2hf^{I)}(a)-2h^2f^{II)}(a)-\frac{4}{3}h^3f^{III)}(a)-\frac{2}{3}h^4f^{IV)}(a)-\frac{4}{15}h^5f^{V)}(a)+O_{2h}(2h)^6\Bigg)=\\
+ &=\frac{1}{12h}\left(+12hf^{I)}(a)-\frac{2}{5}h^5f^{V)}(a)+O'(h)^6\right)=f'(a)-\frac{1}{30}h^4f^{V)}(a)+O(h)^5
+ \end{split}
+\end{equation*}
+Es compleix per tant que
+$$f'(a)-P'_4(a)=\frac{1}{30}h^4f^{V)}(a)+O(h)^5$$
+\paragraph*{Si denotem}
+$$F(h)=\frac{1}{12h}(f(a-2h)-8f(a-h)+8f(a+h)-f(a+2h))$$
+\paragraph*{demostreu que el seu desenvolupament asimptòtic és}
+$$F(h)=f'(a)+b_1h^4+b_2h^6+b_3h^8+\cdots$$
+\phantom{.}\newline
+Reescrivint $F(h)$ i aplicant el desenvolupament en sèrie de potències que es mostra en (\ref{Taylor}) obtenim
+\begin{equation*}
+ \begin{split}
+  F(h)&=\frac{1}{12h}(f(a-2h)-8f(a-h)+8f(a+h)-f(a+2h))=\frac{(f(a-2h)-f(a+2h))-8(f(a-h)-f(a+h))}{12h}=\\
+  &=\frac{\left(\sum\limits_{n=0}^{\infty}\frac{f^{n)}(a)}{n!}(-2h)^n-\sum\limits_{n=0}^{\infty}\frac{f^{n)}(a)}{n!}(2h)^n\right)-8\left(\sum\limits_{n=0}^{\infty}\frac{f^{n)}(a)}{n!}(-h)^n-\sum\limits_{n=0}^{\infty}\frac{f^{n)}(a)}{n!}(h)^n\right)}{12h}=\\
+  &=\frac{\sum\limits_{n=0}^{\infty}\left(\frac{f^{n)}(a)}{n!}\left((-2h)^n-(2h)^n\right)\right)-8\sum\limits_{n=0}^{\infty}\left(\frac{f^{n)}(a)}{n!}\left((-h)^n-(h)^n\right)\right)}{12h}=\\
+  &=\frac{-\sum\limits_{n=0}^{\infty}\frac{f^{2n+1)}(a)}{(2n+1)!}(2h)^{2n+1}+8\sum\limits_{n=0}^{\infty}\frac{f^{2n+1)}(a)}{(2n+1)!}(h)^{2n+1}}{6h}=
+  \frac{1}{6}\sum\limits_{n=0}^{\infty}\frac{f^{2n+1)}(a)}{(2n+1)!}(8-2^{2n+1})h^{2n}=\\
+  &=f'(a)+0+\frac{1}{6}\sum\limits_{n=2}^{\infty}\frac{f^{2n+1)}(a)}{(2n+1)!}(8-2^{2n+1})h^{2n}=f'(a)+b_1h^4+b_2h^6+b_3h^8+\dots
+ \end{split}
+\end{equation*}
+On hem definit $b_n=\frac{f^{2n+3)}(a)}{6(2n+3)!}(8-2^{2n+3})$
+\paragraph*{Apliqueu l'extrapolació de Richardson a $F(h)$ per calcular $f'(2)$ amb $f(x)=x\*sin(x)$ (preneu $h_0=0,1$ i $q=1/2$).\\\phantom{.}\\}
+Abans de aplicar l'extrapolació de Richardson en el 0 calculem explícitament $f'(2)$ d'aquesta manera obtenim el següent resultat:
+$$f'(x)=\sin(x)+x\cos(x)\Rightarrow f'(2)=\sin(2)+2\cos(2)\approx0.0770037537314$$
+Usant aquest valor com a valor real de $f'(2)$ mirem (executant el programa 'Problema1Llista4') a partir de quin valor de $h_i=q^i\*h_0$ la avaluació de $F$ en el 
+punt $h_i$ comença a donar errors degut a operacions amb punt flotant. Obtenim d'aquesta manera que la funció $F$ dóna la millor aproximació de $f'(2)$ en el vuitè
+valor o sigui avaluant-la en el punt $h_7=10^{-1}2^{-7}$. Aplicant Extrapolació de Richardson (sempre fent servir el programa 'Problema1Llista4') amb les 8 dades inicials
+donades per $F(h_i)$ amb $i=0,\dots,7$ obtenim l'aproximació de $f'(2)$ donada per
+$$f'(2)\approx0.0770037537313$$
+Que te 12 decimals iguals a la anterior aproximació de la derivada obtinguda.
+\end{document}

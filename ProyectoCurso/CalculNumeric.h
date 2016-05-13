@@ -5,9 +5,9 @@
 #include <stdlib.h>
 #include <math.h>
 
-/*definimos f1 como un tipo de variable que apunta a una función que toma como parametro de entrada
- un double y devuelve un double*/
-typedef double (*f1)(double);
+/*definim funcio com un tipus de variable que apunta a una funció que pren com a parametre de entrada
+ un double i torna un double*/
+typedef double (*funcio)(double);
 
 /*Interpolació de Newton*/
 int ordenar(double*, int);
@@ -26,7 +26,7 @@ double AvaluarPolinomi(double*, int, double);
 double AvaluarCoeficientsPolinomi(double*, double*, int, double);
 double* NodesChebyschev(double, double, int);
 double* NodesEquiespaiats(double, double, int);
-double* AvaluarFuncio(f1 , double*, int);
+double* AvaluarFuncio(funcio , double*, int);
 double* Calculardiferencia(double*, double*, int);
 void DibuixarGrafica(double*, double*, int, char*);
 double AlgorismeNeville(double*, double*, double, int);
@@ -57,16 +57,17 @@ int matriupermatriuintint(int*, int*, int, int);
 double* matriupervector(int*, double*, int);
 void resoldresistematriangularinferior (double*, double*, int);
 void resoldresistematriangularsuperior (double*, double*, int);
-/*Integracio.*/
-double QuadraturaGaussChebyschev(f1, double, double, int);
+/*Integracio i Derivacio.*/
+double QuadraturaGaussChebyschev(funcio, double, double, int);
 double IntegracioPolinomiSplines(double*, double*, int);
-f1 MultiplicarFuncions(f1, f1);
-f1 MultiplicarFuncioEscalar(f1, double);
-f1 DividirFuncions(f1, f1);
+double IntegrarPolinomi(double*, double, double, int);
+double IntegracioSimpsonCompost(funcio, double, double, int);
+double IntegracioTrapeziCompost(funcio, double, double, int);
+double ExtrapolacioRichardson(double*, int*, double, int);
 /*Zeros de funcions.*/
-double Newton(f1, f1, double, double);
-double Secant(f1, double, double, double);
-double Biseccio(f1, double, double, double);
+double Newton(funcio, funcio, double, double);
+double Secant(funcio, double, double, double);
+double Biseccio(funcio, double, double, double);
 
 /*Aquesta funció agafa com a parametres d'entrada dos vectors de igual longitud on es guarden les coordenades de punts
   interpoladors, el punt en el que es vol interpolar el polinomi i la longitud dels vectors i torna el 
@@ -131,7 +132,7 @@ double* Calculardiferencia(double* X, double* Y, int n){
 /*aquesta funció pren com a parametres un apuntador a una funció, un vector on estan guardats una sèrie de punts i
   un enter que indica la longitud del vector y retorna un vector de la mateixa longitud amb guardats els valors de
   la funció avaluada en els punts donats.*/
-double* AvaluarFuncio(f1 f, double* X, int n){
+double* AvaluarFuncio(funcio f, double* X, int n){
 	int i;
 	double* Y;
 	/*reservem memoria per al vector Y*/
@@ -212,7 +213,7 @@ double* PolinomiInterpoladorHermite1(int* dimensio, int mostrar){
 	/*demanem les dades per pantalla*/
 	n=demanardades(&X, &Y, &aux);
 	/*si n és -1 hi ha hagut un error.*/
-	if (n==-1){return;}
+	if (n==-1){return NULL;}
 	/*preparem les dades per poder aplicar l'algorisme de les diferències dividides.*/
 	preparardades(X, Y, &P, &aux, n);
 	/*Apliquem l'algorisme per trobar el polinomi interpolador de Hermite*/
@@ -279,26 +280,31 @@ double AvaluarCoeficientsPolinomi(double* X, double* P, int n, double x){
 /*La funció ordenar agafa com a parametres un vector (V) i un la seva dimensió (n)
 n'ordena els elements mitjançant el mètode de la bombolla.*/
 int ordenar(double* V, int n){
-	int i, j;
+	int i, j, count;
 	double aux;
 	for (j=0; j<(n-1); j++){
+		count=0;
 		for (i=0; i<(n-j-1); i++){
 			if (V[i]>V[i+1]){
 				aux=V[i+1];
 				V[i+1]=V[i];
 				V[i]=aux;
+				count++;
 			}
 			else if (V[i]==V[i+1]){
 				printf("Error has introduits dos valors iguals.\n");
 				return 1;
 			}
 		}
+		if (count==0){
+			return 0;
+		}
 	}
 	return 0;
 }
 
 /*La funció factorial agafa com a paràmetre un enter i torna el seu factorial*/
-int factorial(n){
+int factorial(int n){
 	int i, prod;
 	if (n==0){
 		return 1;
@@ -645,7 +651,7 @@ double* PolinomiInterpoladorSplinesLU(double* X, double* Y, int n){
 double* PolinomiInterpoladorSplinesGaussSeidel(double* X, double* Y, double e, int n){
 	double *h,*mu, *matriu, *moments, *lambda, *d, *beta, *delta, *Polin; 
 	int i;
-	h=LongitudIntervals(X,n-1);
+	h=LongitudIntervals(X,n);
 	mu=CalculMu(h,n);
 	lambda=CalculLambda(h,n);
 	d=CalculD(h,Y,n);
@@ -832,7 +838,7 @@ double* ResoldreSistemaLinealGaussSeidel(double* M, double* b, double e, int n){
 	i=0; //iniciem i=0
 	e=fabs(e); //fem e=|| per si de cas s'ha introduit una tolerancia negativa.
 	errmax=2*e; //iniciem err=2*e (aquesta condició és necessaria per poder entrar el bucle per primera vegada)
-	while (i<100 && errmax>e){
+	while (i<1000 && errmax>e){
 		errmax=0; //comencem posant err=0, al final de cada iterat err serà max(|x_i^{(n)}-x_i^{(n+1)}|).
 		/*apliquem un iterat de Gauus-Siel per a cada fila i guardem el resultat en x_j.*/
 		for (j=0; j<n; j++){
@@ -852,6 +858,7 @@ double* ResoldreSistemaLinealGaussSeidel(double* M, double* b, double e, int n){
 				errmax=dif;
 			}
 		}
+		i++;
 	}
 	/*si no hem aconseguit la convergencia tornem el apuntador NULL.*/
 	if (errmax>e){
@@ -1112,7 +1119,7 @@ void resoldresistematriangularsuperior (double* U, double* b, int n){
 /*Aquesta funció agafa com a parametres l'apuntador a una funció de R a R (f) els extrems de un interval a, b i el
 nombre de nodes que es volen fer servir (n). i tornará el resultat de integrar f de a a b mitjançant cuadratura de
 Gauss-Chebyschev de n nodes.*/
-double QuadraturaGaussChebyschev(f1 f, double a, double b, int n){
+double QuadraturaGaussChebyschev(funcio f, double a, double b, int n){
 	double sum, x;
 	int i;
 	/*Ens assegurem de que a<b*/
@@ -1123,17 +1130,14 @@ double QuadraturaGaussChebyschev(f1 f, double a, double b, int n){
 	}
 	/*En la variable sum guardarem la suma que es defineix en la formula de quadratura de Gauss Chebyschev.*/
 	sum=0;
-	/*definim la funció g=f/w on w és el pes w=1/sqrt(1-(2x-(b+a))²/(b-a)²).*/
-	double g(double x){
-		return 2*f(x)*sqrt(-a*b+(b+a-x)*x)/(b-a);
-	}
-	/*Apliquem la cuadratura de Gauss Chebyschev per integrar w*g=f*/
+	/*Apliquem la quadratura de Gauss Chebyschev per integrar w*g=f*/
 	for (i=1; i<n+1; i++){
 		x=cos((2*i-1)*M_PI/(2*n));
 		x*=(b-a);
 		x+=(b+a);
 		x/=2;
-		sum+=g(x);
+		/*sumem la funció g=f/w on w és el pes w=1/sqrt(1-(2x-(b+a))²/(b-a)²).*/
+		sum+=2*f(x)*sqrt(-a*b+(b+a-x)*x)/(b-a);
 	}
 	sum*=(b-a)*M_PI;
 	sum/=(2*n);
@@ -1155,46 +1159,118 @@ double IntegracioPolinomiSplines(double* N, double* Polin, int n){
 	return sum;
 }
 
-/*Aquesta funció agafa com a parametres d'entrada els apuntadors a dos funcions de R a R (f i g) i torna com
-a resultat un apuntador a la funció f*g*/
-f1 MultiplicarFuncions(f1 f, f1 g){
-	double h(double x){
-		return f(x)*g(x);
+/*Aquesta funció agafa com a parametres un vector (Polin) amb els coeficients de un polinomi en ordre creixent,
+la dimensió d'aquest vector (n) i els extrems del interval de integració (a i b) i torna com a resultat la integral
+d'aquest polinomi en aquest interval de integració.*/
+double IntegrarPolinomi(double* Polin, double a, double b, int n){
+	double sum=0, res=0;
+	int i;
+	/*Avaluem la integral en els punts a i b mijançant esquema de Horner i guardem els resultat en les variables
+	res sum i res respectivament.*/
+	for (i=n-1; i<-1; i--){
+		res+=Polin[i];
+		sum+=Polin[i];
+		res*=b/(i+1);
+		sum*=a/(i+1);
 	}
-	return h;
+	/*restem la integral en b amn la integral en a i guardem el resultat en res.*/
+	res-=sum;
+	return res;
 }
 
-/*Aquesta funció agafa com a parametres d'entrada l'apuntador a una funcion de R a R (f) i un enter (b) i torna com
-a resultat un apuntador a la funció b*f*/
-f1 MultiplicarFuncioEscalar(f1 f, double b){
-	double h(double x){
-		return b*f(x);
+/*Aquesta funció pren com a parametres un apuntador a una funció de R a R (f) els extrems (a,b) de un interval de
+integració i el nombre (N) de intervals en el que volem dividir l'interval [a,b] per poder aplicar la regla
+composta de Simpson. Torna com a resultat el resultat de integrar f en a, b aplicant la regla composta de Simpson.*/
+double IntegracioSimpsonCompost(funcio f, double a, double b, int N){
+	double sum, x, h;
+	int i;
+	N=abs(N); //evitem imputs absurds com un enter negatiu.
+	/*Evitem un altre imput absurd, que no hi hagi intervals.*/
+	if (N==0){
+		N=2;
 	}
-	return h;
+	/*El nombre de intervals ha de ser necesariamente parell.*/
+	if (N%2!=0){
+		N++;
+	}
+	/*apliquem la formula de Simpson Compost per a N intervals.*/
+	h=(b-a)/N;
+	x=a;
+	sum=f(x);
+	for (i=1; i<N/2; i++){
+		/*sumem els temes senars.*/
+		x+=h;
+		sum+=4*f(x);
+		/*sumem els termes parells.*/
+		x+=h;
+		sum+=2*f(x);
+	}
+	/*sumem l'últim terme senar.*/
+	x+=h;
+	sum+=4*f(x);
+	/*sumem l'últim terme.*/
+	x+=h;
+	sum+=f(x);
+	/*multipliquem per h/3.*/
+	sum*=h;
+	sum/=3;
+	return sum;
 }
 
-/*Aquesta funció agafa com a parametres d'entrada els apuntadors a dos funcions de R a R (f i g) i torna com
-a resultat un apuntador a la funció f/g*/
-f1 DividirFuncions(f1 f, f1 g){
-	double h(double x){
-		return f(x)/g(x);
+/*Aquesta funció pren com a parametres un apuntador a una funció de R a R (f) els extrems (a,b) de un interval de
+integració i el nombre (N) de intervals en el que volem dividir l'interval [a,b] per poder aplicar la regla
+composta de trapezis. Torna com a resultat el resultat de integrar f en a, b aplicant la regla composta de Trapezin.*/
+double IntegracioTrapeziCompost(funcio f, double a, double b, int N){
+	double sum, h, x;
+	int i;
+	N=abs(N); //evitem imputs absurds com un enter negatiu.
+	/*Evitem un altre imput absurd, que no hi hagi intervals.*/
+	if (N==0){
+		N=1;
 	}
-	return h;
+	/*apliquem la formula de Simpson Compost per a N intervals.*/
+	h=(b-a)/N;
+	x=a;
+	sum=f(x); //sumem el primer terme.
+	for (i=1; i<N; i++){ //sumem els termes del mig.
+		x+=h;
+		sum+=2*f(x);
+	}
+	sum+=f(b); //sumem l'últim terme.
+	sum*=h/2; //multipliquem per h/2.
+	return sum;
 }
 
-
-
-
+/*Aquesta funció agafa com a parametres un vector (X) de double de dimensió n que te per entrades els valors
+  X[i]=f(q^i*h). Essent f la funció de la cual volem aproximar el 0. També pren com a arguments el vector N on estan
+  guardts els ordres dels primers n-1 exponents (p_i) en el desenvolupament f(h)=f(0)+a_1h^{p_1}+a_2h^{p_2}+....
+  El valor q esmentat anteriorment i la dimensió n esmentada anteriorment. Després d'aplicar extrapolació de
+  Richardson i modificar el vector X torna el resultat de la extrapolació,*/
+double ExtrapolacioRichardson(double* X, int* N, double q, int n){
+	double pot=1;
+	int i, j, k, exponent=0;
+	/*apliquem l'algorisme*/
+	for (i=n-2; i>-1; i--){
+		/*calculem la potencia de q corresponent al iterat*/
+		for (j=0; j<(N[n-2-i]-exponent); j++){
+			pot*=q;
+		}
+		/*calculem els termes del següent iterat.*/
+		for (j=0; j<i+1; j++){
+			X[j]=X[j]+(X[j]-X[j+1])/(pot-1);
+		}
+	}
+	return X[0];
+}
 
 /*Aquesta funció pren com a parametres dos apuntador a dues funcions de R a R. la primera f és la funció de 
 la cual volem trobar el 0 i la segona g és la seva derivada. També reb com a parametres una primera aproximació
 al arrel (x) i una tolerancia de error (e). Aplica el mètode de Newton sobre f començant per el punt x i torna
 el resultat de aplicar el metode de Newton fins a 1000 iterats o fins a obtindre la precisió desitjada. si la 
 successió no convergeix es torna com a resultat NAN.*/
-double Newton(f1 f, f1 g, double x, double e){
+double Newton(funcio f, funcio g, double x, double e){
 	int i;
 	double error;
-	x=2;
 	//ponemos el contador de iteraciones a 0 i iniciamos con un error lo bastante grande como para que se cumpla la
 	//condición del while;
 	i=0;
@@ -1218,16 +1294,15 @@ double Newton(f1 f, f1 g, double x, double e){
 /*Aquesta funció pren com a parametres una funció de R a R (f) de la cual volem trobar l'arrel, els dos valors a, b
 tals que f(a)*f(b)<0 i un error (e). aplica el mètode de la secant fins que s'arriba a l'arrel de f amb una precisió
 superior a e o fins que es superen els mil iterats. En aquest últim cas es tornará com a resultat NAN.*/
-double Secant(f1 f, double a, double b, double e){
+double Secant(funcio f, double a, double b, double e){
 	int i;
 	double aux, error;
-
 	aux=a;
 	//posem el comptador de iteracions a 0 i donem un valor inicial al error lo suficientment gran com per entrar en 
 	//el bucle while.
 	i=0;
 	e=fabs(e); //evitem imputs estupids com un error negatiu.
-	error=2*e;
+	error=2*e; //aquesta condició és necessaria perquè entri la primera vegada en el loop while.
 	//fem iteracions fins que el error sigui menor a e o fins que superem les mil iteracions.
 	while (error>e && i<1000){
 		//Si caiem en el alor exacte del polinomi tornem el valor.
@@ -1253,7 +1328,7 @@ double Secant(f1 f, double a, double b, double e){
 /*Aquesta funció pren com a parametres una funció de R a R (f) de la cual volem trobar l'arrel, els dos valors a, b
 tals que f(a)*f(b)<0 i un error (e). aplica el mètode de la bisecció fins que s'arriba a l'arrel de f amb una precisió
 superior a e.*/
-double Biseccio(f1 f, double a, double b, double e){
+double Biseccio(funcio f, double a, double b, double e){
 	double aux, s, error;
 	/*controlem que es compleixin les condicions per aplicar bisecció (suposarem f continua) i tornarem NAN en cas
 	contrari.*/

@@ -266,19 +266,24 @@ double AvaluarCoeficientsPolinomi(double* X, double* P, int n, double x){
 /*La funció ordenar agafa com a parametres un vector (V) i un la seva dimensió (n)
 n'ordena els elements mitjançant el mètode de la bombolla.*/
 int ordenar(double* V, int n){
-	int i, j;
+	int i, j, count;
 	double aux;
 	for (j=0; j<(n-1); j++){
+		count=0;
 		for (i=0; i<(n-j-1); i++){
 			if (V[i]>V[i+1]){
 				aux=V[i+1];
 				V[i+1]=V[i];
 				V[i]=aux;
+				count++;
 			}
 			else if (V[i]==V[i+1]){
 				printf("Error has introduits dos valors iguals.\n");
 				return 1;
 			}
+		}
+		if (count==0){
+			return 0;
 		}
 	}
 	return 0;
@@ -607,20 +612,15 @@ double* PolinomiInterpoladorSplines(double* X, double* Y, int n){
 	delta=CalculDelta(h,moments,n);
 	/*guardem el resultat obtingut en el vector Polin*/
 	Polin=malloc(4*(n-1)*sizeof(double));
-	Polin[0]=Y[0];
-	Polin[1]=beta[0];
-	Polin[2]=0;
-	Polin[3]=delta[0];
-	for (i=1; i<(n-2); i++){
+	for (i=0; i<(n-1); i++){
 		Polin[4*i]=Y[i];
 		Polin[4*i+1]=beta[i];
 		Polin[4*i+2]=moments[i-1]/2;
 		Polin[4*i+3]=delta[i];
 	}
-	Polin[4*(n-2)]=Y[n-2];
-	Polin[4*(n-2)+1]=beta[n-2];
-	Polin[4*(n-2)+2]=0;
-	Polin[4*(n-2)+3]=delta[n-2];
+	/*Imposem les condicions de Splines natural.*/
+	Polin[2]=0;
+	Polin[4*n-2]=0;
 	return Polin;
 }
 
