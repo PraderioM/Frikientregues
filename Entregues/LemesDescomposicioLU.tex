@@ -1,0 +1,40 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[left=1.5 cm,top=2.5cm,right=1.5cm,bottom=2.5cm]{geometry}
+\renewcommand{\*}{\cdot}
+\title{Lemes per a descomposició LU}
+\author{Marco Praderio 1361525}
+\date{}
+\begin{document}
+\maketitle
+\section{El producte de dues matrius triangulars superiors és una matriu triangular superior.}
+Agafem $A$, $B$ dues matrius triangulars superiors de dimensió $n\times n$ i $C=A\*B$. Aleshores, per definició del producte entre matrius, tenim que
+$$C_{i,j}=\sum_{k=1}^nA_{i,k}\*B_{k,j}$$
+Notem ara que, si $j<i$ (ens trobem sota la diagonal de la matriu) aleshores es compleix
+$$C_{i,j}=\sum_{k=1}^{j-1}A_{i,k}\*B_{k,j}+A_{i,j}\*B_{j,j}+\sum_{k=j+1}^nA_{i,k}\*B_{k,j}$$
+En el primer sumatori tenim que $i>j>k$ i, com a conseqüència, $A_{i,k}=0$ en quant $A$ és una matriu diagonal superior. Tenim llavors que el primer sumatori val 0 en quant
+tots els seus termes valen 0. Per el segon sumatori tenim que $k>j$ i, com a conseqüència, $B_{k,j}=0$ en quant $B$ és una matriu diagonal superior. Tenim per tant que 
+el segon sumatori també val 0 en quant tots els seus termes valen 0. per últim es compleix que $A_{i,j}\*B_{j,j}=0$ en quant $A_{i,j}=0$ perquè $j>i$ per hipòtesis i $A$ és
+una matriu triangular superior. En conclusió si $A$, $B$ són matrius triangulars superiors i $C=A\*B$ aleshores $C_{i,j}=0$ si $j>i$. En altres paraules el producte de dues
+matrius triangulars superiors és una matriu triangular superior.
+\section{La inversa de d'una matriu triangular superior no-singular és una matriu triangular superior.}
+Agafem $P(x)$ el polinomi característic de la matriu triangular superior no-singular $A$. Aleshores, per el teorema de Cayley Hamilton, tenim que
+$$P(A)=A^n+\lambda_{n-1}A^{n-1}+\cdots+\lambda_{1}A+\lambda_0Id=0$$
+On $\lambda_0=(-1)^n\text{det}(A)\not=0$ en quant $A$ és no-singular. tenim per tant que
+$$\lambda_0^{-1}(A^{n-1}+\lambda_{n-1}A^{n-2}+\cdots+\lambda_{1})\*A=Id$$
+I, com a conseqüència, $A^{-1}=\lambda_0^{-1}(A^{n-1}+\lambda_{n-1}A^{n-2}+\cdots+\lambda_{1})$ que és una matriu triangular superior en quant la suma i el producte de
+matrius triangulars superiors segueix sent una matriu triangular superior.
+\section{El producte de dues matrius triangulars inferior amb uns a la diagonal és una matriu triangular inferior amb uns a la diagonal.}
+Podem demostrar de manera anàloga a com ho hem fet en el cas de les matrius triangular superiors que el producte de dues matrius triangulars inferiors és una matriu
+triangular inferior. Si a més a més les diagonals de les matrius triangulars inferiors $A$ i $B$ estan compostes exclusivament per uns i $C=A\*B$ aleshores
+$$C_{i,i}=\sum_{k=1}^{i-1}A_{i,k}\*B_{k,i}+A_{i,i}\*B_{i,i}+\sum_{k=i+1}^nA_{i,k}\*B_{k,i}=0+1\*1+0=1$$
+On el primer sumatori és 0 en quant $B_{k,i}=0$ perquè $B$ és triangular inferior i $k<i$. El segon sumatori també és 0 en quant $A_{i,k}=0$ perquè $A$ és triangular
+inferior i  $k>i$. Els termes $A_{i,i}$ i $B_{i,i}$ valen 1 per hipòtesis.
+\section{la inversa de una matriu triangular inferior amb uns a la diagonal és una matriu triangular inferior amb uns a la diagonal.}
+Podem demostrar de manera anàloga a com ho hem fet en el cas de les matrius triangular superiors que la inversa de una matriu triangular inferior és una matriu triangular
+inferior. A més a més, donada $A$ un matriu triangular inferior de dimensió $n\times n$ i $B=A^{-1}$ la seva inversa es compleix que
+$$1=\sum_{k=1}^nA{i,k}B_{k,i}=\sum_{k=1}^{i-1}A_{i,k}B_{k,i}+A_{i,i}B_{i,i}+\sum_{k=i+1}^{n}A_{i,k}B_{k,i}=0+1\*B_{i,i}+0=B_{i,i}$$
+On $A_{i,i}=1$ per hipòtesis i els sumatoris valen 0 per els motius exposats en el apartat anterior.
+\end{document}

@@ -1,0 +1,24 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[left=1.5 cm,top=2.5cm,right=1.5cm,bottom=2.5cm]{geometry}
+\renewcommand{\*}{\cdot}
+
+\title{Algoritme permutació}
+\author{Marco Praderio 1361525}
+\date{}
+\begin{document}
+\maketitle
+El nostre objectiu és definir un algoritme que, donat un vector $b$ de dimensió $n$ i una matriu de permutacions $P=\begin{pmatrix}
+                                                                                                     [\phantom{esp}e_{\pi_1}\phantom{esp}]\\
+                                                                                                     [\phantom{espa}\vdots\phantom{espa}]\\
+                                                                                                     [\phantom{esp}e_{\pi_n}\phantom{esp}]
+                                                                                                    \end{pmatrix}$ construeixi el vector $Pb=P\*b$ sense haver de
+realitzar explícitament el producte entre la matriu $P$ i el vector $b$.
+El pseudocodi per aquest algoritme es pot expressar de la següent forma
+\paragraph*{}
+Declarem el vector $Pb$ de dimensió $n$\\
+\phantom{espai} \textbf{for} $i=1$ \textbf{to} $n$ \textbf{do} $Pb[i]=b[\pi_i]$; \textbf{end for}\\
+Tornem com a resultat el vector $Pb$.
+\end{document}

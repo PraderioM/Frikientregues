@@ -1,0 +1,29 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[left=1.5 cm,top=2.5cm,right=1.5cm,bottom=2.5cm]{geometry}
+\renewcommand{\*}{\cdot}
+\title{Continuïtat norma de matrius}
+\author{Marco Praderio 1361525}
+\date{}
+\begin{document}
+\maketitle
+Una norma de matrius és una funció $||\*||:M_n\to \mathbb{R}^+$ amb les següents propietats
+\begin{itemize}
+ \item $||A||=0$ si i només si $A=0$
+ \item $||\alpha A||=|\alpha|||A||$ amb $\alpha\in\mathbb{R}$
+ \item $||A+B||\le||A||+||B||$
+ \item $||AB||\le||A||\*||B||$
+\end{itemize}
+els nostre objectiu es demostrar que tota norma de matrius és continua respecte dels seus coeficients. Per fer-ho aplicarem directament la definició de continuïtat.\\
+Hem de veure que per a tot $\varepsilon>0$ existeix $\delta>0$ tal que si, $||A-B||_{\infty}<\delta$ aleshores $||A-B||<\varepsilon$. Per simplificar la notació definirem
+$E_{i,j}$ la matriu $n\times n$ tal que te tots els coeficients nuls excepte el de la fila $i$ columna $j$ que val 1 (aquestes matrius formen una base del espai de matrius
+de dimensió $n\times n$) i definirem $M=\text{max}\{||E_{i,j}||\}$.
+Dit això podem començar a acotar superiorment el valor $||A-B||$
+$$||A-B||=||\sum_{i,j=1}^n\alpha_{i,j}E_{i,j}\le\sum_{i,j=1}^n||\alpha_{i,j}E_{i,j}||\le\sum_{i,j=1}^n|\alpha_{i,j}|\*||E_{i,j}||\le
+M\sum_{i,j=1}^n|\alpha_{i,j}|\le n^2M||A-B||_{\infty}<n^2M\delta$$
+per tant si agafem $\delta=\frac{\varepsilon}{n^2M}$ tindrem que per a matrius $A$, $B$ tals que $||A-B||_{\infty}<\delta$ (els coeficients de $A$ estan com a molt a una
+distància $\delta$ dels coeficients de $B$) aleshores $||A-B||<\varepsilon$. En altres paraules la norma de matrius $||\*||$ és contínua. Com que $||\*||$ és una norma
+de matrius general aleshores tota norma de matrius és continua.
+\end{document}
