@@ -1132,7 +1132,7 @@ void resoldresistematriangularsuperior (double* U, double* b, int n){
 
 /*Aquesta funció agafa com a parametres l'apuntador a una funció de R a R (f) els extrems de un interval
   a, b i el nombre de nodes que es volen fer servir (n). i tornará el resultat de integrar f de a a b
-  mitjançant cuadratura de Gauss-Chebyschev de n nodes.*/
+  mitjançant quadratura de Gauss-Chebyschev de n nodes.*/
 double QuadraturaGaussChebyschev(funcio f, double a, double b, int n){
 	double sum, x;
 	int i;
