@@ -1,0 +1,20 @@
+Autor: Marco Praderio
+
+Los codigos se han compilado haciendo uso de la comanda
+
+gcc -o programa programa.c -lm
+
+Los programas utilizados necesitan la libreria CalculNumeric.h la cual también se encuentra en la carpeta CODIGOS.
+
+El Programa Perimetro el cual calula el perimetro aproximando la integral del semiperimetro mediante cuadrature de Gauss-Chebyschev con 9 nodos interpoladores y multiplicando el resultado por 2.
+
+El Programa PrimeraAproximacion realiza los calculos tal y como se piden en los enunciados con un error de truncamiento en el calculo de las integrales de sqrt(1.e-3)/2, una distancia entre nodos de 1.e-2 y calculando el perimetro con 9 nodos de Chebyschev.
+
+El programa ErrorSplines calcula el error cometido al aproximar las integrales mediante la integral del polinomio interpolador de Splines.
+
+El Programa Solucion realiza los calculos de la pràctica calculando el perimetro mediante 503 nodos interpoladores y aproximando el punto pedido de tres maneras diferentes.
+1) Calculando las integrales mediante la formulacion de F(x) expuesta en la pràctica y aproximando las integrales por Splines con distancia entre nodos 1.e-3 y error de truncamiento de 1/200 (esto provoca que el programa tarde mas en ejecutarse mejorando muy ligeramente el resultado obtenido).
+2) Calculando F(x) mediante la reformulación propuesta aproximando las integrales por splines con distancia entre nodos igual a 0.5e-2.
+3) Calculando F(x) mediante la reformulacion propuesta aproximando las integrales por cuadratura de Gauss-Chebyschev con 1115 nodos interpoladores.
+
+La Libreria CalculNumeric.h que contiene, entre otras, funciones para aplicar cuadratura de Gauss-Chebyschev (utilizada para calcular el perimetro), para calcular polinomios interpoladores cubicos naturales de Splines, para integrar estos polinomios, para aplicar el método de Gauss-Seidel para resolver sistemas lineales y para aplicar el metodo de Newton para encontrar ceros de funciones.

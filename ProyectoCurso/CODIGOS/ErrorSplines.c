@@ -11,7 +11,7 @@ int main(){
 	int i;
 	// Pedimos por pantalla la longitud de los intervalos interpoladores de Splines.
 	printf("Introduce la longitud entre los nodos consecutivos utilizados para construir el polinomio ");
-	printf("interpolador cúnbico natural de Splines:");
+	printf("interpolador cúbico natural de Splines:");
 	scanf("%lf", &h);
 	printf("Introduce la distancia entre el extremo superior de la integral y el 2:");
 	scanf("%lf", &tol);
@@ -36,16 +36,20 @@ double f(double x){
   por splines obtenido a partir de los n nodos de guardados en N.*/
 double ErrorIntegracionPorSplines(double* N, double* Polin, double tol, int n){
 	double sumaerror=0, errormax, error, d, x;
-	int i, j;
+	int i, j, m=3;
 	for (i=0; i<(n-1); i++){
 		errormax=0;
 		d=N[i+1]-N[i]; //guardamos la distancia entre los nodos (serà siempre la misma).
-		x=N[i]+d/5; //guardamos el primer punto en el que miraremos la diferencia.
-		for (j=0; j<3; j++){//buscamos en cada intervalos entre 3 valores el que se aleja mas del valor real.
+		x=N[i]+d/(m+2); //guardamos el primer punto en el que miraremos la diferencia.
+		for (j=0; j<m; j++){//buscamos en cada intervalos entre m valores el que se aleja mas del valor real.
 			error=fabs(f(x)-AvaluarSplines(N, Polin, x));//miramos la diferencia.
+			if (error==NAN){
+				printf("Error distancia a dos demasiado pequeña\n");
+			}
 			if (error>errormax){//actualizamos el error máximo.
 				errormax=error;
 			}
+			x+=d/(m+2);//miramos el siguiente punto.
 		}
 		sumaerror+=d*errormax;
 	}
