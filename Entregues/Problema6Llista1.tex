@@ -26,22 +26,22 @@ Abans de començar serà necessari fer algunes suposicions i observacions sobre 
  \item \textbf{L'error relatiu comés per representació és de $\epsilon$  i per operacions aritmètiques (suma, resta, producte i divisió) és de $2\epsilon$:} Aquestes són les
  dades presentades en un exemple fet a classe de teoria.
  \item \textbf{Podem reescriure la sèrie (a) sumant termes dos a dos per obtindre $\pi=8\sum\limits_{i=0}^{\infty}\frac{1}{(4i+1)(4i+3)}$:} Aquesta modificació, te dos
- avantatges. Primer porta a la definició de la successió $S_n^a=\sum\limits_{i=0}^n\frac{1}{(4i+1)(4i+3)}$ la qual té la peculiar característica de res monòtona creixent la 
+ avantatges. Primer porta a la definició de la successió $S_n^a=\sum\limits_{i=0}^n\frac{1}{(4i+1)(4i+3)}$ la qual té la peculiar característica de ser monòtona creixent la 
  qual cosa fa que sigui més fàcil estudiar-la. Segona convergeix obviament el doble de ràpid que la sèrie $4\sum_{i=0}^{\infty}\frac{(-1)^i}{2i+1}$ i propaga menys l'error
  en quant la única diferència que te respecte a la sèrie anterior és que fem sumes de forma exacta\footnote{podem considerar que la suma 
- $\frac{1}{4n+1}-\frac{1}{4n+3}=\frac{2}{(4i+1)(4i+3)}$ està feta de manera exacta en quant els enters representables són nombres màquina i el seu producte 
+ $\frac{1}{4n+1}-\frac{1}{4n+3}=\frac{2}{(4n+1)(4n+3)}$ està feta de manera exacta en quant els enters representables són nombres màquina i el seu producte 
  (si representable) segueix sent un nombre màquina i, per tant, l'únic error fet en aquesta suma és el de representació de la fracció final que, per altra banda, ja existia
  en la representació de cadascuna de les dues fraccions inicials.}.
  \item \textbf{Els únics errors de representació de la sèrie (a) són els que venen donats per la representació de les fraccions:} Aquesta suposició és molt realista en quant
  tots els enters més petits que el valor màxim representable són números màquina i, per tant, no tenen error de representació i els enters en el denominador de la sèrie (a)
  reescrita creixen de manera prou lenta (cuadràticament) com per no causar immediatament un overflow en la representació com a long int. Aquesta suposició no és però valida en el cas de
- la sèrie (b). Tot i que el valor 0.5 es pugui interpretar com la fracció $\frac{1}{2}$ i,  per tant, com un 2 en el denominador el qual no tindria error de representació
- els nombres al numerador i al denominador de la sèrie (b) creixen de manera tan ràpida (semifactorialment) que enseguida (menys de 1000 iteracions) seria impossible
- guardar-los com a enters fins i tot en una variable del tipus long int. Ens topem amb dos possibles solucions per solucionar aquest problema. La primera consisteix en 
+ la sèrie (b). Tot i que el valor 0.5 es pugui interpretar com la fracció $\frac{1}{2}$ i,  per tant, com un 2 en el denominador el qual no tindria error de representació,
+ els nombres al numerador i al denominador de la sèrie (b) creixen de manera tan ràpida (semifactorialment) que enseguida (menys de 100 iteracions) seria impossible
+ guardar-los com a enters fins i tot en una variable del tipus long int. Ens topem amb dos possibles opcions per a solucionar aquest problema. La primera consisteix en 
  calcular les fraccions com a productori de fraccions amb numerador i denominador prou petits com per ser guardats en una variable del tipus long int. En aquest cas seguiríem
  tenint error de representació únicament en les fraccions numerador i denominador petits però com que que cada fracció s'obtindria com a producte de varies d'aquestes 
  fraccions al final l'error s'acumularia i no sortiria a compte\footnote{L'error associat a cada fracció (suposant de manera exageradament optimista que no hi hagués error
- en el producte de fraccions) seria igual a la suma dels errors associats a cada una de les fraccions que la formen o sigui seria $n\epsilon$ on $n$ indica el nombre de
+ en el producte de fraccions) seria igual a la suma dels errors associats a cada una de les fraccions que la formen o sigui seria $n\*\epsilon$ on $n$ indica el nombre de
  fraccions amb numerador i denominador petits que formen cada fracció de la sèrie.}. L'altra opció consisteix en guardar numerador i denominador com a doubles
  els quals tenen un rang de representació molt mes gran que els long int. Això implicaria no obstant que tant numerador com denominador en cadascuna de les fraccions de
  la sèrie (b) estarien sotmesos a errors de representació amb punt flotant. Tot i així aquest mètode és preferible al altre (sempre i quan els nombres a numerador i
@@ -51,14 +51,14 @@ Abans de començar serà necessari fer algunes suposicions i observacions sobre 
  és limitaria a $4\epsilon$ ($2\epsilon$ per les representacions de numerador i denominador i $2\epsilon$ per la operació de divisió\footnote{$fl\left(\frac{x}{y}\right)=
  \frac{fl(x)}{fl(y)}(1+2\lambda_3)=\frac{x(1+\lambda_1)}{y(1+\lambda_2)}(1+2\lambda_3)\approx\frac{x}{y}(1+\lambda_1)(1-\lambda_2)(1+2\lambda_3)\approx\frac{x}{y}
  (1+\lambda_1-\lambda_2+2\lambda_3)$ i, com que $|\lambda_3|<\epsilon$ aleshores l'error relatiu de la fracció $\frac{x}{y}$ serà més petit que $4\epsilon$.}).
- \item \textbf{El calcul de les fraccions del cas (b) calculant numerador i denominador com a doubles i després dividint:} És important mantindre en ment que d'aquesta manera
- obtindrem donarà un error relatiu de $4\epsilon$ per a cada fracció. En el cas (a) d'altra banda tindríem que el error relatiu de cada fracció de la seria vindrà donat
+ \item \textbf{El calcul de les fraccions del cas (b) es fa calculant numerador i denominador com a doubles i després dividint:} És important mantindre en ment que d'aquesta
+ manera obtindrem un error relatiu de $4\epsilon$ per a cada fracció. En el cas (a) d'altra banda tindríem que el error relatiu de cada fracció de la serie vindria donat
  únicament per la operació de divisió entre numerador i denominador\footnote{Numerador i denominador no tindran error de representació en quant seran enters i, per tant,
- els podem suposar nombres màquina màquina.} i, per tant, serà de $2\epsilon$ tal i com hem especificat en la segona suposició.
+ els podem suposar nombres màquina màquina.} i, per tant, seria de $2\epsilon$ tal i com hem especificat en la segona suposició.
  \item \textbf{Les sèries es calculen en l'ordre indicat tenint en compte la nova representació de la sèrie (a):} És important tindre en compte l'ordre amb que es suma en
- quant la suma en punt flotant no és associativa.
+ quant la suma en punt flotant no és commutativa.
 \end{itemize}
-A partir d'aquestes hipòtesis podem estudiar com augmenta l'error relatiu per a cada fracció que sumem en la sèrie (a) i en el cas (b).\\
+A partir d'aquestes hipòtesis podem estudiar com augmenta l'error relatiu per a cada fracció que sumem en les sèries (a) i (b).\\
 Denotem per $S_N$ la suma dels $N$ primers termes de la sèrie (a) o (b) i per $E_N$ l'error associat a $S_N$. Si a més a més denotem per $\frac{x_{N+1}}{y_{N+1}}$ el terme
 $N+1$ de la suma de qualsevol de les dues sèries obtenim
 \begin{equation*}
@@ -75,7 +75,7 @@ On $|\delta_1|<E_N$, $|\delta_3|<2\epsilon$ i, per lo dit anteriorment, $|\delta
 Notem ara que si el nostre objectiu és comparar els errors propagats en la equació (a) i en la equació (b) no fa falta tindre en compte el nombre per el qual es 
 multipliquen les sèries (8 en el cas (a) i 6 en el cas (b)) en quant, donat que una multiplicació senzillament suma els errors relatius i afegeix $2\epsilon$
 \footnote{$fl(x\*y)=(fl(x)fl(y))(1+2\delta_3)=x(1+\delta_1)y(1+\delta_2)(1+2\delta_3)\approx xy(1+\delta_1+\delta_2+2\delta_3)$ on $|\delta_1|$,$|\delta_2|$,
-$|\delta_3|<\epsilon$} i els errors de representació de 8 i 6 són els dos iguals\footnote{Sent nombre màquina ambdós errors de representació són 0.} i, per tant, aquesta 
+$|\delta_3|<\epsilon$} i els errors de representació de 8 i 6 són els dos iguals\footnote{Sent nombre màquina ambdós errors de representació són 0.} aleshores aquesta 
 operació augmenta l'error de la mateixa forma tant per la sèrie (a) com per la sèrie (b) o sigui que considerar aquesta multiplicació no és rellevant per comparar les dues
 sèries.\\
 Si ara denotem per $S_N^a$ la suma dels $N$ primers termes de la sèrie (a), per $S_N^b$ la suma dels $N$ primers termes de la sèrie (b) i anàlogament
@@ -102,7 +102,7 @@ i en el cas (b)
 \end{equation}
 Com podem observar, cada vegada que es suma un terme de la sèrie l'error relatiu augmenta de, com a mínim $2\epsilon$ per tant podem afirmar que, a partir de la segona
 suma es complirà que $E_N^b$,$E_N^a>4\epsilon$ per a tot $N>2$ és més podem afirmar que $E_N^a$,$E_N^b>>\epsilon$ bastant ràpidament i podem per tant aproximar 
-$\frac{4\epsilon-E_N^b}{S^b_{N+1}}\approx-\frac{E_N^b}{S^b_{N+1}}$ i $\frac{2\epsilon-E_N^a}{S^a_{N+1}}\approx-\frac{E_N^a}{S^a_{N+1}}$. Notem ara que $S_N^a$ i $S_N^bS$
+$\frac{4\epsilon-E_N^b}{S^b_{N+1}}\approx-\frac{E_N^b}{S^b_{N+1}}$ i $\frac{2\epsilon-E_N^a}{S^a_{N+1}}\approx-\frac{E_N^a}{S^a_{N+1}}$. Notem ara que $S_N^a$ i $S_N^b$
 tenen ambdues cotes superior i inferior i, a més a més, els termes de la sèrie (b) decreixen prou ràpid com perquè es compleixi en molt poc tems (menys de 10 iteracions) que
 \begin{equation*}
  \frac{0.5^{2N+1}}{2N+1}\prod_{j=1}^N\frac{2j-1}{2j}\frac{1}{S^b_{N+1}}<\frac{1}{(4N+1)(4N+3)S^a_{N+1}}
@@ -120,6 +120,5 @@ fent servir aquestes observacions i les equacions \ref{a} i \ref{b} podem conclo
  b és molt preferible respecte de la sèrie (a) en quant, tot i que a cada suma l'error augmenta més en la sèrie (b) que en la sèrie (a) la sèrie (b) convergeix molt més
  ràpidament cap a $\pi$ com podem deduir del fet que els termes de la sèrie (b) es fan petits molt més ràpidament que els termes de la sèrie (a).
  Aleshores per obtindre una bona aproximació de $\pi$ són necessàries moltes menys iteracions de la sèrie (b) que de la sèrie (a), per tant, tot i que a cada iteració es
- propagui una miqueta més l'error a cada iteració de la sèrie la propagació total de l'error en (b) és menor que en (a) on és necessari fer més
- iteracions.
+ propagui una miqueta més l'error la propagació total de l'error en (b) és menor que en (a) on és necessari fer més iteracions.
 \end{document}
