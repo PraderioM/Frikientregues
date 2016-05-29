@@ -11,15 +11,15 @@
 \begin{document}
 \maketitle
 \paragraph*{Sigui $P_4(x)$ el polinomi interpolador d'una funció $f$ en els nodes $a-2h$, $a-h$, $a$, $a+h$, $a+2h$. Derivant $P_4(x)$ obtenim l'anomenada
-\textit{fórmula del cinc punts} per a aproximar $f'(x)$:}
+\textit{fórmula dels cinc punts} per a aproximar $f'(x)$:}
 $$f'(a)\approx \frac{1}{12h}(f(a-2h)-8f(a-h)+8f(a+h)-f(a+2h))$$
 \paragraph*{Doneu una fórmula per a l'error $f'(a)-P'_4(a)$.\\\phantom{.}\\}
 
-Desenvolupant per Taylor al voltant del punt $a$ la funció $f$\footnote{estem suposant que la funció $f$ és prou regular com perquè tingui sentit lo que escrivim} obtenim:
+Desenvolupant per Taylor al voltant del punt $a$ la funció $f$\footnote{estem suposant que la funció $f$ és prou regular com perquè tingui sentit lo que escrivim.} obtenim:
 \begin{equation}
 \label{Taylor}
 \begin{split}
-f(x)&=\sum_{n=0}^{\infty}\frac{f^{n)}(a)}{n!}(x-a)^n\\
+f(x)&=\sum_{n=0}^{\infty}\frac{f^{n)}(a)}{n!}(x-a)^n=\\
 &=f(a)+f^{I)}(a)(x-a)+\frac{f^{II)}(a)}{2}(x-a)^2+\frac{f^{III)}(a)}{6}(x-a)^3+\frac{f^{IV)}(a)}{24}(x-a)^4+\frac{f^{V)}(a)}{120}(x-a)^5+O(x-a)^6 
 \end{split}
 \end{equation}

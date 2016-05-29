@@ -19,11 +19,11 @@ int main(){
 		N[i]=4+2*i;
 		i++;
 	}
-	printf("El calcul de F comença a donar errors en la seva evaluació al voltant del 0 a partir del iterat %d ", i);
-	printf("on s'avalua F en el punt %g\n", h);
+	printf("El calcul de F comença a donar errors en la seva evaluació al voltant del 0 a partir ");
+	printf("del iterat %d on s'avalua F en el punt %g\n", i, h);
 	h=ExtrapolacioRichardson(X, N, 0.5, i);
-	printf("Aplicant la extrapolació de Richardson amb %d dades inicials obtenim la aproximació de f'(2) donada ", i);
-	printf("per\n%.12g\nMentres que el valor real és\n%.12g\n\n", h, f1a);
+	printf("Aplicant la extrapolació de Richardson amb %d dades inicials obtenim la aproximació ", i);
+	printf("de f'(2) donada per\n%.12g\nMentres que el valor real és\n%.12g\n\n", h, f1a);
 	return 0;
 }
 
@@ -38,8 +38,9 @@ double F(double h){
 }
 
 /*Aquesta funció agafa com a parametres un vector (X) de double de dimensió n que te per entrades els valors
-  X[i]=f(q^i*h). Essent f la funció de la cual volem aproximar el 0. També pren com a arguments el vector N on estan
-  guardts els ordres dels primers n-1 exponents (p_i) en el desenvolupament f(h)=f(0)+a_1h^{p_1}+a_2h^{p_2}+....
+  X[i]=f(q^i*h). Essent f la funció de la cual volem aproximar el 0. També pren com a arguments el vector N
+  on estan guardts els ordres dels primers n-1 exponents (p_i) en el desenvolupament
+  f(h)=f(0)+a_1h^{p_1}+a_2h^{p_2}+....
   El valor q esmentat anteriorment i la dimensió n esmentada anteriorment. Després d'aplicar extrapolació de
   Richardson i modificar el vector X torna el resultat de la extrapolació,*/
 double ExtrapolacioRichardson(double* X, int* N, double q, int n){
@@ -51,8 +52,8 @@ double ExtrapolacioRichardson(double* X, int* N, double q, int n){
 		for (j=0; j<(N[n-2-i]-exponent); j++){
 			pot*=q;
 		}
-		/*calculem els termes del següent iterat.*/
-		for (j=0; j<i+1; j++){
+		exponent=N[n-2-i]; //cambiem l'exponent de la potencia de q guardada actualent.
+		for (j=0; j<i+1; j++){ //calculem els termes del següent iterat.
 			X[j]=X[j]+(X[j]-X[j+1])/(pot-1);
 		}
 	}
