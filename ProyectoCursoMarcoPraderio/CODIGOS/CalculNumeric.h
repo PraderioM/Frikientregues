@@ -10,65 +10,69 @@
 typedef double (*funcio)(double);
 
 /*Interpolació de Newton*/
-double AlgorismeNeville(double*, double*, double, int); //77
-void DibuixarGrafica(double*, double*, int, char*); //97
-double* Calculardiferencia(double*, double*, int); //123
-double* AvaluarFuncio(funcio , double*, int); //138
-double* NodesEquiespaiats(double, double, int); //155
-double* NodesChebyschev(double, double, int); //179
-double AvaluarPolinomi(double*, int, double); //198
-double* PolinomiInterpoladorHermite1(int*, int); //214
-double* PolinomiInterpoladorHermite(double*, double*, int, int); //239
-double* CoeficientsHermite(double*, double*, int, int); //256
-double AvaluarCoeficientsPolinomi(double*, double*, int, double); //273
-int ordenar(double*, int); //288
-int factorial(int); //313
-int demanardades(double**, double**, double**); //327
-int demanardadesPantalla(double**, double**, double**); //348
-int demanardadesFitxer(double**, double**, double**); //408
-void preparardades(double*, double*, double**, double**, int); //480
-void diferenciesdividides(double*, double*, double*, double*, int); //500
-void MostrarCoeficientsHermite(double*, double*, int); //531
-void CalcularPolinomiHermite(double*, double**, int, int); //545
-void MostrarPolinomiHermite(double*, int); //580
+double AlgorismeNeville(double*, double*, double, int); //81
+void DibuixarGrafica(double*, double*, int, char*); //101
+double* Calculardiferencia(double*, double*, int); //127
+double* AvaluarFuncio(funcio , double*, int); //142
+double* NodesEquiespaiats(double, double, int); //159
+double* NodesChebyschev(double, double, int); //183
+double AvaluarPolinomi(double*, int, double); //202
+double* PolinomiInterpoladorHermite1(int*, int); //218
+double* PolinomiInterpoladorHermite(double*, double*, int, int); //243
+double* CoeficientsHermite(double*, double*, int, int); //260
+double AvaluarCoeficientsPolinomi(double*, double*, int, double); //277
+int ordenar(double*, int); //292
+int factorial(int); //317
+int demanardades(double**, double**, double**); //331
+int demanardadesPantalla(double**, double**, double**); //352
+int demanardadesFitxer(double**, double**, double**); //412
+void preparardades(double*, double*, double**, double**, int); //484
+void diferenciesdividides(double*, double*, double*, double*, int); //504
+void MostrarCoeficientsHermite(double*, double*, int); //535
+void CalcularPolinomiHermite(double*, double**, int, int); //549
+void MostrarPolinomiHermite(double*, int); //584
 /*Interpolacio de Splines.*/
-double* PolinomiInterpoladorSplinesLU(double*, double*, int); //630
-double* PolinomiInterpoladorSplinesGaussSeidel(double*, double*, double, int); //662
-double* LongitudIntervals(double*, int); //691
-double* CalculMu(double*, int); //704
-double* CalculLambda(double*, int); //717
-double* CalculD(double*, double*, int); //730
-double* ConstruirMatriu(double*, double*, int); //743
-double* CalculBeta(double*, double*, double*, int); //762
-double* CalculDelta(double*, double*, int); //777
-double AvaluarSplines(double*, double*, double); //792
+double* PolinomiInterpoladorSplinesLU(double*, double*, int); //634
+double* PolinomiInterpoladorSplinesGaussSeidel(double*, double*, double, int); //666
+double* LongitudIntervals(double*, int); //695
+double* CalculMu(double*, int); //708
+double* CalculLambda(double*, int); //721
+double* CalculD(double*, double*, int); //734
+double* ConstruirMatriu(double*, double*, int); //747
+double* CalculBeta(double*, double*, double*, int); //766
+double* CalculDelta(double*, double*, int); //781
+double AvaluarSplines(double*, double*, double); //796
 /*Resoldre sistemes lineals.*/
-double* ResoldreMatriuTridiagonal(double*, double*, double*, double*, int); //816
-double* ResoldreSistemaLinealGaussSeidel(double*, double*, double, int); //842
-double* ResoldreSistemaLinealLU(double*, double*, int); //892
-void Idn(int*, int*, int); //919
-int LUtot(double*, int*, int*, int*, int*, int); //932
-int pivotatge(double*, int*, int*, int*, int*, int, int); //955
-void canvidecolumnesfiles (int*, int, int, int); //989
-int guardarcanvidefiles (int*, int*, int); //1004
-int guardarcanvidecolumnes (int*, int*, int); //1014
-double* matriupermatriuintdb(int*, double*, int); //1024
-double* matriupermatriudbint(double*, int*, int); //1043
-int matriupermatriuintint(int*, int*, int, int); //1062
-double* matriupervector(int*, double*, int); //1087
-void resoldresistematriangularinferior (double*, double*, int); //1104
-void resoldresistematriangularsuperior (double*, double*, int); //1117
+double* ResoldreMatriuTridiagonal(double*, double*, double*, double*, int); //820
+double* ResoldreSistemaLinealGaussSeidel(double*, double*, double, int); //846
+double* ResoldreSistemaLinealQR(double*, double*, int, int); //898
+double* ResoldreSistemaLinealLU(double*, double*, int); //916
+double* DescomposicioQR(double*, int, int); //946
+void MultiplicarQ(double*, double*, double*, int, int); //992
+double ProducteEscalar(double*, double*, int); //1013
+void Idn(int*, int*, int); //1024
+int LUtot(double*, int*, int*, int*, int*, int); //1037
+int pivotatge(double*, int*, int*, int*, int*, int, int); //1059
+void canvidecolumnesfiles (int*, int, int, int); //1093
+int guardarcanvidefiles (int*, int*, int); //1108
+int guardarcanvidecolumnes (int*, int*, int); //1118
+double* matriupermatriuintdb(int*, double*, int); //1128
+double* matriupermatriudbint(double*, int*, int); //1147
+int matriupermatriuintint(int*, int*, int, int); //1166
+double* matriupervector(int*, double*, int); //1191
+void resoldresistematriangularinferior (double*, double*, int); //1208
+void resoldresistematriangularsuperior (double*, double*, int); //1221
 /*Integracio i Derivacio.*/
-double QuadraturaGaussChebyschev(funcio, double, double, int); //1136
-double IntegracioPolinomiSplines(double*, double*, int); //1164
-double IntegrarPolinomi(double*, double, double, int); //1179
-double IntegracioSimpsonCompost(funcio, double, double, int); //1199
-double IntegracioTrapeziCompost(funcio, double, double, int); //1239
-double ExtrapolacioRichardson(double*, int*, double, int); //1266
+double QuadraturaGaussChebyschev(funcio, double, double, int); //1240
+double IntegracioPolinomiSplines(double*, double*, int); //1268
+double IntegrarPolinomi(double*, double, double, int); //1283
+double IntegracioSimpsonCompost(funcio, double, double, int); //1303
+double IntegracioTrapeziCompost(funcio, double, double, int); //1343
+double ExtrapolacioRichardson(double*, int*, double, int); //1370
 /*Zeros de funcions.*/
-double Newton(funcio, funcio, double, double); //1288
-double Secant(funcio, double, double, double); //1316
-double Biseccio(funcio, double, double, double); //1350
+double Newton(funcio, funcio, double, double); //1392
+double Secant(funcio, double, double, double); //1420
+double Biseccio(funcio, double, double, double); //1554
 
 /*Aquesta funció agafa com a parametres d'entrada dos vectors de igual longitud on es guarden les
   coordenades de punts interpoladors, el punt en el que es vol interpolar el polinomi i la longitud dels
@@ -884,11 +888,31 @@ double* ResoldreSistemaLinealGaussSeidel(double* M, double* b, double e, int n){
 	}
 }
 
-/*fem una funció per resoldre sistemes lineal (la necessitarem per fer interpolació per Splines).
+/*Fem una funció per resoldre sistemes lineals mitjançant descomposició QR.
+  Aquesta funció prendrá com a parametres un vector de dimensió m*n que representerà la matriu A
+  del sistema lineal sobredeterminat A*x=b, el vector b de dimensió n<m i els enters m i n. Tornarà
+  com a resultat el vector x que minimitzi ||A*x-b||² (s'esborraran la matriu A i el vector b).*/
+double* ResoldreSistemaLinealQR(double* A, double* b, int m, int n){
+	double *t;
+	int i;
+	//guardem la descomposició QR de la matriu A en la matriu M.
+	t=DescomposicioQR(A, m, n);
+	if (t==NULL){ //si hi ha hagut algun error en la descomposició tornem NULL.
+		return NULL;
+	}
+	//guardem en el vector b el vector Q*b on Q és la Q de la descomposició QR de A.
+	MultiplicarQ(A, t, b, m, n);
+	//resolem el sistema triangular superior R*x=b y guardem el resultat en b.
+	resoldresistematriangularsuperior(A, b, n);
+	//tornem el resultat.
+	return b;
+}
+
+/*fem una funció per resoldre sistemes lineals mitjançant descomposició LU.
  Aquesta funció prendrà com a parametres un vector de dimensió n*n que representarà la matriu M del
- sistema lineal de n equacions b=M*x, el vector b i la dimensió del sistema n i tornarà com a resultat un
- vector amb guardada la dimensió del sistema també modificarà b per guardar allí la solució. Si hi ha
- algun problema en la resolució del sistema la funció tornarà NULL*/
+ sistema lineal de n equacions b=M*x, el vector b i la dimensió del sistema n i tornarà com a resultat
+ un vector amb guardada la dimensió del sistema també modificarà b per guardar allí la solució.
+ Si hi ha algun problema en la resolució del sistema la funció tornarà NULL*/
 double* ResoldreSistemaLinealLU(double* M, double* b, int n){
 	int i, Idf[n*n], Idc[n*n], permf[n], permc[n];
 	/*inicialitzem les matrius Idf i Idc com la matriu identitat.*/
@@ -912,9 +936,90 @@ double* ResoldreSistemaLinealLU(double* M, double* b, int n){
 }
 
 
-/*les funcions que segueixen són necessaries per poder aplicar ResoldreSistemaLinealLU*/
+/*les funcions que segueixen són necessaries per poder aplicar ResoldreSistemaLinealLU/QR.*/
 
-/*Aquesta funció pren com a parametre dues matrius i les converteix en la matriu 
+/*Aquesta funció pren com a parametres una matriu A de dimensió m*n i les seves dimensions i torna com
+  a resultat el vector t que conté els multiplicadors de la descomposició QR i modifica la matriu A
+  per poder guardar en la part superior (diagonal inclosa) la matriu R de la descomposició i en la
+  part inferior (diagonal exclosa) la matriu Q de la descomposició QR (Q és simètrica i te 1 a la
+  diagonal).*/
+double* DescomposicioQR(double* A, int m, int n){
+	double *t, norma;
+	int i, j, k;
+	t=malloc(n*sizeof(double));
+	for (i=0; i<n; i++){//apliquem l'algorisme.
+		norma=0;
+		for(j=i; j<m; j++){//calculem la norma de la columna i sota la diagonal de la matriu A.
+			norma+=A[i+n*j]*A[i+n*j];
+		}
+		//si la norma és 0 el sistema no és compatible, tornem el vector NULL.
+		if (norma==0){
+			return NULL;
+		}
+		norma=sqrt(norma);
+		//fem que t[i] tingui el signe oposat al element de la diagonal de A.
+		if(A[i+n*i]>=0){
+			norma=-norma;
+		}
+		t[i]=A[i+n*i]-norma;//comencem a definir el multiplicador.
+		for(j=(i+1); j<m; j++){//guardem la primera columna (en la cual es troba la matriu "Q").
+			A[i+j*n]/=t[i];
+		}
+		A[i+n*i]=norma;//en la diagonal es troba la norma del vector.
+		t[i]/=-norma; //definim t[i].
+		for (j=(i+1); j<n; j++){//guardem la resta de columnes.
+			//calculem el producte escalar entre el vector de "Q" de la primera columna i la columna j.
+			norma=A[n*i+j];
+			for (k=(i+1); k<m; k++){
+				norma+=A[n*k+i]*A[n*k+j];
+			}
+			/*multipliquem-lo per el multiplicador i aixis tindrem que la nova fila serà f:=f-norma*c
+			  on c indica la primera columna on està la matriu "Q".*/
+			norma*=t[i];
+			//calculem f-norma-c.
+			A[n*i+j]-=norma;
+			for (k=(i+1); k<m; k++){
+				A[n*k+j]-=norma*A[n*k+i];
+			}
+		}
+	}
+	return t;
+}
+
+/*Aquesta funció pren com a parametres la Matriu A on es guarda la descomposició QR de una matriu donada
+  tal i com es descriu en la funció anterior el vector t que conté els multiplicadors de la
+  descomposició QR, un vector b i la seva dimensió n. Assigna a b el valor b=Q^T*b.*/
+void MultiplicarQ(double* A, double* t, double* b, int m, int n){
+	double aux;
+	int i, j;
+	for (i=0; i<n; i++){ //calculem el producte.
+		/*Guardem en aux el nobre per el que hem de multiplicar el vector u de Q guardat en la columna i
+		  de la descomposició QR per tal de que Q_i*b=b-aux*u.*/
+		aux=b[i];
+		for (j=(i+1); j<m; j++){
+			aux+=b[j]*A[i+n*j];
+		}
+		aux*=t[i];
+		//calculem Q_i*b=b-aux*u.
+		b[i]-=aux;
+		for (j=(i+1); j<m; j++){
+			b[j]-=aux*A[i+n*j];
+		}
+	}
+}
+
+/*Aquesta funció pren com a parametres dos vetors i la seva dimensió i torna com a resultat él seu
+  producte escalar.*/
+double ProducteEscalar(double* v, double* w, int n){
+	double sum=0;
+	int i;
+	for (i=0; i<n; i++){
+		sum+=v[i]*w[i];
+	}
+	return sum;
+}
+
+/*Aquesta funció pren com a parametres dues matrius i les converteix en la matriu 
   identitat on després guardarem les permutacions fetes*/
 void Idn (int* Idf, int* Idc, int n){
 	int i,j;
@@ -949,7 +1054,6 @@ int LUtot(double* M,int* Idf,int* Idc,int* permf, int* permc, int n){
 	}
 	return 0;
 }
-
 
 /*Aquesta funció s'encarrega del pivotatge per minimitzar l'error.*/
 int pivotatge(double* M,int* Idf,int* Idc,int* permf, int* permc, int m, int n){
