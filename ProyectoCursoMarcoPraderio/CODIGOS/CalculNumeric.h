@@ -72,7 +72,7 @@ double ExtrapolacioRichardson(double*, int*, double, int); //1370
 /*Zeros de funcions.*/
 double Newton(funcio, funcio, double, double); //1392
 double Secant(funcio, double, double, double); //1420
-double Biseccio(funcio, double, double, double); //1554
+double Biseccio(funcio, double, double, double); //1454
 
 /*Aquesta funció agafa com a parametres d'entrada dos vectors de igual longitud on es guarden les
   coordenades de punts interpoladors, el punt en el que es vol interpolar el polinomi i la longitud dels
@@ -1376,8 +1376,8 @@ double ExtrapolacioRichardson(double* X, int* N, double q, int n){
 		for (j=0; j<(N[n-2-i]-exponent); j++){
 			pot*=q;
 		}
-		/*calculem els termes del següent iterat.*/
-		for (j=0; j<i+1; j++){
+		exponent=N[n-2-i]; //cambiem l'exponent de la potencia de q guardada actualent.
+		for (j=0; j<i+1; j++){ //calculem els termes del següent iterat.
 			X[j]=X[j]+(X[j]-X[j+1])/(pot-1);
 		}
 	}
