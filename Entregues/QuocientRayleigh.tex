@@ -37,15 +37,18 @@ $\{R_n\}$ definida com $R_n=\frac{\(x^{(n+1)}\right)^Ty^{(n)}}{\(y^{(n)}\right)^
   ^n v_i^T\right]\left[\alpha_1v_1+\sum_{i=2}^n\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^n v_i\right]}=\\
   &=\lambda_1\frac{\alpha_1^2v_1^Tv_1+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^nv_1^Tv_i+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^{n+1}
   v_i^Tv_1+\sum_{i,j=2}^n\alpha_i\alpha_j\(\frac{\lambda_i}{\lambda_1}\)^{2n+1}v_i^Tv_j}{\alpha_1^2v_1^Tv_1+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^n
-  v_1^Tv_i+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^{n}v_i^Tv_1+\sum_{i,j=2}^n\alpha_i\alpha_j\(\frac{\lambda_i}{\lambda_1}\)^{2n}v_i^Tv_j}
+  v_1^Tv_i+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^{n}v_i^Tv_1+\sum_{i,j=2}^n\alpha_i\alpha_j\(\frac{\lambda_i}{\lambda_1}\)^{2n}v_i^Tv_j}=\\
+  &=\lambda_1\frac{\alpha_1^2+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^n\(1+\frac{\lambda_i}{\lambda_1}\)v_1^Tv_i+
+  \sum_{i,j=2}^n\alpha_i\alpha_j\(\frac{\lambda_i}{\lambda_1}\)^{2n+1}v_i^Tv_j}{\alpha_1^2+\sum_{i=2}^n2\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^n
+  v_1^Tv_i+\sum_{i,j=2}^n\alpha_i\alpha_j\(\frac{\lambda_i}{\lambda_1}\)^{2n}v_i^Tv_j}
  \end{split}
 \end{equation*}
-Si la matriu $A$ és simètrica aleshores els vectors propis seran ortonormals. Si a més a més definim $\beta_i=\frac{\alpha_i^2}{\alpha_1^2}$ aleshores pode reescriure
+Si la matriu $A$ és simètrica aleshores els vectors propis seran ortogonals. Si a més a més definim $\beta_i=\frac{\alpha_i^2}{\alpha_1^2}$ aleshores pode reescriure
 \begin{equation*}
  \begin{split}
-  R_n&=\lambda_1\frac{\alpha_1^2v_1^Tv_1+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^nv_1^Tv_i+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^{n+1}
-  v_i^Tv_1+\sum_{i,j=2}^n\alpha_i\alpha_j\(\frac{\lambda_i}{\lambda_1}\)^{2n+1}v_i^Tv_j}{\alpha_1^2v_1^Tv_1+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^n
-  v_1^Tv_i+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^{n}v_i^Tv_1+\sum_{i,j=2}^n\alpha_i\alpha_j\(\frac{\lambda_i}{\lambda_1}\)^{2n}v_i^Tv_j}=\\
+  R_n&=\lambda_1\frac{\alpha_1^2+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^n\(1+\frac{\lambda_i}{\lambda_1}\)v_1^Tv_i+
+  \sum_{i,j=2}^n\alpha_i\alpha_j\(\frac{\lambda_i}{\lambda_1}\)^{2n+1}v_i^Tv_j}{\alpha_1^2+\sum_{i=2}^n2\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^n
+  v_1^Tv_i+\sum_{i,j=2}^n\alpha_i\alpha_j\(\frac{\lambda_i}{\lambda_1}\)^{2n}v_i^Tv_j}=\\
   &=\lambda_1\frac{\alpha_1^2+\sum_{i=2}^n\alpha_i^2\(\frac{\lambda_i}{\lambda_1}\)^{2n+1}}{\alpha_1^2+\sum_{i=2}^n\alpha_i^2\(\frac{\lambda_i}{\lambda_1}\)^{2n}}=
   \lambda_1\frac{1+\sum_{i=2}^n\beta_i\(\frac{\lambda_i}{\lambda_1}\)^{2n+1}}{1+\sum_{i=2}^n\beta_i\(\frac{\lambda_i}{\lambda_1}\)^{2n}}=
   \lambda_1\frac{1+\beta_2k^{2n+1}+O\(k^{2n+1}\)}{1+\beta_2k^{2n}+O\(k^{2n}\)}
