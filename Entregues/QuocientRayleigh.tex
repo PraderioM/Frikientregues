@@ -1,0 +1,64 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[left=1.5 cm,top=2.5cm,right=1.5cm,bottom=2.5cm]{geometry}
+\renewcommand{\*}{\cdot}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\(}{\left(}
+\renewcommand{\)}{\right)}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+%opening
+\title{Quocient de Rayleigh}
+\author{Marco Praderio 1361525}
+\date{}
+\begin{document}
+\maketitle
+El nostre objectiu és demostrar que el mètode de Rayleigh per trobar el valor propi dominant de una matriu simètrica $A$ convergeix cap a aquest igual de ràpid que 
+$\beta k^{2n}$ on $k=\frac{\lambda_2}{\lambda_1}$, $\lambda_i$ son els valors propis de la matriu $A$ posats en ordre decreixent en mòdul i $\beta$ és una constant
+que depèn de les condicions inicials.\\
+Abans de començar recordem com es definia el mètode de Rayleigh.\\
+Donada $A$ una matriu $n\times n$ amb valors propis $\lambda_1,...,\lambda_n$ tals que $|\lambda_1|>|\lambda_2|\ge\dots\ge|\lambda_n|$ i donada la
+recurrència definida per
+\begin{equation*}
+ \begin{split}
+  y^{(n)}&=\frac{x^{(n)}}{||x^{(n)}||_2}\\
+  x^{(n+1)}&=Ay^{(n)}
+ \end{split}
+\end{equation*}
+amb $x^{(0)}\in\R^n$ tal que $x^(0)=\sum_{i=1}^n\alpha_iv_i$ on $v_i$ valors propis normalitzats de $A$ amb valors propis $\lambda_i$ i $\alpha_i\not=0$ aleshores podem
+aproximar $\lambda_1$ com a límit de la successió
+$\{R_n\}$ definida com $R_n=\frac{\(x^{(n+1)}\right)^Ty^{(n)}}{\(y^{(n)}\right)^Ty^{(n)}}$. Manipulant el terme $R_n$ obtenim
+\begin{equation*}
+ \begin{split}
+  R_n&=\frac{\(x^{(n+1)}\)^Ty^{(n)}}{\(y^{(n)}\)^Ty^{(n)}}=\frac{\lambda_1^{2n+1}\left[\alpha_1v_1^T+\sum_{i=2}^n\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^{n+1}v_i^T\right]
+  \left[\alpha_1v_1+\sum_{i=2}^n\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^n v_i\right]}{\lambda_1^{2n}\left[\alpha_1v_1^T+\sum_{i=2}^n\alpha_i\(\frac{\lambda_i}{\lambda_1}\)
+  ^n v_i^T\right]\left[\alpha_1v_1+\sum_{i=2}^n\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^n v_i\right]}=\\
+  &=\lambda_1\frac{\alpha_1^2v_1^Tv_1+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^nv_1^Tv_i+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^{n+1}
+  v_i^Tv_1+\sum_{i,j=2}^n\alpha_i\alpha_j\(\frac{\lambda_i}{\lambda_1}\)^{2n+1}v_i^Tv_j}{\alpha_1^2v_1^Tv_1+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^n
+  v_1^Tv_i+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^{n}v_i^Tv_1+\sum_{i,j=2}^n\alpha_i\alpha_j\(\frac{\lambda_i}{\lambda_1}\)^{2n}v_i^Tv_j}
+ \end{split}
+\end{equation*}
+Si la matriu $A$ és simètrica aleshores els vectors propis seran ortonormals. Si a més a més definim $\beta_i=\frac{\alpha_i^2}{\alpha_1^2}$ aleshores pode reescriure
+\begin{equation*}
+ \begin{split}
+  R_n&=\lambda_1\frac{\alpha_1^2v_1^Tv_1+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^nv_1^Tv_i+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^{n+1}
+  v_i^Tv_1+\sum_{i,j=2}^n\alpha_i\alpha_j\(\frac{\lambda_i}{\lambda_1}\)^{2n+1}v_i^Tv_j}{\alpha_1^2v_1^Tv_1+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^n
+  v_1^Tv_i+\sum_{i=2}^n\alpha_1\alpha_i\(\frac{\lambda_i}{\lambda_1}\)^{n}v_i^Tv_1+\sum_{i,j=2}^n\alpha_i\alpha_j\(\frac{\lambda_i}{\lambda_1}\)^{2n}v_i^Tv_j}=\\
+  &=\lambda_1\frac{\alpha_1^2+\sum_{i=2}^n\alpha_i^2\(\frac{\lambda_i}{\lambda_1}\)^{2n+1}}{\alpha_1^2+\sum_{i=2}^n\alpha_i^2\(\frac{\lambda_i}{\lambda_1}\)^{2n}}=
+  \lambda_1\frac{1+\sum_{i=2}^n\beta_i\(\frac{\lambda_i}{\lambda_1}\)^{2n+1}}{1+\sum_{i=2}^n\beta_i\(\frac{\lambda_i}{\lambda_1}\)^{2n}}=
+  \lambda_1\frac{1+\beta_2k^{2n+1}+O\(k^{2n+1}\)}{1+\beta_2k^{2n}+O\(k^{2n}\)}
+ \end{split}
+\end{equation*}
+desenvolupant per Taylor la fracció $\frac{1}{1+y}$ amb $y=\beta_2k^{2n}+O\(k^{2n}\right)$ obtenim
+\begin{equation*}
+ \begin{split}
+  R_n&=\lambda_1\frac{1+\beta_2k^{2n+1}+O\(k^{2n+1}\)}{1+\beta_2k^{2n}+O\(k^{2n}\)}=\lambda_1\(1+\beta_2k^{2n+1}+O\(k^{2n+1}\)\)\(1-\beta_2k^{2n}+O\(k^{2n}\)\)=\\
+  &=\lambda_1\(1-\beta_2k^{2n}+O\(k^{2n}\)\)
+ \end{split}
+\end{equation*}
+Per tant, quan $n\to\infty$ tindrem que $R_n\to\lambda_1$ amb la mateixa velocitat que $\beta_2k^n\to0$ tal i com volíem demostrar.\\
+És important notar que, tot i que el mètode de Rayleigh convergeix prou ràpid exigeix la dificultat computacional extra de haver de calcular la norma quadrat i si el vector
+propi $v_1$ no és ortogonal a la resta de vectors propis aleshores la velocitat de convergència es redueix a la meitat.
+\end{document}
