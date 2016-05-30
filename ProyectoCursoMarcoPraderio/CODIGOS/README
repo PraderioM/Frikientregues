@@ -13,7 +13,7 @@ El Programa PrimeraAproximacion realiza los calculos tal y como se piden en los 
 El programa ErrorSplines calcula el error cometido al aproximar las integrales mediante la integral del polinomio interpolador de Splines.
 
 El Programa Solucion realiza los calculos de la pràctica calculando el perimetro mediante 503 nodos interpoladores y aproximando el punto pedido de tres maneras diferentes.
-1) Calculando las integrales mediante la formulacion de F(x) expuesta en la pràctica y aproximando las integrales por Splines con distancia entre nodos 1.e-3 y error de truncamiento de 1/200 (esto provoca que el programa tarde mas en ejecutarse mejorando muy ligeramente el resultado obtenido).
+1) Calculando las integrales mediante la formulacion de F(x) expuesta en la pràctica y aproximando las integrales por Splines con distancia entre nodos 1.e-3 y error de truncamiento de 1.e-4 (esto provoca que el programa tarde mas en ejecutarse mejorando muy ligeramente el resultado obtenido).
 2) Calculando F(x) mediante la reformulación propuesta aproximando las integrales por splines con distancia entre nodos igual a 0.5e-2.
 3) Calculando F(x) mediante la reformulacion propuesta aproximando las integrales por cuadratura de Gauss-Chebyschev con 1115 nodos interpoladores.
 
