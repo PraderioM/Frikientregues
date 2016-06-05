@@ -10,69 +10,71 @@
 typedef double (*funcio)(double);
 
 /*Interpolació de Newton*/
-double AlgorismeNeville(double*, double*, double, int); //81
-void DibuixarGrafica(double*, double*, int, char*); //101
-double* Calculardiferencia(double*, double*, int); //127
-double* AvaluarFuncio(funcio , double*, int); //142
-double* NodesEquiespaiats(double, double, int); //159
-double* NodesChebyschev(double, double, int); //183
-double AvaluarPolinomi(double*, int, double); //202
-double* PolinomiInterpoladorHermite1(int*, int); //218
-double* PolinomiInterpoladorHermite(double*, double*, int, int); //243
-double* CoeficientsHermite(double*, double*, int, int); //260
-double AvaluarCoeficientsPolinomi(double*, double*, int, double); //277
-int ordenar(double*, int); //292
-int factorial(int); //317
-int demanardades(double**, double**, double**); //331
-int demanardadesPantalla(double**, double**, double**); //352
-int demanardadesFitxer(double**, double**, double**); //412
-void preparardades(double*, double*, double**, double**, int); //484
-void diferenciesdividides(double*, double*, double*, double*, int); //504
-void MostrarCoeficientsHermite(double*, double*, int); //535
-void CalcularPolinomiHermite(double*, double**, int, int); //549
-void MostrarPolinomiHermite(double*, int); //584
+double AlgorismeNeville(double*, double*, double, int); //83
+void DibuixarGrafica(double*, double*, int, char*); //103
+double* Calculardiferencia(double*, double*, int); //129
+double* AvaluarFuncio(funcio , double*, int); //144
+double* NodesEquiespaiats(double, double, int); //161
+double* NodesChebyschev(double, double, int); //185
+double AvaluarPolinomi(double*, int, double); //204
+double* PolinomiInterpoladorHermite1(int*, int); //220
+double* PolinomiInterpoladorHermite(double*, double*, int, int); //245
+double* CoeficientsHermite(double*, double*, int, int); //262
+double AvaluarCoeficientsPolinomi(double*, double*, int, double); //279
+int ordenar(double*, int); //294
+int factorial(int); //319
+int demanardades(double**, double**, double**); //333
+int demanardadesPantalla(double**, double**, double**); //354
+int demanardadesFitxer(double**, double**, double**); //414
+void preparardades(double*, double*, double**, double**, int); //486
+void diferenciesdividides(double*, double*, double*, double*, int); //506
+void MostrarCoeficientsHermite(double*, double*, int); //537
+void CalcularPolinomiHermite(double*, double**, int, int); //551
+void MostrarPolinomiHermite(double*, int); //586
 /*Interpolacio de Splines.*/
-double* PolinomiInterpoladorSplinesLU(double*, double*, int); //634
-double* PolinomiInterpoladorSplinesGaussSeidel(double*, double*, double, int); //666
-double* LongitudIntervals(double*, int); //695
-double* CalculMu(double*, int); //708
-double* CalculLambda(double*, int); //721
-double* CalculD(double*, double*, int); //734
-double* ConstruirMatriu(double*, double*, int); //747
-double* CalculBeta(double*, double*, double*, int); //766
-double* CalculDelta(double*, double*, int); //781
-double AvaluarSplines(double*, double*, double); //796
+double* PolinomiInterpoladorSplinesLU(double*, double*, int); //636
+double* PolinomiInterpoladorSplinesGaussSeidel(double*, double*, double, int); //668
+double* LongitudIntervals(double*, int); //697
+double* CalculMu(double*, int); //710
+double* CalculLambda(double*, int); //723
+double* CalculD(double*, double*, int); //736
+double* ConstruirMatriu(double*, double*, int); //749
+double* CalculBeta(double*, double*, double*, int); //768
+double* CalculDelta(double*, double*, int); //783
+double AvaluarSplines(double*, double*, double); //798
 /*Resoldre sistemes lineals.*/
-double* ResoldreMatriuTridiagonal(double*, double*, double*, double*, int); //820
-double* ResoldreSistemaLinealGaussSeidel(double*, double*, double, int); //846
-double* ResoldreSistemaLinealQR(double*, double*, int, int); //898
-double* ResoldreSistemaLinealLU(double*, double*, int); //916
-double* DescomposicioQR(double*, int, int); //946
-void MultiplicarQ(double*, double*, double*, int, int); //992
-double ProducteEscalar(double*, double*, int); //1013
-void Idn(int*, int*, int); //1024
-int LUtot(double*, int*, int*, int*, int*, int); //1037
-int pivotatge(double*, int*, int*, int*, int*, int, int); //1059
-void canvidecolumnesfiles (int*, int, int, int); //1093
-int guardarcanvidefiles (int*, int*, int); //1108
-int guardarcanvidecolumnes (int*, int*, int); //1118
-double* matriupermatriuintdb(int*, double*, int); //1128
-double* matriupermatriudbint(double*, int*, int); //1147
-int matriupermatriuintint(int*, int*, int, int); //1166
-double* matriupervector(int*, double*, int); //1191
-void resoldresistematriangularinferior (double*, double*, int); //1208
-void resoldresistematriangularsuperior (double*, double*, int); //1221
+double* ResoldreMatriuTridiagonal(double*, double*, double*, double*, int); //822
+double* ResoldreSistemaLinealGaussSeidel(double*, double*, double, int); //848
+double* ResoldreSistemaLinealQR(double*, double*, int, int); //900
+double* ResoldreSistemaLinealLU(double*, double*, int); //918
+double* DescomposicioQR(double*, int, int); //948
+void MultiplicarQ(double*, double*, double*, int, int); //994
+double ProducteEscalar(double*, double*, int); //1015
+void Idn(int*, int*, int); //1026
+int LUtot(double*, int*, int*, int*, int*, int); //1039
+int pivotatge(double*, int*, int*, int*, int*, int, int); //1061
+void canvidecolumnesfiles (int*, int, int, int); //1095
+int guardarcanvidefiles (int*, int*, int); //1110
+int guardarcanvidecolumnes (int*, int*, int); //1120
+double* matriupermatriuintdb(int*, double*, int); //1130
+double* matriupermatriudbint(double*, int*, int); //1149
+int matriupermatriuintint(int*, int*, int, int); //1168
+double* matriupervector(int*, double*, int); //1193
+void resoldresistematriangularinferior (double*, double*, int); //1210
+void resoldresistematriangularsuperior (double*, double*, int); //1223
 /*Integracio i Derivacio.*/
-double QuadraturaGaussChebyschev(funcio, double, double, int); //1240
-double IntegracioPolinomiSplines(double*, double*, int); //1268
-double IntegrarPolinomi(double*, double, double, int); //1283
-double IntegracioSimpsonCompost(funcio, double, double, int); //1303
-double IntegracioTrapeziCompost(funcio, double, double, int); //1343
-double ExtrapolacioRichardson(double*, int*, double, int); //1370
+double QuadraturaGaussChebyschev(funcio, double, double, int); //1242
+double IntegracioPolinomiSplines(double*, double*, int); //1270
+double IntegrarPolinomi(double*, double, double, int); //1285
+double IntegracioSimpsonCompost(funcio, double, double, int); //1305
+double IntegracioTrapeziCompost(funcio, double, double, int); //1345
+double ExtrapolacioRichardson(double*, int*, double, int); //1372
 /*Zeros de funcions.*/
-double Newton(funcio, funcio, double, double); //1392
-double Secant(funcio, double, double, double); //1420
-double Biseccio(funcio, double, double, double); //1454
+double Newton(funcio, funcio, double, double); //1394
+double Secant(funcio, double, double, double); //1422
+double Biseccio(funcio, double, double, double); //1456
+double IteratAitken(double*); //
+double IteratStefensen(funcio, double); //
 
 /*Aquesta funció agafa com a parametres d'entrada dos vectors de igual longitud on es guarden les
   coordenades de punts interpoladors, el punt en el que es vol interpolar el polinomi i la longitud dels
@@ -1495,6 +1497,28 @@ double Biseccio(funcio f, double a, double b, double e){
 		error/=2;
 	}
 	return aux;
+}
+
+/*Aquesta funció agafa com a parametres un apuntador a un vector de doubles del cual agafarà els tres
+  primers elements i els interpretarà com els elements de una successió sobre la cual aplicarà el mètode
+  de acceleració de Aitken. Torna com a resultat el terme de la succesśió accelerada.*/
+double IteratAitken(double* A){
+	double x, y;
+	x=A[1]-A[0]; //definim la delta de Aitken.
+	y=A[2]-A[1];
+	y-=x; //definim la delta cuadrat de Aitken.
+	x*x;
+	return A[0]-x/y; //tornem el resultat de accelerar la successió.
+}
+
+/*Aguesta funció agafa com a paràmetres un apuntador a una funció f de R a R que representa el mètode de
+  punt fix de una funció de la cual volem trobar el punt fix i un valor de una successió (x), torna
+  com a resultat el següent valor de la successió accelerada mitjançant Stefensen.*/
+double IteratStefensen(funcio f, double x){
+	double y, z;
+	y=f(x);
+	z=y-x;
+	return x-z*z/(f(y)-2*y+x);
 }
 
 #endif
